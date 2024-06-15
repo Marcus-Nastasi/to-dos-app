@@ -1,14 +1,20 @@
+import Header from "./components/generics/Header";
 
 function App() {
 
-  return (
-    <>
-      <div>
-         <h1>hello world</h1>
-      </div>
-    </>
-  )
+   return(
+      <section className=" select-none">
+         <Header title={'Hello user!'} />
+
+         <div className=" pt-7">
+
+            
+
+         </div>
+      </section>
+   );
 }
 
 export default App;
+
 
