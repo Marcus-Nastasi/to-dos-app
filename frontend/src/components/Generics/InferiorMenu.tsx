@@ -1,13 +1,24 @@
+import { useState } from 'react';
 import { FaSquarePlus } from 'react-icons/fa6';
 
 export default function InferiorMenu() {
+   const [ btnBg, setBtnBg ] = useState<string>('#353535');
+
+   const handleMenuColorIn = () => setBtnBg('#838383');
+   const handleMenuColorOut = () => setBtnBg('#353535');
+
    return(
       <>
-         <div className=' w-screen h-24 flex justify-center items-center fixed bottom-0 bg-slate-200 bg-opacity-20 rounded-2xl'>
+         <div className=' w-screen h-24 flex justify-center items-center fixed bottom-0'>
+
             <FaSquarePlus
-               className=' opacity-100'
+               onMouseOver={handleMenuColorIn}
+               onMouseOut={handleMenuColorOut}
+               className=' opacity-100 hover:cursor-pointer'
                size={60}
+               color={btnBg}
             />
+            
          </div>
       </>
    );
