@@ -9,8 +9,9 @@ export default function Login() {
 
    return(
       <>
-         <div className=" p-10 flex justify-center items-center">
-            <h2 className=" text-3xl font-semibold">Login</h2>
+         <div className=" p-10 flex flex-col justify-center items-center">
+            <h1 className=" p-3 mb-2 border-b border-slate-800 text-4xl font-semibold">To-Dos App</h1>
+            <h2 className=" p-2 text-3xl font-semibold">Login</h2>
          </div>
 
          <div className=" flex justify-evenly text-2xl pb-5">

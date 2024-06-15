@@ -13,6 +13,8 @@ export default function FormLogin() {
             headers: new Headers({ 'content-type': 'application/json' })
          });
 
+         if(req.status == 403) console.log('wrong user or password');
+
          const token: string = await req.text();
          document.cookie = `token=${token}`;
 
@@ -24,7 +26,7 @@ export default function FormLogin() {
    return(
       <div className=" p-5">
 
-         <form className="flex flex-col p-5 rounded-3xl shadow-lg shadow-slate-950 bg-slate-100">
+         <form className="flex flex-col p-5 rounded-3xl shadow-lg shadow-slate-950 bg-slate-50">
 
             <label className=" text-2xl" htmlFor="input_email">E-mail</label>
             <input className=" indent-2 mb-5 p-1 rounded-xl border border-slate-900" type="text" name="email" id="input_email" />
