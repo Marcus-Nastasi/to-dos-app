@@ -822,6 +822,14 @@ video {
   padding-bottom: 1.25rem;
 }
 
+.indent-1 {
+  text-indent: 0.25rem;
+}
+
+.indent-2 {
+  text-indent: 0.5rem;
+}
+
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
