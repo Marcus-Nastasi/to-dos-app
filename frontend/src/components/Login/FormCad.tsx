@@ -1,10 +1,15 @@
 export default function FormCad() {
 
-   async function cadaster(e: any) {
+   async function cadaster(e: any): Promise<void> {
       e.preventDefault();
       
       try {
-         const [ name, email, pass ]: any = [ document.getElementById('input_name'), document.getElementById('input_email'), document.getElementById('input_password') ];
+         const [ name, email, pass ]: any = [ 
+            document.getElementById('input_name'), 
+            document.getElementById('input_email'), 
+            document.getElementById('input_password') 
+         ];
+
          const url: string = 'http://localhost:8080/api/user/new/';
 
          const req: Response = await fetch(url, {
@@ -13,7 +18,7 @@ export default function FormCad() {
             headers: new Headers({ 'content-type': 'application/json' })
          });
 
-         if(req.status == 201) console.log('created');
+         if(req.status !== 201) console.log('error creating');
          
       } catch(e) {
          console.log(e);

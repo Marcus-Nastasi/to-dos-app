@@ -1,11 +1,11 @@
 export default function FormLogin() {
 
-   async function getToken(e: any) {
+   async function getToken(e: any): Promise<void> {
       e.preventDefault();
       
       try {
          const [ email, pass ]: any = [ document.getElementById('input_email'), document.getElementById('input_password') ];
-         const url = 'http://localhost:8080/api/auth/login/';
+         const url: string = 'http://localhost:8080/api/auth/login/';
 
          const req: Response = await fetch(url, {
             method: 'POST',
@@ -15,7 +15,7 @@ export default function FormLogin() {
 
          const token: string = await req.text();
          document.cookie = `token=${token}`;
-         
+
       } catch(e) {
          console.log(e);
       }
