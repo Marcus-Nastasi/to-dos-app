@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { FaX } from 'react-icons/fa6';
+import Todo from '../Interface/Todos/Todo';
 
 export default function NewTodo({ show, func }: any) {
 
@@ -13,7 +14,7 @@ export default function NewTodo({ show, func }: any) {
       e.preventDefault();
 
       try {
-         const token: string = document.cookie.split('Bearer=')[1];
+         const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
          const url: string = 'http://localhost:8080/api/todos/new/';
 
          const [ title, client, description, link, due, priority ]: any = [
@@ -25,9 +26,9 @@ export default function NewTodo({ show, func }: any) {
             document.getElementById('priority')
          ];
 
-         const body: object = {
+         const body: Todo = {
             // to-do: implement user id getter
-            user_id: 1,
+            user_id: parseInt(document.cookie.split('UID=')[1]),
             client: client.value,
             title: title.value,
             description: description.value,
@@ -47,9 +48,7 @@ export default function NewTodo({ show, func }: any) {
 
          if(req.status != 201) console.log('error');
 
-         const res: string = await req.text();
-
-         console.log(res);
+         console.log('created');
 
       } catch(e) {
          console.log(e);

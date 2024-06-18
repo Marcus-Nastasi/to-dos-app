@@ -14,12 +14,14 @@ export default function FormLogin() {
          });
 
          if(req.status == 403) {
-            console.log('wrong user or password') 
+            console.log('wrong user or password');
             return;
          };
 
-         const token: string = await req.text();
-         document.cookie = `Bearer=${token}`;
+         const res: any = await req.json();
+
+         document.cookie = `Bearer=${res.token}`;
+         document.cookie = `UID=${res.uid}`;
 
          window.open('/', '_self');
 
