@@ -1,14 +1,18 @@
 import { useState } from 'react';
 import { FaEllipsisV, FaAlignJustify } from 'react-icons/fa';
+import MenuOp from './MenuOp';
 
 export default function Header({ title }: any) {
    const [ menuBg, setMenuBg ] = useState<string>('#353535');
    const [ pointsBg, setPointsBg ] = useState<string>('#353535');
+   const [ showMenu, setShowMenu ] = useState<string>('hidden');
 
-   const handleMenuColorIn = () => setMenuBg('#838383');
-   const handleMenuColorOut = () => setMenuBg('#353535');
-   const handlePointsColorIn = () => setPointsBg('#838383');
-   const handlePointsColorOut = () => setPointsBg('#353535');
+   const handleMenuColorIn = (): void => setMenuBg('#838383');
+   const handleMenuColorOut = (): void => setMenuBg('#353535');
+   const handlePointsColorIn = (): void => setPointsBg('#838383');
+   const handlePointsColorOut = (): void => setPointsBg('#353535');
+
+   const handleMenu = (): void => showMenu === 'hidden' ? setShowMenu('') : setShowMenu('hidden'); 
 
    return(
       <>
@@ -18,12 +22,15 @@ export default function Header({ title }: any) {
                <FaAlignJustify
                   onMouseOver={handleMenuColorIn}
                   onMouseLeave={handleMenuColorOut}
+                  onClick={handleMenu}
                   className=' hover:cursor-pointer'
                   size={23}
                   color={menuBg}
                />
 
             </div>
+
+            <MenuOp show={showMenu} func={handleMenu} />
 
             <div className=" pt-5">
                <h1 className=" text-3xl">
