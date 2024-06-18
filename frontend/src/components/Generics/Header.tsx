@@ -12,7 +12,7 @@ export default function Header({ title }: any) {
    const handlePointsColorIn = (): void => setPointsBg('#838383');
    const handlePointsColorOut = (): void => setPointsBg('#353535');
 
-   const handleMenu = (): void => showMenu === 'hidden' ? setShowMenu('') : setShowMenu('hidden'); 
+   const handleMenu = (): void => showMenu === 'hidden' ? setShowMenu('') : setShowMenu('hidden');
 
    return(
       <>

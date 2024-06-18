@@ -9,5 +9,8 @@ router.get('/', renderHome);
 // login
 router.get('/login', renderLogin);
 
+// dash
+router.get('/dashboard', (req: any, res: any) => res.json({ status: 'soon' })); 
+
 export default router;
 

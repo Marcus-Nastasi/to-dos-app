@@ -1,0 +1,18 @@
+/* #menuHomeLink {
+   animation-name: underlineIn;
+   animation-duration: 2s;
+   animation-fill-mode: forwards;
+   animation-iteration-count: initial;
+   transition: all ease-in-out 300ms;
+}
+
+@keyframes underlineIn {
+   0% {
+      text-decoration: unset;
+   }
+
+   100% {
+      text-decoration: underline;
+   }
+} */
+

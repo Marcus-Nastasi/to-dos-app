@@ -1,9 +1,16 @@
+import { useEffect } from "react";
 import Header from "./components/Generics/Header";
 import InferiorMenu from "./components/Generics/InferiorMenu";
 import StatusFilter from "./components/Generics/StatusFilter";
 import TodoCart from "./components/Home/TodoCard";
 
 function App() {
+
+   useEffect(() => {
+      
+      if(!document.cookie) window.open('/login', '_self');
+
+   }, []);
 
    return(
       <section className=" select-none">
