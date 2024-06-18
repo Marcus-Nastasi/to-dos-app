@@ -3,6 +3,7 @@ import { FaX } from 'react-icons/fa6';
 import Todo from '../Interface/Todos/Todo';
 
 export default function NewTodo({ show, func }: any) {
+   const [ closeButton, setCloseButton ] = useState<string>('#353535');
 
    useEffect(() => {
       
@@ -27,7 +28,6 @@ export default function NewTodo({ show, func }: any) {
          ];
 
          const body: Todo = {
-            // to-do: implement user id getter
             user_id: parseInt(document.cookie.split('UID=')[1]),
             client: client.value,
             title: title.value,
@@ -36,9 +36,6 @@ export default function NewTodo({ show, func }: any) {
             due: due.value,
             priority: priority.value
          };
-         
-         console.log(token)
-         console.log(body);
 
          const req: Response = await fetch(url, {
             method: 'POST',
@@ -48,15 +45,12 @@ export default function NewTodo({ show, func }: any) {
 
          if(req.status != 201) console.log('error');
 
-         console.log('created');
+         window.open('/', '_self');
 
       } catch(e) {
          console.log(e);
       }
-
    }
-
-   const [ closeButton, setCloseButton ] = useState<string>('#353535');
 
    const handleCloseBtnColorIn = (): void => setCloseButton('#838383');
    const handleCloseBtnColorOut = (): void => setCloseButton('#353535');
@@ -75,7 +69,7 @@ export default function NewTodo({ show, func }: any) {
                   color={closeButton}
                   onClick={func}
                   size={22}
-                  className=' fixed right-10 hover:cursor-pointer'
+                  className='fixed right-10 hover:cursor-pointer'
                />
             </div>
 
@@ -106,7 +100,7 @@ export default function NewTodo({ show, func }: any) {
 
                   <button
                      onClick={handleInsertTodo} 
-                     className=" px-5 py-1 text-lg bg-slate-300" 
+                     className="px-5 py-1 text-lg bg-slate-300" 
                      type="submit">
                         Create
                   </button>

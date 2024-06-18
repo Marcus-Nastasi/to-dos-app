@@ -1,3 +1,5 @@
+import Login from "../Interface/Login/Login";
+
 export default function FormLogin() {
 
    async function getToken(e: any): Promise<void> {
@@ -18,7 +20,7 @@ export default function FormLogin() {
             return;
          };
 
-         const res: any = await req.json();
+         const res: Login = await req.json();
 
          document.cookie = `Bearer=${res.token}`;
          document.cookie = `UID=${res.uid}`;

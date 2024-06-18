@@ -1,4 +1,28 @@
+import { useEffect, useState } from "react";
+
 export default function TodoCart({ title, priority, date }: any) {
+   const [ priorColor, setPriorColor ] = useState<string>();
+   const [ prior, setPrior ] = useState<string>();
+
+   useEffect(() => {
+      
+      if(priority == 'LOW') {
+         setPrior('Low');
+         setPriorColor('bg-green-300');
+      }
+
+      if(priority == 'MEDIUM') {
+         setPrior('Medium');
+         setPriorColor('bg-orange-300');
+      }
+
+      if(priority == 'HIGH') {
+         setPrior('High');
+         setPriorColor('bg-red-300');
+      }
+
+   }, []);
+
    return(
       <>
          <div className="m-5 p-4 rounded-3xl border border-slate-950">
@@ -10,8 +34,8 @@ export default function TodoCart({ title, priority, date }: any) {
 
             <div className=" mb-4">
                <div className="">
-                  <p className="bg-green-300 py-2 px-3 w-fit h-fit rounded-3xl">
-                     {priority}
+                  <p className={`${priorColor} py-2 px-3 w-fit h-fit rounded-3xl`}>
+                     {prior}
                   </p>
                </div>
             </div>

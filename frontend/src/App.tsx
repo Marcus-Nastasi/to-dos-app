@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "./components/Generics/Header";
 import InferiorMenu from "./components/Generics/InferiorMenu";
 import StatusFilter from "./components/Generics/StatusFilter";
-import TodoCart from "./components/Home/TodoCard";
+import TodoCard from "./components/Home/TodoCard";
 import NewTodo from "./components/Todos/NewTodo";
 // import User from "./components/Interface/User/User";
 import Todo from "./components/Interface/Todos/Todo";
@@ -55,7 +55,7 @@ function App() {
             <NewTodo show={newTodo} func={handleNewTodo} />
 
             {/* debbug date format on TodoCard (and todo "cart" name) */}
-            {todos?.map((t: Todo) => <TodoCart title={t.title} priority={t.priority} date={t.due} />)}
+            {todos?.map((t: Todo) => <TodoCard title={t.title} priority={t.priority} date={`${t.due[2]}/${t.due[1]}/${t.due[0]}`} />)}
 
          </div>
 
