@@ -16,12 +16,12 @@ function App() {
       
       if(!document.cookie) window.open('/login', '_self');
 
-      async function handleGetUser(): Promise<void> {
+      async function handleGetTodos(): Promise<void> {
         
          try {
             const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
             const uid: string = document.cookie.split('UID=')[1];
-            const url: string = `http://localhost:8080/api/todos/all/${parseInt(uid)}/`;
+            const url: string = `http://3.219.123.52:8080/api/todos/all/${parseInt(uid)}/`;
 
             const req: Response = await fetch(url, {
                method: 'GET',
@@ -36,7 +36,19 @@ function App() {
             console.log(e);
          }
       };
-      handleGetUser();
+      handleGetTodos();
+
+      async function handleGetUser(): Promise<void> {
+         
+         try {
+
+            
+
+         } catch(e) {   
+            console.log(e);
+         }
+
+      }
 
    }, []);
 
@@ -54,7 +66,6 @@ function App() {
 
             <NewTodo show={newTodo} func={handleNewTodo} />
 
-            {/* debbug date format on TodoCard (and todo "cart" name) */}
             {todos?.map((t: Todo) => <TodoCard title={t.title} priority={t.priority} date={`${t.due[2]}/${t.due[1]}/${t.due[0]}`} />)}
 
          </div>

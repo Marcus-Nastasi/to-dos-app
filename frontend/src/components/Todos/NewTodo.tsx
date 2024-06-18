@@ -16,7 +16,7 @@ export default function NewTodo({ show, func }: any) {
 
       try {
          const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
-         const url: string = 'http://localhost:8080/api/todos/new/';
+         const url: string = 'http://3.219.123.52:8080/api/todos/new/';
 
          const [ title, client, description, link, due, priority ]: any = [
             document.getElementById('title'), 

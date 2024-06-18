@@ -10,7 +10,7 @@ export default function FormCad() {
             document.getElementById('input_password') 
          ];
 
-         const url: string = 'http://localhost:8080/api/user/new/';
+         const url: string = 'http://3.219.123.52:8080/api/user/new/';
 
          const req: Response = await fetch(url, {
             method: 'POST',
