@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { FaSquarePlus } from 'react-icons/fa6';
 
-export default function InferiorMenu() {
+export default function InferiorMenu({ func }: any) {
    const [ btnBg, setBtnBg ] = useState<string>('#353535');
 
    const handleMenuColorIn = () => setBtnBg('#838383');
@@ -14,6 +14,7 @@ export default function InferiorMenu() {
             <FaSquarePlus
                onMouseOver={handleMenuColorIn}
                onMouseOut={handleMenuColorOut}
+               onClick={func}
                className=' opacity-100 hover:cursor-pointer'
                size={60}
                color={btnBg}

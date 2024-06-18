@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Header from "./components/Generics/Header";
 import InferiorMenu from "./components/Generics/InferiorMenu";
 import StatusFilter from "./components/Generics/StatusFilter";
@@ -6,6 +6,9 @@ import TodoCart from "./components/Home/TodoCard";
 import NewTodo from "./components/Todos/NewTodo";
 
 function App() {
+   const [ newTodo, setNewTodo ] = useState<string>('hidden');
+
+   const handleNewTodo = (): void => newTodo === 'hidden' ? setNewTodo('') : setNewTodo('hidden');
 
    useEffect(() => {
       
@@ -23,7 +26,7 @@ function App() {
 
          <div className=" mb-28">
 
-            <NewTodo />
+            <NewTodo show={newTodo} func={handleNewTodo} />
 
             <TodoCart 
                title={'Title'} 
@@ -39,7 +42,7 @@ function App() {
          </div>
 
          <div>
-            <InferiorMenu />   
+            <InferiorMenu func={handleNewTodo} />   
          </div>   
       </section>
    );
