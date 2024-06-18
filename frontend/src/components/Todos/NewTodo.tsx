@@ -39,11 +39,17 @@ export default function NewTodo({ show, func }: any) {
          console.log(token)
          console.log(body);
 
-         // const req: Response = await fetch(url, {
-         //    method: 'POST',
-         //    body: JSON.stringify(body),
-         //    headers: new Headers({ 'content-type': 'application/json', 'Authorization': `Bearer ${token}` })
-         // });
+         const req: Response = await fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(body),
+            headers: new Headers({ 'content-type': 'application/json', 'Authorization': `Bearer ${token}` })
+         });
+
+         if(req.status != 201) console.log('error');
+
+         const res: string = await req.text();
+
+         console.log(res);
 
       } catch(e) {
          console.log(e);
