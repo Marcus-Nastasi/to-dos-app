@@ -12,8 +12,6 @@ function App() {
    const [ todos, setTodos ] = useState<Array<Todo>>();
    const [ newTodo, setNewTodo ] = useState<string>('hidden');
 
-   const handleNewTodo = (): void => newTodo === 'hidden' ? setNewTodo('') : setNewTodo('hidden');
-
    useEffect(() => {
       
       if(!document.cookie) window.open('/login', '_self');
@@ -30,11 +28,9 @@ function App() {
                headers: new Headers({ 'content-type': 'application/json', 'Authorization': `Bearer ${token}` })
             });
 
-            const recievedTodos: Array<Todo> = await req.json();
+            const receivedTodos: Array<Todo> = await req.json();
 
-            setTodos(recievedTodos);
-
-            console.log(todos);
+            setTodos(receivedTodos);
 
          } catch(e) {
             console.log(e);
@@ -43,6 +39,8 @@ function App() {
       handleGetUser();
 
    }, []);
+
+   const handleNewTodo = (): void => newTodo === 'hidden' ? setNewTodo('') : setNewTodo('hidden');
 
    return(
       <section className=" select-none">
@@ -56,13 +54,8 @@ function App() {
 
             <NewTodo show={newTodo} func={handleNewTodo} />
 
+            {/* debbug date format on TodoCard (and todo "cart" name) */}
             {todos?.map((t: Todo) => <TodoCart title={t.title} priority={t.priority} date={t.due} />)}
-
-            {/* <TodoCart 
-               title={'Title'} 
-               priority={'Medium'} 
-               date={'12 oct 2024'} 
-            /> */}
 
          </div>
 
