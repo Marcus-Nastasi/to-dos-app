@@ -3,6 +3,7 @@ import Header from "./components/Generics/Header";
 import InferiorMenu from "./components/Generics/InferiorMenu";
 import StatusFilter from "./components/Generics/StatusFilter";
 import TodoCart from "./components/Home/TodoCard";
+import NewTodo from "./components/Todos/NewTodo";
 
 function App() {
 
@@ -21,6 +22,8 @@ function App() {
          </div>
 
          <div className=" mb-28">
+
+            <NewTodo />
 
             <TodoCart 
                title={'Title'} 

@@ -46,7 +46,7 @@ export default function Header({ title }: any) {
                />
             </div>
 
-            <div className=" pt-5">
+            <div className="">
                <h1 className=" text-3xl">
                   {title}
                </h1>
