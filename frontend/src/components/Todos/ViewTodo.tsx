@@ -16,8 +16,36 @@ export default function Viewtodo({ func, todo }: any) {
    const handleBtnEditIn = (): void => setEdit('#838383');
    const handleBtnEditOut = (): void => setEdit('#353535');
 
+   async function handleDelete(e: any): Promise<void> {
+      e.preventDefault();
+
+      try {
+         const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
+         const url: string = `http://3.219.123.52:8080/api/todos/delete/${parseInt(todo.id)}/`;
+
+         if(!token || !todo.id) {
+            console.log('error');
+            return
+         }
+
+         const req: Response = await fetch(url, {
+            method: 'DELETE',
+            headers: new Headers({ 'content-type': 'application/json', 'Authorization': `Bearer ${token}` })
+         });
+
+         if(req.status != 202) {
+            console.log('error');
+            return
+         }
+
+         window.open('/', '_self');
+      } catch(e) {
+         console.log(e);
+      }
+   }
+
    return(
-      <div className={`w-screen h-screen bg-slate-200`}>
+      <div className={`w-screen h-screen z-50 bg-slate-200`}>
          <div className='w-screen p-8 flex justify-end fixed top-3'>
             <FaX
                onMouseOver={handleCloseBtnColorIn}
@@ -48,6 +76,7 @@ export default function Viewtodo({ func, todo }: any) {
             <div className=' mt-10 flex'>
 
                <FaTrash 
+                  onClick={handleDelete}
                   onMouseOver={handleBtnTrashIn}
                   onMouseLeave={handleBtnTrashOut}
                   size={28}

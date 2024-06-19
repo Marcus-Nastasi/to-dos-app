@@ -36,13 +36,14 @@ export default function TodoCard({ id, title, priority, date, todo }: any) {
 
    return(
       <>
-         <div className={`${bigCard} fixed top-0`}>
+         <div className={`${bigCard} fixed top-0 z-40`}>
             <ViewTodo func={handleBigCardShow} todo={todo} />
          </div>
 
          <div 
             onClick={handleBigCard}
-            className="m-5 p-4 rounded-3xl border border-slate-950"
+            style={shadow}
+            className="m-5 p-4 z-10 rounded-3xl bg-slate-50 transition-all ease-in-out delay-75 hover:-translate-x-2 hover:cursor-pointer hover:bg-slate-100"
          >
 
             <div className=" flex justify-between mb-4">
@@ -67,5 +68,10 @@ export default function TodoCard({ id, title, priority, date, todo }: any) {
       </>
    );
 };
+
+const shadow: object = {
+   boxShadow: '0 0 10px 0.3px lightgray'
+}
+
 
 

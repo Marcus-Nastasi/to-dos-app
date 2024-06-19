@@ -35,6 +35,11 @@ function App() {
                headers: new Headers({ 'content-type': 'application/json', 'Authorization': `Bearer ${token}` })
             });
 
+            if(req.status != 200) {
+               console.log('error');
+               return
+            }
+
             const receivedTodos: Array<Todo> = await req.json();
 
             setTodos(receivedTodos);
@@ -62,6 +67,11 @@ function App() {
                headers: new Headers({ 'content-type': 'application/json', 'Authorization': `Bearer ${token}` })
             });
 
+            if(request.status != 200) {
+               console.log('error');
+               return;
+            }
+
             const user: User = await request.json();
 
             setUser(user);
@@ -77,7 +87,7 @@ function App() {
    const handleNewTodo = (): void => newTodo === 'hidden' ? setNewTodo('') : setNewTodo('hidden');
 
    return(
-      <section className="select-none">
+      <section className="select-none bg-slate-100 min-h-screen max-h-fit">
          <div className={`${loading} flex justify-center items-center fixed top-0 w-screen h-screen bg-slate-50`}>
             <FaSpinner
                size={80}
