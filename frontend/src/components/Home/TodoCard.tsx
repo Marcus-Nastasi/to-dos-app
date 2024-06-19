@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import ViewTodo from "../Todos/ViewTodo";
 
-export default function TodoCart({ title, priority, date }: any) {
+export default function TodoCard({ id, title, priority, date, todo }: any) {
    const [ priorColor, setPriorColor ] = useState<string>();
    const [ prior, setPrior ] = useState<string>();
+   const [ bigCard, setBigCard ] = useState<string>('hidden');
 
    useEffect(() => {
       
@@ -17,15 +19,32 @@ export default function TodoCart({ title, priority, date }: any) {
       }
 
       if(priority == 'HIGH') {
+         id
          setPrior('High');
          setPriorColor('bg-red-300');
       }
 
    }, []);
 
+   const handleBigCardShow = () => bigCard == 'hidden' ? setBigCard('') : setBigCard('hidden');
+
+   async function handleBigCard(e: any): Promise<void> {
+      e.preventDefault();
+      setBigCard('');
+      return
+   };
+
    return(
       <>
-         <div className="m-5 p-4 rounded-3xl border border-slate-950">
+         <div className={`${bigCard} fixed top-0`}>
+            <ViewTodo func={handleBigCardShow} todo={todo} />
+         </div>
+
+         <div 
+            onClick={handleBigCard}
+            className="m-5 p-4 rounded-3xl border border-slate-950"
+         >
+
             <div className=" flex justify-between mb-4">
                <div><p className=" text-2xl">{title}</p></div>
 
