@@ -78,7 +78,7 @@ function App() {
 
    return(
       <section className="select-none">
-         <div className={`${loading} flex justify-center items-center fixed top-0 w-screen h-screen bg-slate-200`}>
+         <div className={`${loading} flex justify-center items-center fixed top-0 w-screen h-screen bg-slate-50`}>
             <FaSpinner
                size={80}
                className={`loading_spinner`}

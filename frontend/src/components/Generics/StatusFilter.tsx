@@ -3,15 +3,15 @@ export default function StatusFilter() {
       <>
          <div className=" flex justify-around">
 
-            <div className=" flex justify-center items-center py-1 px-5 border rounded-3xl border-slate-800 bg-green-200 hover:cursor-pointer hover:bg-green-300">
+            <div style={shadow} className=" flex justify-center items-center py-1 px-5 rounded-3xl bg-green-200 hover:cursor-pointer hover:bg-green-300">
                <p className=" text-xl">Done</p>
             </div>
 
-            <div className=" flex justify-center items-center py-1 px-5 border rounded-3xl border-slate-800 bg-orange-200 hover:cursor-pointer hover:bg-orange-300">
+            <div style={shadow} className=" flex justify-center items-center py-1 px-5 rounded-3xl bg-orange-200 hover:cursor-pointer hover:bg-orange-300">
                <p className=" text-xl">Progress</p>
             </div>
 
-            <div className=" flex justify-center items-center py-1 px-5 border rounded-3xl border-slate-800 bg-red-200 hover:cursor-pointer hover:bg-red-300">
+            <div style={shadow} className=" flex justify-center items-center py-1 px-5 rounded-3xl bg-red-200 hover:cursor-pointer hover:bg-red-300">
                <p className=" text-xl">Pending</p>
             </div>
 
@@ -19,5 +19,10 @@ export default function StatusFilter() {
       </>
    );
 };
+
+const shadow: object = {
+   boxShadow: '0 0 5px 0.2px lightgray'
+}
+
 
 
