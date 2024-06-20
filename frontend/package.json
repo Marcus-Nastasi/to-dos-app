@@ -8,11 +8,14 @@
     "build": "tsc && vite build -w",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "tw": "npx tailwindcss -i ./src/assets/css/in.css -o ./src/assets/css/out.css --watch"
+    "tw": "npx tailwindcss -i ./src/assets/css/in.css -o ./src/assets/css/out.css --watch",
+    "bbl": "webpack serve --mode development -w"
   },
   "dependencies": {
+    "core-js": "^3.37.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "regenerator-runtime": "^0.14.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
