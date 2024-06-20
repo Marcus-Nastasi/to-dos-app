@@ -34,7 +34,7 @@ export default function Header({ title }: any) {
 
             </div>
 
-            <div className=' w-screen fixed top-0 flex justify-between'>
+            <div className=' z-50 w-screen fixed top-0 flex justify-between'>
                <MenuOp 
                   show={showMenu} 
                   func={handleMenuOp} 

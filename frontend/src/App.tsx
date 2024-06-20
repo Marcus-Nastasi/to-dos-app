@@ -37,6 +37,7 @@ function App() {
 
             if(req.status != 200) {
                console.log('error');
+               window.open('/login', '_self');
                return
             }
 
@@ -101,11 +102,13 @@ function App() {
             <StatusFilter />
          </div>
 
-         <div className=" mb-28">
+         <div className="pb-32">
 
             <NewTodo show={newTodo} func={handleNewTodo} />
 
-            {todos?.map((t: Todo) => <TodoCard todo={t} uid={t.id} title={t.title} priority={t.priority} date={`${t.due[2]}/${t.due[1]}/${t.due[0]}`} />)}
+            <div className="flex flex-col-reverse z-10">
+               {todos?.map((t: Todo) => <TodoCard todo={t} uid={t.id} title={t.title} priority={t.priority} date={`${t.due[2]}/${t.due[1]}/${t.due[0]}`} />)}
+            </div>
 
          </div>
 

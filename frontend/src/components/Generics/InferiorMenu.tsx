@@ -9,13 +9,13 @@ export default function InferiorMenu({ func }: any) {
 
    return(
       <>
-         <div className=' w-screen h-24 flex justify-center items-center fixed bottom-0'>
+         <div className=' z-50 w-screen h-24 flex justify-center items-center fixed bottom-0'>
 
             <FaSquarePlus
                onMouseOver={handleMenuColorIn}
                onMouseOut={handleMenuColorOut}
                onClick={func}
-               className=' opacity-100 hover:cursor-pointer'
+               className='z-50 opacity-100 hover:cursor-pointer'
                size={60}
                color={btnBg}
             />

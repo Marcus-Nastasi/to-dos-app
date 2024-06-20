@@ -40,10 +40,10 @@ export default function TodoCard({ id, title, priority, date, todo }: any) {
             <ViewTodo func={handleBigCardShow} todo={todo} />
          </div>
 
-         <div 
+         <div
             onClick={handleBigCard}
             style={shadow}
-            className="m-5 p-4 z-10 rounded-3xl bg-slate-50 transition-all ease-in-out hover:-translate-x-2 hover:cursor-pointer hover:bg-slate-100"
+            className="m-5 p-4 z-0 rounded-3xl bg-slate-50 transition-all ease-in-out hover:-translate-x-2 hover:cursor-pointer hover:bg-slate-100"
          >
 
             <div className=" flex justify-between mb-4">

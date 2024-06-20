@@ -56,11 +56,11 @@ export default function NewTodo({ show, func }: any) {
    const handleCloseBtnColorOut = (): void => setCloseButton('#353535');
    
    return(
-      <div className={`${show} w-screen min-h-screen max-h-fit fixed top-0 p-10 bg-slate-100`}>
+      <div className={`${show} w-screen min-h-screen max-h-fit fixed top-0 p-10 z-50 bg-slate-50`}>
          <div className=" h-screen flex flex-col items-center">
             <div className="w-full flex justify-center text-3xl pb-20">
-               <h2 className=''>
-                  New To-do
+               <h2 className=' font-semibold text-4xl'>
+                  TASK
                </h2>
 
                <FaX
@@ -76,33 +76,34 @@ export default function NewTodo({ show, func }: any) {
             <div className=" w-full h-full">
                <form className="flex flex-col w-full h-full">
 
-                  <label className=" text-2xl mb-1" htmlFor="title">Title:</label>
-                  <input className=" mb-5 p-1" type="text" name="title" id="title" />
+                  <label className=" text-2xl mb-3" htmlFor="title">Title:</label>
+                  <input className={`mb-5 p-1.5 rounded-l-xl transition-all ease-in-out delay-0 border-b-2 border-orange-400 bg-slate-50 focus:outline-none focus: focus:border-b-4 focus:border-orange-700`} type="text" name="title" id="title" />
 
-                  <label className="text-2xl mb-1" htmlFor="client">Client:</label>
-                  <input className=" mb-5 p-1" type="text" name="client" id="client" />
+                  <label className="text-2xl mb-3" htmlFor="client">Client:</label>
+                  <input className={`mb-5 p-1.5 rounded-l-xl transition-all ease-in-out delay-0 border-b-2 border-orange-400 bg-slate-50 focus:outline-none focus:border-b-4 focus:border-orange-700`} type="text" name="client" id="client" />
 
-                  <label className="text-2xl mb-1" htmlFor="description">Description:</label>
-                  <input className=" mb-5 p-1" type="text" name="description" id="description" />
+                  <label className="text-2xl mb-3" htmlFor="description">Description:</label>
+                  <input className={`mb-5 p-1.5 rounded-l-xl transition-all ease-in-out delay-0 border-b-2 border-orange-400 bg-slate-50 focus:outline-none focus:border-b-4 focus:border-orange-700`} type="text" name="description" id="description" />
 
-                  <label className="text-2xl mb-1" htmlFor="link">Link:</label>
-                  <input className=" mb-5 p-1" type="text" name="link" id="link" />
+                  <label className="text-2xl mb-3" htmlFor="link">Link:</label>
+                  <input className={`mb-5 p-1.5 rounded-l-xl transition-all ease-in-out delay-0 border-b-2 border-orange-400 bg-slate-50 focus:outline-none focus:border-b-4 focus:border-orange-700`} type="text" name="link" id="link" />
 
-                  <label className="text-2xl mb-1" htmlFor="due">Due:</label>
-                  <input className=" mb-5 p-1" type="date" name="due" id="due" />
+                  <label className="text-2xl mb-3" htmlFor="due">Due:</label>
+                  <input className={`mb-5 p-1.5 rounded-l-xl transition-all ease-in-out delay-0 border-b-2 border-orange-400 bg-slate-50 focus:outline-none focus:border-b-4 focus:border-orange-700`} type="date" name="due" id="due" />
 
-                  <label className="text-2xl mb-1" htmlFor="priority">Priority:</label>
-                  <select className=" mb-10 p-3" name="priority" id="priority">
+                  <label className="text-2xl mb-3" htmlFor="priority">Priority:</label>
+                  <select className={`mb-10 p-3 rounded-l-xl transition-all ease-in-out delay-0 border-b-2 border-orange-400 bg-slate-50 focus:outline-none focus:border-b-4 focus:border-orange-700`} name="priority" id="priority">
                      <option value="LOW">Low</option>
                      <option value="MEDIUM">Medium</option>
                      <option value="HIGH">High</option>
                   </select>
 
                   <button
-                     onClick={handleInsertTodo} 
-                     className="px-5 py-1 text-lg bg-slate-300" 
+                     onClick={handleInsertTodo}
+                     style={shadow}
+                     className="px-5 py-1 text-lg font-medium bg-slate-300" 
                      type="submit">
-                        Create
+                        CREATE
                   </button>
 
                </form>
@@ -111,5 +112,9 @@ export default function NewTodo({ show, func }: any) {
       </div>
    );
 };
+
+const shadow: object = {
+   boxShadow: '0 0 10px 0.6px lightgray'
+}
 
 
