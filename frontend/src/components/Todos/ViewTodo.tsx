@@ -1,4 +1,3 @@
-// import { useState } from "react";
 import { useState } from 'react';
 import { FaX, FaTrash, FaPenToSquare } from 'react-icons/fa6';
 
@@ -39,13 +38,14 @@ export default function Viewtodo({ func, todo }: any) {
          }
 
          window.open('/', '_self');
+
       } catch(e) {
          console.log(e);
       }
    }
 
    return(
-      <div className={`w-screen h-screen z-50 bg-slate-200`}>
+      <div className={`w-screen h-screen z-50 bg-slate-100`}>
          <div className='w-screen p-8 flex justify-end fixed top-3'>
             <FaX
                onMouseOver={handleCloseBtnColorIn}
@@ -53,23 +53,37 @@ export default function Viewtodo({ func, todo }: any) {
                onClick={func}
                size={22}
                color={closeButton}
-               className=''
+               className=' hover:cursor-pointer'
             />
          </div>
 
          <div className='w-screen h-screen flex flex-col justify-start p-7 py-16 text-xl text-wrap bg-slate-100'>
 
             <div>
-               <h1 className=' mb-3 text-5xl'>{todo.title}</h1>
-               <h3 className=' mb-3 text-3xl'>{todo.client}</h3>
-               <p className=' mb-3 text-2xl'>{todo.description}</p>
+               <caption className=' text-slate-600'>title</caption>
+               <h1 className=' mb-5 text-5xl'>{todo.title}</h1>
+
+               <caption className=' text-slate-600'>client</caption>
+               <h3 className=' mb-5 text-3xl'>{todo.client}</h3>
+               
+               <caption className=' text-slate-600'>description</caption>
+               <p className=' mb-5 text-2xl'>{todo.description}</p>
             </div>
             
             <div className=' mt-10'>
+               <caption className=' text-slate-600'>link</caption>
                <p className='mb-2'>{todo.link}</p>
+
+               <caption className=' text-slate-600'>due</caption>
                <p className='mb-2'>{`${todo.due[2]}/${todo.due[1]}/${todo.due[0]}`}</p>
+
+               <caption className=' text-slate-600'>creation</caption>
                <p className='mb-2'>{`${todo.creation[2]}/${todo.creation[1]}/${todo.creation[0]}`}</p>
+
+               <caption className=' text-slate-600'>status</caption>
                <p className='mb-2'>{todo.status}</p>
+
+               <caption className=' text-slate-600'>priority</caption>
                <p className='mb-2'>{todo.priority}</p>
             </div>
 
