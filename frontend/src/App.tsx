@@ -88,7 +88,7 @@ function App() {
    const handleNewTodo = (): void => newTodo === 'hidden' ? setNewTodo('') : setNewTodo('hidden');
 
    return(
-      <section className=" bg-slate-100 min-h-screen max-h-fit">
+      <section className=" bg-slate-100 min-h-screen max-h-fit overflow-x-hidden">
          <div className={`${loading} flex justify-center items-center fixed top-0 w-screen h-screen bg-slate-50`}>
             <FaSpinner
                size={80}

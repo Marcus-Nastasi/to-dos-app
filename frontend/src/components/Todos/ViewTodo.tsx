@@ -1,10 +1,28 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaX, FaTrash, FaPenToSquare } from 'react-icons/fa6';
 
 export default function Viewtodo({ func, todo }: any) {
    const [ closeButton, setCloseButton ] = useState<string>('#353535');
    const [ btnTrash, setBtnTrash ] = useState<string>('#353535');
    const [ btnEdit, setEdit ] = useState<string>('#353535');
+   const [ priorColor, setPriorColor ] = useState<string>();
+   const [ statusColor, setStatusColor ] = useState<string>();
+
+   useEffect(() => {
+      
+      if(todo.priority == 'LOW') setPriorColor('bg-green-300');
+
+      if(todo.priority == 'MEDIUM') setPriorColor('bg-orange-300');
+
+      if(todo.priority == 'HIGH') setPriorColor('bg-red-300');
+
+      if(todo.status == 'PENDING') setStatusColor('text-red-800');
+
+      if(todo.status == 'PROGRESS') setStatusColor('text-orange-800');
+
+      if(todo.status == 'DONE') setStatusColor('text-green-800');
+
+   }, []);
 
    const handleCloseBtnColorIn = (): void => setCloseButton('#838383');
    const handleCloseBtnColorOut = (): void => setCloseButton('#353535');
@@ -61,13 +79,13 @@ export default function Viewtodo({ func, todo }: any) {
 
             <div>
                <caption className=' text-slate-600'>title</caption>
-               <h1 className=' mb-5 text-5xl'>{todo.title}</h1>
+               <h1 className=' mb-5 text-4xl rounded-l-lg w-fit border-b-2 border-orange-500'>{todo.title}</h1>
 
                <caption className=' text-slate-600'>client</caption>
-               <h3 className=' mb-5 text-3xl'>{todo.client}</h3>
+               <h3 className=' mb-5 text-3xl rounded-l-lg w-fit border-b-2 border-orange-500'>{todo.client}</h3>
                
                <caption className=' text-slate-600'>description</caption>
-               <p className=' mb-5 text-2xl'>{todo.description}</p>
+               <p className=' mb-5 text-2xl rounded-l-lg w-fit border-b-2 border-orange-500'>{todo.description}</p>
             </div>
             
             <div className=' mt-10'>
@@ -81,20 +99,20 @@ export default function Viewtodo({ func, todo }: any) {
                <p className='mb-2'>{`${todo.creation[2]}/${todo.creation[1]}/${todo.creation[0]}`}</p>
 
                <caption className=' text-slate-600'>status</caption>
-               <p className='mb-2'>{todo.status}</p>
+               <p className={`${statusColor} mb-2  font-semibold`}>{todo.status}</p>
 
                <caption className=' text-slate-600'>priority</caption>
-               <p className='mb-2'>{todo.priority}</p>
+               <p className={`${priorColor} py-2 px-3 w-fit my-2 lowercase h-fit rounded-3xl`}>{todo.priority}</p>
             </div>
 
-            <div className=' mt-10 flex'>
+            <div className=' mt-10 flex flex-row-reverse w-full'>
 
                <FaTrash 
                   onClick={handleDelete}
                   onMouseOver={handleBtnTrashIn}
                   onMouseLeave={handleBtnTrashOut}
                   size={28}
-                  className='mr-10 hover:cursor-pointer'
+                  className='ml-5 hover:cursor-pointer'
                   color={btnTrash}
                />
 
@@ -102,7 +120,7 @@ export default function Viewtodo({ func, todo }: any) {
                   onMouseOver={handleBtnEditIn}
                   onMouseLeave={handleBtnEditOut}
                   size={28}
-                  className='hover:cursor-pointer'
+                  className=' hover:cursor-pointer'
                   color={btnEdit}
                />
 
