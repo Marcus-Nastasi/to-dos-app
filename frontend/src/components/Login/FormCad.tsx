@@ -34,7 +34,7 @@ export default function FormCad() {
 
             <label className=" text-2xl" htmlFor="input_name">Name</label>
             <input 
-               className=" indent-2 mb-5 p-1 rounded-xl bg-slate-200" 
+               className=" indent-2 mb-5 p-2 rounded-xl bg-slate-200" 
                type="text" 
                name="name" 
                id="input_name" 
@@ -42,7 +42,7 @@ export default function FormCad() {
 
             <label className=" text-2xl" htmlFor="input_email">E-mail</label>
             <input 
-               className=" indent-2 mb-5 p-1 rounded-xl bg-slate-200" 
+               className=" indent-2 mb-5 p-2 rounded-xl bg-slate-200" 
                type="text" 
                name="email" 
                id="input_email" 
@@ -50,7 +50,7 @@ export default function FormCad() {
 
             <label className=" text-2xl" htmlFor="input_password">Password</label>
             <input 
-               className=" indent-2 p-1 rounded-xl bg-slate-200" 
+               className=" indent-2 p-2 rounded-xl bg-slate-200" 
                type="password" 
                name="password" 
                id="input_password" 
