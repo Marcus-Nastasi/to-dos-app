@@ -58,7 +58,8 @@ export default function FormCad() {
 
             <button 
                onClick={cadaster}
-               className="self-center py-1 px-6 rounded-lg mt-5 border w-fit font-semibold border-slate-800 bg-slate-900 text-slate-50 hover:bg-slate-800"
+               className="self-center px-5 py-1 w-11/12 text-lg font-medium mt-5 rounded-sm bg-slate-300 hover:bg-slate-400"
+               type="submit"
             >
                Enter
             </button>
