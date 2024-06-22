@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import ViewTodo from "../Todos/ViewTodo";
 import { FaEllipsis } from 'react-icons/fa6';
+import ViewTodo from "../Todos/ViewTodo";
 
 export default function TodoCard({ id, title, priority, date, todo }: any) {
    const [ priorColor, setPriorColor ] = useState<string>();
@@ -45,13 +45,16 @@ export default function TodoCard({ id, title, priority, date, todo }: any) {
          </div>
 
          <div
-            onClick={handleBigCard}
             style={shadow}
             className="m-5 p-4 z-0 rounded-3xl bg-slate-50 transition-all ease-in-out hover:-translate-x-2 hover:cursor-pointer hover:bg-slate-100"
          >
 
             <div className=" flex justify-between mb-4">
-               <div><p className=" text-2xl">{title}</p></div>
+               <div 
+                  onClick={handleBigCard}
+               >
+                  <p className=" text-2xl hover:underline">{title}</p>
+               </div>
 
                <div onClick={handleStatusOptions}>
                   <p className="hover:cursor-pointer">
@@ -60,14 +63,11 @@ export default function TodoCard({ id, title, priority, date, todo }: any) {
 
                   {/* to-do: implement mini section status options pratical handler */}
 
-                  {/* <div className={`${statusOptions}`}>
-                     <select name="" id="">
-                        <option value="DONE">done</option>
-                        <option value="PROGRESS">progress</option>
-                        <option value="PENDING">pending</option>
-                        <option className=" text-red-900" value="delete">delete</option>
-                     </select>
-                  </div> */}
+                  <div className={`${statusOptions}`}>
+                     <div>
+                        
+                     </div>
+                  </div>
                </div>
             </div>
 
