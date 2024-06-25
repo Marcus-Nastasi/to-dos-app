@@ -64,7 +64,7 @@ export default function Viewtodo({ func, todo }: any) {
    const handleBtnEditOut = (): void => setEdit('#353535');
 
    return(
-      <div className={`w-screen h-screen z-50 bg-slate-100`}>
+      <div className={`w-screen min-h-screen max-h-full z-50 overflow-y-scroll bg-slate-100`}>
          <div className='w-screen p-8 flex justify-end fixed top-3'>
             <FaX
                onMouseOver={handleCloseBtnColorIn}
@@ -106,7 +106,7 @@ export default function Viewtodo({ func, todo }: any) {
                <p className={`${priorColor} py-2 px-3 w-fit my-2 lowercase h-fit rounded-3xl`}>{todo.priority}</p>
             </div>
 
-            <div className=' mt-10 flex flex-row-reverse w-full'>
+            <div className=' mt-10 pb-40 flex flex-row-reverse w-full'>
 
                <FaTrash 
                   onClick={handleDelete}

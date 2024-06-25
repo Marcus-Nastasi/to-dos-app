@@ -15,6 +15,10 @@ function App() {
    const [ loading, setLoading ] = useState<string>();
 
    useEffect(() => {
+
+      // to do: create status filter (options with front or new database queries)
+      // to-do: create config and account pages
+      // to-do: create error handling 
       
       if(!document.cookie) window.open('/login', '_self');
 

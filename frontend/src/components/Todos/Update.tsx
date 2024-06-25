@@ -65,22 +65,22 @@ export default function Update({ todo }: any) {
          <form className="flex flex-col w-full h-full">
 
             <label className=" text-2xl mb-3" htmlFor="title">Title:</label>
-            <input onChange={handleTitle} className={`mb-5 p-1.5 rounded-l-xl transition-all ease-in-out delay-0 border-b-2 border-orange-400 bg-slate-50 focus:outline-none focus: focus:border-b-4 focus:border-orange-700`} value={title} type="text" name="title" id="title" />
+            <input onChange={handleTitle} className={`mb-5 p-1.5 transition-all ease-in-out delay-0 border-b-2 border-orange-400 focus:outline-none focus: focus:border-b-4 focus:border-orange-700`} value={title} type="text" name="title" id="title" />
 
             <label className="text-2xl mb-3" htmlFor="client">Client:</label>
-            <input onChange={handleClient} className={`mb-5 p-1.5 rounded-l-xl transition-all ease-in-out delay-0 border-b-2 border-orange-400 bg-slate-50 focus:outline-none focus:border-b-4 focus:border-orange-700`} value={client} type="text" name="client" id="client" />
+            <input onChange={handleClient} className={`mb-5 p-1.5 transition-all ease-in-out delay-0 border-b-2 border-orange-400 focus:outline-none focus:border-b-4 focus:border-orange-700`} value={client} type="text" name="client" id="client" />
 
             <label className="text-2xl mb-3" htmlFor="description">Description:</label>
-            <input onChange={handleDescription} className={`mb-5 p-1.5 rounded-l-xl transition-all ease-in-out delay-0 border-b-2 border-orange-400 bg-slate-50 focus:outline-none focus:border-b-4 focus:border-orange-700`} value={description} type="text" name="description" id="description" />
+            <input onChange={handleDescription} className={`mb-5 p-1.5 transition-all ease-in-out delay-0 border-b-2 border-orange-400 focus:outline-none focus:border-b-4 focus:border-orange-700`} value={description} type="text" name="description" id="description" />
 
             <label className="text-2xl mb-3" htmlFor="link">Link:</label>
-            <input onChange={handleLink} className={`mb-5 p-1.5 rounded-l-xl transition-all ease-in-out delay-0 border-b-2 border-orange-400 bg-slate-50 focus:outline-none focus:border-b-4 focus:border-orange-700`} value={link} type="text" name="link" id="link" />
+            <input onChange={handleLink} className={`mb-5 p-1.5 transition-all ease-in-out delay-0 border-b-2 border-orange-400 focus:outline-none focus:border-b-4 focus:border-orange-700`} value={link} type="text" name="link" id="link" />
 
             <label className="text-2xl mb-3" htmlFor="due">Due:</label>
-            <input className={`mb-5 p-1.5 rounded-l-xl transition-all ease-in-out delay-0 border-b-2 border-orange-400 bg-slate-50 focus:outline-none focus:border-b-4 focus:border-orange-700`} type="date" name="due" id="due" />
+            <input className={`mb-5 p-1.5 transition-all ease-in-out delay-0 border-b-2 border-orange-400 focus:outline-none focus:border-b-4 focus:border-orange-700`} type="date" name="due" id="due" />
 
             <label className="text-2xl mb-3" htmlFor="priority">Priority:</label>
-            <select onChange={handlePriority} className={`mb-10 p-3 rounded-l-xl transition-all ease-in-out delay-0 border-b-2 border-orange-400 bg-slate-50 focus:outline-none focus:border-b-4 focus:border-orange-700`} value={priority} name="priority" id="priority">
+            <select onChange={handlePriority} className={`mb-10 p-3 transition-all ease-in-out delay-0 border-b-2 border-orange-400 focus:outline-none focus:border-b-4 focus:border-orange-700`} value={priority} name="priority" id="priority">
                <option value="LOW">Low</option>
                <option value="MEDIUM">Medium</option>
                <option value="HIGH">High</option>
