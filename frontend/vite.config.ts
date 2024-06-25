@@ -8,7 +8,8 @@ export default defineConfig({
    rollupOptions: {
       input: {
          home: 'index.html',
-         login: 'pages/login.html'
+         login: 'pages/login.html',
+         updateTodo: 'pages/updateTodo.html'
       },
       output: {
          dir: './dist'
