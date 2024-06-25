@@ -24,15 +24,6 @@ export default function Viewtodo({ func, todo }: any) {
 
    }, []);
 
-   const handleCloseBtnColorIn = (): void => setCloseButton('#838383');
-   const handleCloseBtnColorOut = (): void => setCloseButton('#353535');
-
-   const handleBtnTrashIn = (): void => setBtnTrash('#838383');
-   const handleBtnTrashOut = (): void => setBtnTrash('#353535');
-
-   const handleBtnEditIn = (): void => setEdit('#838383');
-   const handleBtnEditOut = (): void => setEdit('#353535');
-
    async function handleDelete(e: any): Promise<void> {
       e.preventDefault();
 
@@ -62,6 +53,15 @@ export default function Viewtodo({ func, todo }: any) {
          console.log(e);
       }
    }
+
+   const handleCloseBtnColorIn = (): void => setCloseButton('#838383');
+   const handleCloseBtnColorOut = (): void => setCloseButton('#353535');
+
+   const handleBtnTrashIn = (): void => setBtnTrash('#838383');
+   const handleBtnTrashOut = (): void => setBtnTrash('#353535');
+
+   const handleBtnEditIn = (): void => setEdit('#838383');
+   const handleBtnEditOut = (): void => setEdit('#353535');
 
    return(
       <div className={`w-screen h-screen z-50 bg-slate-100`}>
@@ -118,6 +118,7 @@ export default function Viewtodo({ func, todo }: any) {
                />
 
                <FaPenToSquare
+                  onClick={() => window.open(`/update/todo/${todo.id}`, '_self')}
                   onMouseOver={handleBtnEditIn}
                   onMouseLeave={handleBtnEditOut}
                   size={28}
