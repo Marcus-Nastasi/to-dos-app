@@ -10,7 +10,8 @@ export default function Update({ todo }: any) {
    async function handleUpdateTodo(e: any): Promise<void> {
       e.preventDefault();
 
-      const url: string = `http://127.0.0.1:8080/api/todos/update/${parseInt(todo.id)}/`;
+      // const url: string = `http://3.219.123.52:8080/api/todos/update/${parseInt(todo.id)}/`;
+      const url: string = `http://192.168.0.76:8080/api/todos/update/${parseInt(todo.id)}/`;
       const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
       const [ t, c, d, l, due, p ]: any = [ document.getElementById('title'),  document.getElementById('client'),  document.getElementById('description'),  document.getElementById('link'),  document.getElementById('due'),  document.getElementById('priority') ];
 
@@ -21,7 +22,10 @@ export default function Update({ todo }: any) {
             headers: new Headers({ 'content-type': 'application/json', 'Authorization': `Bearer ${token}` })
          });
 
-         if(request.status != 201) console.log('error');
+         if(request.status != 201) {
+            console.log('error');
+            return
+         };
 
          window.open('/', '_self');
       } catch(e) {

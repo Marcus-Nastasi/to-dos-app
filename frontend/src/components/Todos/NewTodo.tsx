@@ -57,7 +57,7 @@ export default function NewTodo({ show, func }: any) {
    const handleCloseBtnColorOut = (): void => setCloseButton('#353535');
    
    return(
-      <div className={`${show} w-screen min-h-screen max-h-fit fixed top-0 p-10 z-50 bg-slate-50`}>
+      <div className={`${show} w-screen min-h-screen max-h-fit absolute top-0 p-10 z-50 pb-40 bg-slate-50`}>
          <div className=" h-screen flex flex-col items-center">
             <div className="w-full flex justify-center text-3xl pb-20">
                <h2 className=' font-semibold text-4xl'>

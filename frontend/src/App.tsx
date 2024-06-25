@@ -24,7 +24,7 @@ function App() {
             const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
             const uid: string = document.cookie.split('UID=')[1];
             // const url: string = `http://3.219.123.52:8080/api/todos/all/${parseInt(uid)}/`;
-            const url: string = `http://127.0.0.1:8080/api/todos/all/${parseInt(uid)}/`;
+            const url: string = `http://192.168.0.76:8080/api/todos/all/${parseInt(uid)}/`;
 
             if(!token || !uid) {
                console.log('error');
@@ -58,7 +58,7 @@ function App() {
             const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
             const uid: string = document.cookie.split('UID=')[1];
             // const url: string = `http://3.219.123.52:8080/api/user/get/${parseInt(uid)}/`;
-            const url: string = `http://127.0.0.1:8080/api/user/get/${parseInt(uid)}/`;
+            const url: string = `http://192.168.0.76:8080/api/user/get/${parseInt(uid)}/`;
 
             if(!token || !uid) {
                console.log('error');

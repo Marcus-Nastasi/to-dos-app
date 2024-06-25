@@ -18,7 +18,7 @@ export default function Viewtodo({ func, todo }: any) {
 
       if(todo.status == 'PENDING') setStatusColor('text-red-800');
 
-      if(todo.status == 'PROGRESS') setStatusColor('text-orange-800');
+      if(todo.status == 'PROGRESS') setStatusColor('text-orange-600');
 
       if(todo.status == 'DONE') setStatusColor('text-green-800');
 
