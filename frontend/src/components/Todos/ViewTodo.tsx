@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { FaX, FaTrash, FaPenToSquare } from 'react-icons/fa6';
+import ErrorBox from '../Handler/ErrorBox';
 
 export default function Viewtodo({ func, todo }: any) {
    const [ closeButton, setCloseButton ] = useState<string>('#353535');
@@ -7,6 +8,8 @@ export default function Viewtodo({ func, todo }: any) {
    const [ btnEdit, setEdit ] = useState<string>('#353535');
    const [ priorColor, setPriorColor ] = useState<string>();
    const [ statusColor, setStatusColor ] = useState<string>();
+   const [ error, setError ] = useState<boolean>(false);
+   const [ errorMessage, setErrorMessage ] = useState<string>();
 
    useEffect(() => {
       
@@ -33,7 +36,8 @@ export default function Viewtodo({ func, todo }: any) {
          const url: string = `http://127.0.0.1:8080/api/todos/delete/${parseInt(todo.id)}/`;
 
          if(!token || !todo.id) {
-            console.log('error');
+            handleError('no token or user');
+            window.open('/login', '_self');
             return
          }
 
@@ -43,16 +47,22 @@ export default function Viewtodo({ func, todo }: any) {
          });
 
          if(req.status != 202) {
-            console.log('error');
+            handleError('error: cannot get this task');
             return
          }
 
          window.open('/', '_self');
-
-      } catch(e) {
-         console.log(e);
+      } catch(e: any) {
+         handleError(e.message)
       }
-   }
+   };
+
+   const handleError = (e: string): void => {
+      setErrorMessage(e);
+      setError(true);
+      setTimeout(() => setError(false), 4000);
+      return
+   };
 
    const handleCloseBtnColorIn = (): void => setCloseButton('#838383');
    const handleCloseBtnColorOut = (): void => setCloseButton('#353535');
@@ -65,6 +75,9 @@ export default function Viewtodo({ func, todo }: any) {
 
    return(
       <div className={`w-screen min-h-screen max-h-full z-50 overflow-y-scroll bg-slate-100`}>
+
+         {error ? <ErrorBox message={errorMessage} /> : ''}
+         
          <div className='w-screen p-8 flex justify-end fixed top-3'>
             <FaX
                onMouseOver={handleCloseBtnColorIn}

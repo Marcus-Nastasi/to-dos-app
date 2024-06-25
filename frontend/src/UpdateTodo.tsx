@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Todo from "./components/Interface/Todos/Todo";
 import Update from "./components/Todos/Update";
+import ErrorBox from "./components/Handler/ErrorBox";
 
 export default function UpdateTodo() {
    const [ todo, setTodo ] = useState<Todo>();
@@ -20,14 +21,13 @@ export default function UpdateTodo() {
                headers: new Headers({ 'content-type': 'application/json', 'Authorization': `Bearer ${token}` })
             });
 
-            if(request.status != 200) console.log('error');
+            if(request.status != 200) console.log('error: status diferent than 200');
 
             const response: Todo = await request.json();
 
             setTodo(response);
-
          } catch(e) {
-            console.log(e)
+            console.log(e);
          }  
       };
 
@@ -36,7 +36,7 @@ export default function UpdateTodo() {
    }, []);
 
    return(
-      <>{todo ? <Update todo={todo} /> : ''}</>
+      <>{todo ? <Update todo={todo} /> : <ErrorBox message={'error: to-do not found'}/>}</>
    );
 }
 

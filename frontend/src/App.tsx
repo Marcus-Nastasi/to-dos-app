@@ -7,18 +7,22 @@ import NewTodo from "./components/Todos/NewTodo";
 import User from "./components/Interface/User/User";
 import Todo from "./components/Interface/Todos/Todo";
 import { FaSpinner } from 'react-icons/fa6';
+import ErrorBox from "./components/Handler/ErrorBox";
 
 function App() {
    const [ user, setUser ] = useState<User>();
    const [ todos, setTodos ] = useState<Array<Todo>>();
    const [ newTodo, setNewTodo ] = useState<string>('hidden');
+   const [ mainView, setMainView ] = useState<string>();
    const [ loading, setLoading ] = useState<string>();
+   const [ error, setError ] = useState<boolean>(false);
+   const [ errorMessage, setErrorMessage ] = useState<string>();
 
    useEffect(() => {
 
       // to do: create status filter (options with front or new database queries)
       // to-do: create config and account pages
-      // to-do: create error handling 
+      // to-do: create success box
       
       if(!document.cookie) window.open('/login', '_self');
 
@@ -31,7 +35,8 @@ function App() {
             const url: string = `http://192.168.0.76:8080/api/todos/all/${parseInt(uid)}/`;
 
             if(!token || !uid) {
-               console.log('error');
+               handleError('no token or user');
+               window.open('/login', '_self');
                return
             }
 
@@ -41,7 +46,7 @@ function App() {
             });
 
             if(req.status != 200) {
-               console.log('error');
+               handleError('status diferent than 200');
                window.open('/login', '_self');
                return
             }
@@ -50,8 +55,8 @@ function App() {
 
             setTodos(receivedTodos);
 
-         } catch(e) {
-            console.log(e);
+         } catch(e: any) {
+            handleError(e.message);
          }
       };
       handleGetTodos();
@@ -65,7 +70,8 @@ function App() {
             const url: string = `http://192.168.0.76:8080/api/user/get/${parseInt(uid)}/`;
 
             if(!token || !uid) {
-               console.log('error');
+               handleError('no token or user');
+               window.open('/login', '_self');
                return
             }
 
@@ -75,7 +81,7 @@ function App() {
             });
 
             if(request.status != 200) {
-               console.log('error');
+               handleError('error: something went wrong, try again later');
                return;
             }
 
@@ -83,8 +89,8 @@ function App() {
 
             setUser(user);
             setLoading('hidden');
-         } catch(e) {   
-            console.log(e);
+         } catch(e: any) {   
+            handleError(e.message);
          }
       }
       handleGetUser();
@@ -93,14 +99,23 @@ function App() {
 
    const handleNewTodo = (): void => newTodo === 'hidden' ? setNewTodo('') : setNewTodo('hidden');
 
+   const handleError = (e: string): void => {
+      setErrorMessage(e);
+      setError(true);
+      setTimeout(() => setError(false), 4000);
+      return
+   };
+
    return(
-      <section className=" bg-slate-100 min-h-screen max-h-fit overflow-x-hidden">
+      <section className={`${mainView} bg-slate-100 min-h-screen max-h-fit overflow-x-hidden`}>
          <div className={`${loading} flex justify-center items-center fixed top-0 w-screen h-screen bg-slate-50`}>
             <FaSpinner
-               size={80}
+               size={70}
                className={`loading_spinner`}
             />
          </div>
+
+         {error ? <ErrorBox message={errorMessage} /> : ''}
 
          <Header title={`Hello, ${user?.name.split(' ')[0]}`} />
 

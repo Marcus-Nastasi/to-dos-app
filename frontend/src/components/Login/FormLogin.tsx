@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Login from "../Interface/Login/Login";
+import ErrorBox from "../Handler/ErrorBox";
 
 export default function FormLogin() {
    const [ error, setError ] = useState<boolean>(false);
@@ -45,20 +46,7 @@ export default function FormLogin() {
    return(
       <div className="p-5">
 
-         {
-            error ?
-
-            <div className={`flex justify-center m-4`}>
-               <div className="text-center w-9/12 p-10 rounded-md bg-red-400">
-                  <p className=" text-lg">Error:</p>
-                  <p>{errorMessage}</p>
-               </div>
-            </div>
-
-            :
-
-            ''
-         }
+         {error ? <ErrorBox message={errorMessage} /> : ''}
          
          <form className="flex flex-col p-5 rounded-3xl border-2 border-slate-400 bg-slate-50">
 

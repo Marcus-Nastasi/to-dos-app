@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ErrorBox from "../Handler/ErrorBox";
 
 export default function Update({ todo }: any) {
    const [ title, setTitle ] = useState<string>(todo.title);
@@ -6,6 +7,8 @@ export default function Update({ todo }: any) {
    const [ description, setDescription ] = useState<string>(todo.description);
    const [ link, setLink ] = useState<string>(todo.link);
    const [ priority, setPriority ] = useState<string>(todo.priority);
+   const [ error, setError ] = useState<boolean>(false);
+   const [ errorMessage, setErrorMessage ] = useState<string>();
 
    async function handleUpdateTodo(e: any): Promise<void> {
       e.preventDefault();
@@ -23,14 +26,21 @@ export default function Update({ todo }: any) {
          });
 
          if(request.status != 201) {
-            console.log('error');
+            handleError('error: not updated');
             return
          };
 
          window.open('/', '_self');
       } catch(e) {
-         console.log(e)
+         handleError('error: not updated');
       }  
+   };
+
+   const handleError = (e: string): void => {
+      setErrorMessage(e);
+      setError(true);
+      setTimeout(() => setError(false), 4000);
+      return
    };
 
    const handleTitle = () => {
@@ -60,6 +70,8 @@ export default function Update({ todo }: any) {
 
    return(
       <div className=" p-10">
+         {error ? <ErrorBox message={errorMessage} /> : ''}
+
          <h1 className=" text-center text-3xl font-medium mb-10">Update</h1>
 
          <form className="flex flex-col w-full h-full">

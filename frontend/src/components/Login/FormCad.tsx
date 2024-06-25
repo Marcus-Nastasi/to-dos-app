@@ -1,4 +1,9 @@
+import { useState } from "react";
+import ErrorBox from "../Handler/ErrorBox";
+
 export default function FormCad() {
+   const [ error, setError ] = useState<boolean>(false);
+   const [ errorMessage, setErrorMessage ] = useState<string>();
 
    async function cadaster(e: any): Promise<void> {
       e.preventDefault();
@@ -18,17 +23,27 @@ export default function FormCad() {
             headers: new Headers({ 'content-type': 'application/json' })
          });
 
-         if(req.status !== 201) console.log('error creating');
+         if(req.status !== 201) {
+            handleLoginError('error: something went wrong, try again later');
+            return
+         };
 
          window.open('/login', '_self');
-         
       } catch(e) {
          console.log(e);
       }
    };
 
+   function handleLoginError(e: any): void {
+      setErrorMessage(e);
+      setError(true);
+      setTimeout(() => setError(false), 3000);
+   };
+
    return(
       <div className=" p-5">
+
+         {error ? <ErrorBox message={errorMessage} /> : ''}
 
          <form className="flex flex-col p-5 rounded-3xl border-2 border-slate-400 bg-slate-50">
 
