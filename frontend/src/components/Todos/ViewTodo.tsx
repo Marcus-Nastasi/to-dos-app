@@ -38,7 +38,8 @@ export default function Viewtodo({ func, todo }: any) {
 
       try {
          const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
-         const url: string = `http://3.219.123.52:8080/api/todos/delete/${parseInt(todo.id)}/`;
+         // const url: string = `http://3.219.123.52:8080/api/todos/delete/${parseInt(todo.id)}/`;
+         const url: string = `http://127.0.0.1:8080/api/todos/delete/${parseInt(todo.id)}/`;
 
          if(!token || !todo.id) {
             console.log('error');
@@ -79,13 +80,13 @@ export default function Viewtodo({ func, todo }: any) {
 
             <div>
                <caption className=' text-slate-600'>title</caption>
-               <h1 className=' mb-5 text-4xl rounded-l-lg w-fit border-b-2 border-orange-500'>{todo.title}</h1>
+               <h1 className=' mb-5 text-4xl rounded-l-lg w-fit'>{todo.title}</h1>
 
                <caption className=' text-slate-600'>client</caption>
-               <h3 className=' mb-5 text-3xl rounded-l-lg w-fit border-b-2 border-orange-500'>{todo.client}</h3>
+               <h3 className=' mb-5 text-3xl rounded-l-lg w-fit'>{todo.client}</h3>
                
                <caption className=' text-slate-600'>description</caption>
-               <p className=' mb-5 text-2xl rounded-l-lg w-fit border-b-2 border-orange-500'>{todo.description}</p>
+               <p className=' mb-5 text-2xl rounded-l-lg w-fit '>{todo.description}</p>
             </div>
             
             <div className=' mt-10'>

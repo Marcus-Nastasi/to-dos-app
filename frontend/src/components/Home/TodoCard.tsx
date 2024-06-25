@@ -29,7 +29,7 @@ export default function TodoCard({ id, title, priority, date, todo }: any) {
 
    const handleStatusChange = async (e: any): Promise<void> => {
       const status = e.target.title;
-      // // const url: string = `http://3.219.123.52:8080/api/todos/update/${id}`;
+      // // const url: string = `http://3.219.123.52:8080/api/todos/update/${id}/`;
       const url: string = `http://127.0.0.1:8080/api/todos/update/status/${id}/`;
       const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
 
@@ -40,7 +40,7 @@ export default function TodoCard({ id, title, priority, date, todo }: any) {
             headers: new Headers({ 'content-type': 'application/json', 'Authorization': `Bearer ${token}` })
          });
 
-         if(response.status != 202) console.log('error');
+         if(response.status != 201) console.log('error');
 
          window.open('/', '_self');
       } catch(e) {
@@ -48,10 +48,9 @@ export default function TodoCard({ id, title, priority, date, todo }: any) {
       }
    };
 
-   async function handleBigCard(e: any): Promise<void> {
+   function handleBigCard(e: any): void {
       e.preventDefault();
       setBigCard('');
-      return
    };
 
    const handleBigCardShow = () => bigCard == 'hidden' ? setBigCard('') : setBigCard('hidden');
@@ -80,17 +79,15 @@ export default function TodoCard({ id, title, priority, date, todo }: any) {
                      <FaEllipsis size={30} />
                   </p>
 
-                  {/* to-do: implement mini section status options pratical handler */}
-
                   <div className={`${statusOptions} absolute right-4 rounded-md text-lg border border-slate-300 bg-slate-100`}>
                      <div>
-                        <p onClick={handleStatusChange} title="DONE" className=" m-1 border-b border-slate-300 hover:text-slate-700">
+                        <p onClick={handleStatusChange} title="DONE" className=" font-medium m-1 border-b border-slate-300 hover:text-slate-700">
                            done
                         </p>
-                        <p onClick={handleStatusChange} title="PROGRESS" className=" m-1 border-b border-slate-300 hover:text-slate-700">
+                        <p onClick={handleStatusChange} title="PROGRESS" className="font-medium m-1 border-b border-slate-300 hover:text-slate-700">
                            progress
                         </p>
-                        <p onClick={handleStatusChange} title="PENDING" className=" m-1 hover:text-slate-700">
+                        <p onClick={handleStatusChange} title="PENDING" className="font-medium m-1 hover:text-slate-700">
                            pending
                         </p>
                      </div>
