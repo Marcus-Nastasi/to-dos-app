@@ -23,7 +23,8 @@ function App() {
          try {
             const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
             const uid: string = document.cookie.split('UID=')[1];
-            const url: string = `http://3.219.123.52:8080/api/todos/all/${parseInt(uid)}/`;
+            // const url: string = `http://3.219.123.52:8080/api/todos/all/${parseInt(uid)}/`;
+            const url: string = `http://127.0.0.1:8080/api/todos/all/${parseInt(uid)}/`;
 
             if(!token || !uid) {
                console.log('error');
@@ -56,7 +57,8 @@ function App() {
          try {
             const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
             const uid: string = document.cookie.split('UID=')[1];
-            const url: string = `http://3.219.123.52:8080/api/user/get/${parseInt(uid)}/`;
+            // const url: string = `http://3.219.123.52:8080/api/user/get/${parseInt(uid)}/`;
+            const url: string = `http://127.0.0.1:8080/api/user/get/${parseInt(uid)}/`;
 
             if(!token || !uid) {
                console.log('error');
@@ -107,7 +109,7 @@ function App() {
             <NewTodo show={newTodo} func={handleNewTodo} />
 
             <div className="flex flex-col-reverse z-10">
-               {todos?.map((t: Todo) => <TodoCard todo={t} uid={t.id} title={t.title} priority={t.priority} date={`${t.due[2]}/${t.due[1]}/${t.due[0]}`} />)}
+               {todos?.map((t: Todo) => <TodoCard todo={t} id={t.id} title={t.title} priority={t.priority} date={`${t.due[2]}/${t.due[1]}/${t.due[0]}`} />)}
             </div>
 
          </div>

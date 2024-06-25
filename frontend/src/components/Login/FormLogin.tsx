@@ -10,7 +10,8 @@ export default function FormLogin() {
       
       try {
          const [ email, pass ]: any = [ document.getElementById('input_email'), document.getElementById('input_password') ];
-         const url: string = 'http://3.219.123.52:8080/api/auth/login/';
+         // const url: string = 'http://3.219.123.52:8080/api/auth/login/';
+         const url: string = 'http://127.0.0.1:8080/api/auth/login/';
 
          const req: Response = await fetch(url, {
             method: 'POST',
