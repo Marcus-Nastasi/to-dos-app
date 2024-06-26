@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { FaX } from 'react-icons/fa6';
 import ErrorBox from "../Handler/ErrorBox";
 
-export default function FormEdit() {
+export default function FormEdit({ func }: any) {
    const [ error, setError ] = useState<boolean>();
    const [ errorMessage, setErrorMessage ] = useState<string>();
+   const [ closeButton, setCloseButton ] = useState<string>('#353535');
 
    async function handleUpdate(e: any): Promise<void> {
       e.preventDefault();
@@ -43,11 +45,23 @@ export default function FormEdit() {
       return
    };
 
+   const handleCloseBtnColorIn = (): void => setCloseButton('#838383');
+   const handleCloseBtnColorOut = (): void => setCloseButton('#353535');
+
    return(
       <>
          <form className="h-screen w-screen flex flex-col items-center pt-20">
 
             {error ? <ErrorBox message={errorMessage} />: ''}
+
+            <FaX
+               onMouseOver={handleCloseBtnColorIn}
+               onMouseLeave={handleCloseBtnColorOut}
+               color={closeButton}
+               onClick={func}
+               size={22}
+               className='fixed top-8 right-5 hover:cursor-pointer'
+            />
 
             <h2 className=" text-4xl mb-10">Update user</h2>
 
