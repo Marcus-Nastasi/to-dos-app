@@ -12,6 +12,13 @@ import ErrorBox from "./components/Handler/ErrorBox";
 function App() {
    const [ user, setUser ] = useState<User>();
    const [ todos, setTodos ] = useState<Array<Todo>>();
+   const [ defTodos, setDefTodos ] = useState<boolean>(true);
+   const [ doneTodos, setDoneTodos ] = useState<Array<Todo>>();
+   const [ isDoneTodos, setIsDoneTodos ] = useState<boolean>(false);
+   const [ progressTodos, setProgressTodos ] = useState<Array<Todo>>();
+   const [ isProgressTodos, setIsProgressTodos ] = useState<boolean>(false);
+   const [ pendingTodos, setPendingTodos ] = useState<Array<Todo>>();
+   const [ isPendingTodos, setIsPendingTodos ] = useState<boolean>(false);
    const [ newTodo, setNewTodo ] = useState<string>('hidden');
    const [ loading, setLoading ] = useState<string>();
    const [ error, setError ] = useState<boolean>(false);
@@ -95,15 +102,78 @@ function App() {
    }, []);
 
    // to-do: conclude status filter
-   function statusFilter() {
-      const array: Array<Todo> = [];
+   async function getDone(e: any): Promise<void> {
+      try {
+         const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
+         const uid: string = document.cookie.split('UID=')[1];
+         // const url: string = `http://3.219.123.52:8080/api/user/get/${parseInt(uid)}/`;
+         const url: string = `http://192.168.0.76:8080/api/todos/done/${parseInt(uid)}/`;
 
-      todos?.forEach((t: Todo) => {
-         if(t.status == 'DONE') array.push(t);
-      });
+         const request: Response = await fetch(url, {
+            method: 'GET',
+            headers: new Headers({ 'content-type': 'application/json', 'Authorization': `Bearer ${token}` })
+         });
 
-      setTodos(array);
+         const doneTodos: Array<Todo> = await request.json();
+
+         setDefTodos(false);
+         setIsProgressTodos(false);
+         setIsPendingTodos(false);
+         setIsDoneTodos(true);
+         setDoneTodos(doneTodos);
+      } catch(e: any) {
+         handleError(e.message);
+      }
    };
+
+   async function getProgress(e: any): Promise<void> {
+      try {
+         const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
+         const uid: string = document.cookie.split('UID=')[1];
+         // const url: string = `http://3.219.123.52:8080/api/user/get/${parseInt(uid)}/`;
+         const url: string = `http://192.168.0.76:8080/api/todos/progress/${parseInt(uid)}/`;
+
+         const request: Response = await fetch(url, {
+            method: 'GET',
+            headers: new Headers({ 'content-type': 'application/json', 'Authorization': `Bearer ${token}` })
+         });
+
+         const doneTodos: Array<Todo> = await request.json();
+
+         setDefTodos(false);
+         setIsDoneTodos(false);
+         setIsProgressTodos(true);
+         setIsPendingTodos(false);
+         setProgressTodos(doneTodos);
+      } catch(e: any) {
+         handleError(e.message);
+      }
+   };
+   
+   async function getPending(e: any): Promise<void> {
+      try {
+         const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
+         const uid: string = document.cookie.split('UID=')[1];
+         // const url: string = `http://3.219.123.52:8080/api/user/get/${parseInt(uid)}/`;
+         const url: string = `http://192.168.0.76:8080/api/todos/pending/${parseInt(uid)}/`;
+
+         const request: Response = await fetch(url, {
+            method: 'GET',
+            headers: new Headers({ 'content-type': 'application/json', 'Authorization': `Bearer ${token}` })
+         });
+
+         const doneTodos: Array<Todo> = await request.json();
+
+         setDefTodos(false);
+         setIsDoneTodos(false);
+         setIsProgressTodos(false);
+         setIsPendingTodos(true);
+         setPendingTodos(doneTodos);
+      } catch(e: any) {
+         handleError(e.message);
+      }
+   };
+   
 
    const handleNewTodo = (): void => newTodo === 'hidden' ? setNewTodo('') : setNewTodo('hidden');
 
@@ -130,7 +200,7 @@ function App() {
          <Header title={`Hello, ${user?.name.split(' ')[0]}`} />
 
          <div className=" pt-7">
-            <StatusFilter func={statusFilter} />
+            <StatusFilter doneFilter={getDone} progressFilter={getProgress} pendingFilter={getPending}  />
          </div>
 
          <div className="pb-32">
@@ -140,7 +210,10 @@ function App() {
             </div>
 
             <div className="flex flex-col-reverse z-10">
-               {todos?.map((t: Todo) => <TodoCard todo={t} />)}
+               {defTodos ? todos?.map((t: Todo) => <TodoCard todo={t} />): ''}
+               {isDoneTodos ? doneTodos?.map((t: Todo) => <TodoCard todo={t} />): ''}
+               {isProgressTodos ? progressTodos?.map((t: Todo) => <TodoCard todo={t} />): ''}
+               {isPendingTodos ? pendingTodos?.map((t: Todo) => <TodoCard todo={t} />): ''}
             </div>
 
          </div>
