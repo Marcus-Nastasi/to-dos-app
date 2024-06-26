@@ -9,7 +9,9 @@ export default defineConfig({
       input: {
          home: 'index.html',
          login: 'pages/login.html',
-         updateTodo: 'pages/updateTodo.html'
+         updateTodo: 'pages/updateTodo.html',
+         configurations: 'pages/config.html',
+         account: 'pages/account.html'
       },
       output: {
          dir: './dist'

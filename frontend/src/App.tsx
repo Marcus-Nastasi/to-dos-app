@@ -30,6 +30,8 @@ function App() {
       
       if(!document.cookie) window.open('/login', '_self');
 
+      if(!localStorage.getItem('theme')) localStorage.setItem('theme', 'light');
+
       async function handleGetTodos(): Promise<void> {
         
          try {
