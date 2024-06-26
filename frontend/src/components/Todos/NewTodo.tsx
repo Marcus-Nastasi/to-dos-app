@@ -67,9 +67,9 @@ export default function NewTodo({ show, func }: any) {
 
    const handleCloseBtnColorIn = (): void => setCloseButton('#838383');
    const handleCloseBtnColorOut = (): void => setCloseButton('#353535');
-   
+
    return(
-      <div className={`${show} w-screen min-h-screen max-h-fit absolute top-0 p-10 z-50 bg-slate-50`}>
+      <div className={`${show} w-screen min-h-screen max-h-fit overflow-y-scroll p-10 pb-56 z-50 bg-slate-50`}>
 
          {error ? <ErrorBox message={errorMessage} /> : ''}
 

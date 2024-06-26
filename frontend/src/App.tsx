@@ -13,7 +13,6 @@ function App() {
    const [ user, setUser ] = useState<User>();
    const [ todos, setTodos ] = useState<Array<Todo>>();
    const [ newTodo, setNewTodo ] = useState<string>('hidden');
-   const [ mainView, setMainView ] = useState<string>();
    const [ loading, setLoading ] = useState<string>();
    const [ error, setError ] = useState<boolean>(false);
    const [ errorMessage, setErrorMessage ] = useState<string>();
@@ -107,7 +106,7 @@ function App() {
    };
 
    return(
-      <section className={`${mainView} bg-slate-100 min-h-screen max-h-fit overflow-x-hidden`}>
+      <section className={`min-h-screen max-h-fit overflow-x-hidden bg-slate-100`}>
          <div className={`${loading} flex justify-center items-center fixed top-0 w-screen h-screen bg-slate-50`}>
             <FaSpinner
                size={70}
@@ -125,7 +124,9 @@ function App() {
 
          <div className="pb-32">
 
-            <NewTodo show={newTodo} func={handleNewTodo} />
+            <div className={`${newTodo} flex w-screen min-h-screen max-h-full fixed top-0 z-50`}>
+               <NewTodo show={newTodo} func={handleNewTodo} />
+            </div>
 
             <div className="flex flex-col-reverse z-10">
                {todos?.map((t: Todo) => <TodoCard todo={t} id={t.id} title={t.title} priority={t.priority} date={`${t.due[2]}/${t.due[1]}/${t.due[0]}`} />)}
