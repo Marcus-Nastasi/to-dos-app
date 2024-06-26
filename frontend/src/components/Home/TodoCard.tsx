@@ -54,7 +54,13 @@ export default function TodoCard({ todo }: any) {
    };
 
    const handleBigCardShow = () => bigCard == 'hidden' ? setBigCard('') : setBigCard('hidden');
-   const handleStatusOptions = () => statusOptions == 'hidden' ? setStatusOptions('') : setStatusOptions('hidden');
+
+   const handleStatusOptions = (e: any) => {
+      e.stopPropagation();
+      statusOptions == 'hidden' ? setStatusOptions('') : setStatusOptions('hidden')
+   };
+
+   document.addEventListener('keydown', (e: any) => (e.key == 'Escape' && bigCard === '') ? setBigCard('hidden') : '');
 
    return(
       <>
@@ -63,13 +69,13 @@ export default function TodoCard({ todo }: any) {
          </div>
 
          <div
+            onClick={handleBigCard}
             style={shadow}
             className="m-5 p-4 z-0 rounded-3xl bg-slate-50 transition-all ease-in-out hover:-translate-x-2 hover:cursor-pointer hover:bg-slate-100"
          >
 
             <div className=" flex justify-between mb-4">
                <div 
-                  onClick={handleBigCard}
                >
                   <p className=" text-2xl hover:underline">{todo.title}</p>
                </div>

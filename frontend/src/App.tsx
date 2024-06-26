@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { FaSpinner } from 'react-icons/fa6';
 import Header from "./components/Generics/Header";
 import InferiorMenu from "./components/Generics/InferiorMenu";
 import StatusFilter from "./components/Generics/StatusFilter";
@@ -6,7 +7,6 @@ import TodoCard from "./components/Home/TodoCard";
 import NewTodo from "./components/Todos/NewTodo";
 import User from "./components/Interface/User/User";
 import Todo from "./components/Interface/Todos/Todo";
-import { FaSpinner } from 'react-icons/fa6';
 import ErrorBox from "./components/Handler/ErrorBox";
 
 function App() {
@@ -94,6 +94,7 @@ function App() {
 
    }, []);
 
+   // to-do: conclude status filter
    function statusFilter() {
       const array: Array<Todo> = [];
 
@@ -112,6 +113,8 @@ function App() {
       setTimeout(() => setError(false), 4000);
       return
    };
+
+   document.addEventListener('keydown', (e: any) => (e.key == 'Escape' && newTodo === '') ? setNewTodo('hidden') : '');
 
    return(
       <section className={`min-h-screen max-h-fit overflow-x-hidden bg-slate-100`}>
