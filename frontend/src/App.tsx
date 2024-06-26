@@ -21,7 +21,6 @@ function App() {
 
       // to do: create status filter (options with front or new database queries)
       // to-do: create config and account pages
-      // to-do: create success box
       
       if(!document.cookie) window.open('/login', '_self');
 
@@ -53,7 +52,6 @@ function App() {
             const receivedTodos: Array<Todo> = await req.json();
 
             setTodos(receivedTodos);
-
          } catch(e: any) {
             handleError(e.message);
          }
@@ -96,6 +94,16 @@ function App() {
 
    }, []);
 
+   function statusFilter() {
+      const array: Array<Todo> = [];
+
+      todos?.forEach((t: Todo) => {
+         if(t.status == 'DONE') array.push(t);
+      });
+
+      setTodos(array);
+   };
+
    const handleNewTodo = (): void => newTodo === 'hidden' ? setNewTodo('') : setNewTodo('hidden');
 
    const handleError = (e: string): void => {
@@ -119,7 +127,7 @@ function App() {
          <Header title={`Hello, ${user?.name.split(' ')[0]}`} />
 
          <div className=" pt-7">
-            <StatusFilter />
+            <StatusFilter func={statusFilter} />
          </div>
 
          <div className="pb-32">
@@ -129,7 +137,7 @@ function App() {
             </div>
 
             <div className="flex flex-col-reverse z-10">
-               {todos?.map((t: Todo) => <TodoCard todo={t} id={t.id} title={t.title} priority={t.priority} date={`${t.due[2]}/${t.due[1]}/${t.due[0]}`} />)}
+               {todos?.map((t: Todo) => <TodoCard todo={t} />)}
             </div>
 
          </div>

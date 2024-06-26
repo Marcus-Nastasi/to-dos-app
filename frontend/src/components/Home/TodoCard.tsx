@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { FaEllipsis } from 'react-icons/fa6';
 import ViewTodo from "../Todos/ViewTodo";
 
-export default function TodoCard({ id, title, priority, date, todo }: any) {
+export default function TodoCard({ todo }: any) {
    const [ priorColor, setPriorColor ] = useState<string>();
    const [ prior, setPrior ] = useState<string>();
    const [ bigCard, setBigCard ] = useState<string>('hidden');
@@ -10,17 +10,17 @@ export default function TodoCard({ id, title, priority, date, todo }: any) {
 
    useEffect(() => {
       
-      if(priority == 'LOW') {
+      if(todo.priority == 'LOW') {
          setPrior('Low');
          setPriorColor('bg-green-300');
       }
 
-      if(priority == 'MEDIUM') {
+      if(todo.priority == 'MEDIUM') {
          setPrior('Medium');
          setPriorColor('bg-orange-300');
       }
 
-      if(priority == 'HIGH') {
+      if(todo.priority == 'HIGH') {
          setPrior('High');
          setPriorColor('bg-red-300');
       }
@@ -30,7 +30,7 @@ export default function TodoCard({ id, title, priority, date, todo }: any) {
    const handleStatusChange = async (e: any): Promise<void> => {
       const status = e.target.title;
       // // const url: string = `http://3.219.123.52:8080/api/todos/update/${id}/`;
-      const url: string = `http://192.168.0.76:8080/api/todos/update/status/${id}/`;
+      const url: string = `http://192.168.0.76:8080/api/todos/update/status/${todo.id}/`;
       const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
 
       try {
@@ -71,7 +71,7 @@ export default function TodoCard({ id, title, priority, date, todo }: any) {
                <div 
                   onClick={handleBigCard}
                >
-                  <p className=" text-2xl hover:underline">{title}</p>
+                  <p className=" text-2xl hover:underline">{todo.title}</p>
                </div>
 
                <div onClick={handleStatusOptions}>
@@ -105,7 +105,7 @@ export default function TodoCard({ id, title, priority, date, todo }: any) {
 
             <div className=" flex items-center">
                <img className=" m-0.5 mr-2 mb-1 w-3 h-3" src="./img/calendar.png" alt="" />
-               <p>{date}</p>
+               <p>{`${todo.due[2]}/${todo.due[1]}/${todo.due[0]}`}</p>
             </div>
          </div> 
       </>

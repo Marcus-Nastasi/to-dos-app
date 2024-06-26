@@ -13,17 +13,17 @@ export default function Viewtodo({ func, todo }: any) {
 
    useEffect(() => {
       
-      if(todo.priority == 'LOW') setPriorColor('bg-green-300');
+      if(todo.priority === 'LOW') setPriorColor('bg-green-300');
 
-      if(todo.priority == 'MEDIUM') setPriorColor('bg-orange-300');
+      if(todo.priority === 'MEDIUM') setPriorColor('bg-orange-300');
 
-      if(todo.priority == 'HIGH') setPriorColor('bg-red-300');
+      if(todo.priority === 'HIGH') setPriorColor('bg-red-300');
 
-      if(todo.status == 'PENDING') setStatusColor('text-red-800');
+      if(todo.status === 'PENDING') setStatusColor('text-red-800');
 
-      if(todo.status == 'PROGRESS') setStatusColor('text-orange-600');
+      if(todo.status === 'PROGRESS') setStatusColor('text-orange-600');
 
-      if(todo.status == 'DONE') setStatusColor('text-green-800');
+      if(todo.status === 'DONE') setStatusColor('text-green-800');
 
    }, []);
 
