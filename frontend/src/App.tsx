@@ -26,7 +26,6 @@ function App() {
 
    useEffect(() => {
 
-      // to do: create status filter (options with front or new database queries)
       // to-do: create config and account pages
       
       if(!document.cookie) window.open('/login', '_self');
@@ -102,7 +101,7 @@ function App() {
    }, []);
 
    // to-do: conclude status filter
-   async function getDone(e: any): Promise<void> {
+   async function getDone(): Promise<void> {
       try {
          const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
          const uid: string = document.cookie.split('UID=')[1];
@@ -126,7 +125,7 @@ function App() {
       }
    };
 
-   async function getProgress(e: any): Promise<void> {
+   async function getProgress(): Promise<void> {
       try {
          const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
          const uid: string = document.cookie.split('UID=')[1];
@@ -150,7 +149,7 @@ function App() {
       }
    };
    
-   async function getPending(e: any): Promise<void> {
+   async function getPending(): Promise<void> {
       try {
          const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
          const uid: string = document.cookie.split('UID=')[1];
@@ -173,9 +172,20 @@ function App() {
          handleError(e.message);
       }
    };
-   
+
+   function clearFilters(e: any): void {
+      e.stopPropagation();
+      setIsDoneTodos(false);
+      setIsProgressTodos(false);
+      setIsPendingTodos(false);
+      setDefTodos(true);
+   };
 
    const handleNewTodo = (): void => newTodo === 'hidden' ? setNewTodo('') : setNewTodo('hidden');
+   document.addEventListener('keydown', (e: any) => {
+      (e.key == 'Escape' && newTodo === '') ? setNewTodo('hidden') : '';
+      (e.altKey && e.key === 't') ? setNewTodo('') : '';
+   });
 
    const handleError = (e: string): void => {
       setErrorMessage(e);
@@ -183,8 +193,6 @@ function App() {
       setTimeout(() => setError(false), 4000);
       return
    };
-
-   document.addEventListener('keydown', (e: any) => (e.key == 'Escape' && newTodo === '') ? setNewTodo('hidden') : '');
 
    return(
       <section className={`min-h-screen max-h-fit overflow-x-hidden bg-slate-100`}>
@@ -200,7 +208,7 @@ function App() {
          <Header title={`Hello, ${user?.name.split(' ')[0]}`} />
 
          <div className=" pt-7">
-            <StatusFilter doneFilter={getDone} progressFilter={getProgress} pendingFilter={getPending}  />
+            <StatusFilter doneFilter={getDone} progressFilter={getProgress} pendingFilter={getPending} clear={clearFilters}  />
          </div>
 
          <div className="pb-32">

@@ -1,4 +1,4 @@
-export default function StatusFilter({ doneFilter, progressFilter, pendingFilter }: any) {
+export default function StatusFilter({ doneFilter, progressFilter, pendingFilter, clear }: any) {
 
    return(
       <>
@@ -16,6 +16,12 @@ export default function StatusFilter({ doneFilter, progressFilter, pendingFilter
                <p onClick={pendingFilter} className=" text-xl">Pending</p>
             </div>
 
+         </div>
+
+         <div className=" w-screen flex pt-5 px-4">
+            <p onClick={clear} className="w-fit p-1 rounded-md bg-blue-200 border border-blue-300 hover:bg-blue-100 hover:cursor-pointer">
+               Clear filters
+            </p>
          </div>
       </>
    );
