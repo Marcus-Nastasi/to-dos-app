@@ -12,7 +12,8 @@ export default function FormEdit({ func }: any) {
 
       const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
       const uid: string = document.cookie.split('UID=')[1];
-      const url: string = `http://192.168.0.76:8080/api/user/update/${parseInt(uid)}/`;
+      // const url: string = `http://192.168.0.76:8080/api/user/update/${parseInt(uid)}/`;
+      const url: string = `http://3.219.123.52:8080/api/user/update/${parseInt(uid)}/`;
 
       const [ n, em, op, np ]: any = [ document.getElementById('name'), document.getElementById('email'), document.getElementById('currentPassword'), document.getElementById('newPassword') ];
 

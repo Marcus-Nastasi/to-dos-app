@@ -32,8 +32,8 @@ export default function Viewtodo({ func, todo }: any) {
 
       try {
          const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
-         // const url: string = `http://3.219.123.52:8080/api/todos/delete/${parseInt(todo.id)}/`;
-         const url: string = `http://192.168.0.76:8080/api/todos/delete/${parseInt(todo.id)}/`;
+         const url: string = `http://3.219.123.52:8080/api/todos/delete/${parseInt(todo.id)}/`;
+         // const url: string = `http://192.168.0.76:8080/api/todos/delete/${parseInt(todo.id)}/`;
 
          if(!token || !todo.id) {
             handleError('no token or user');

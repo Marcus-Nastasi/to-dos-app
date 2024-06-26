@@ -26,7 +26,7 @@ function App() {
 
    useEffect(() => {
 
-      // to-do: create config and account pages
+      // to-do: implement 'about' page
       
       if(!document.cookie) window.open('/login', '_self');
 
@@ -37,8 +37,8 @@ function App() {
          try {
             const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
             const uid: string = document.cookie.split('UID=')[1];
-            // const url: string = `http://3.219.123.52:8080/api/todos/all/${parseInt(uid)}/`;
-            const url: string = `http://192.168.0.76:8080/api/todos/all/${parseInt(uid)}/`;
+            const url: string = `http://3.219.123.52:8080/api/todos/all/${parseInt(uid)}/`;
+            // const url: string = `http://192.168.0.76:8080/api/todos/all/${parseInt(uid)}/`;
 
             if(!token || !uid) {
                handleError('no token or user');
@@ -71,8 +71,8 @@ function App() {
          try {
             const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
             const uid: string = document.cookie.split('UID=')[1];
-            // const url: string = `http://3.219.123.52:8080/api/user/get/${parseInt(uid)}/`;
-            const url: string = `http://192.168.0.76:8080/api/user/get/${parseInt(uid)}/`;
+            const url: string = `http://3.219.123.52:8080/api/user/get/${parseInt(uid)}/`;
+            // const url: string = `http://192.168.0.76:8080/api/user/get/${parseInt(uid)}/`;
 
             if(!token || !uid) {
                handleError('no token or user');
@@ -107,8 +107,8 @@ function App() {
       try {
          const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
          const uid: string = document.cookie.split('UID=')[1];
-         // const url: string = `http://3.219.123.52:8080/api/user/get/${parseInt(uid)}/`;
-         const url: string = `http://192.168.0.76:8080/api/todos/done/${parseInt(uid)}/`;
+         const url: string = `http://3.219.123.52:8080/api/todos/done/${parseInt(uid)}/`;
+         // const url: string = `http://192.168.0.76:8080/api/todos/done/${parseInt(uid)}/`;
 
          const request: Response = await fetch(url, {
             method: 'GET',
@@ -131,8 +131,8 @@ function App() {
       try {
          const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
          const uid: string = document.cookie.split('UID=')[1];
-         // const url: string = `http://3.219.123.52:8080/api/user/get/${parseInt(uid)}/`;
-         const url: string = `http://192.168.0.76:8080/api/todos/progress/${parseInt(uid)}/`;
+         const url: string = `http://3.219.123.52:8080/api/todos/progress/${parseInt(uid)}/`;
+         // const url: string = `http://192.168.0.76:8080/api/todos/progress/${parseInt(uid)}/`;
 
          const request: Response = await fetch(url, {
             method: 'GET',
@@ -155,8 +155,8 @@ function App() {
       try {
          const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
          const uid: string = document.cookie.split('UID=')[1];
-         // const url: string = `http://3.219.123.52:8080/api/user/get/${parseInt(uid)}/`;
-         const url: string = `http://192.168.0.76:8080/api/todos/pending/${parseInt(uid)}/`;
+         const url: string = `http://3.219.123.52:8080/api/todos/pending/${parseInt(uid)}/`;
+         // const url: string = `http://192.168.0.76:8080/api/todos/pending/${parseInt(uid)}/`;
 
          const request: Response = await fetch(url, {
             method: 'GET',
