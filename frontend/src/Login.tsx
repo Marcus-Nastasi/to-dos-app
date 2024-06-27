@@ -9,16 +9,16 @@ export default function Login() {
    const handleLogin = () => !log ? setLog(true) : 0;
 
    return(
-      <div className=" min-h-screen max-h-fit text-slate-800">
-         <div className=" p-10 flex flex-col justify-center items-center">
-            <h1 className=" p-3 mb-2 text-4xl font-semibold italic">
-               to-dos app
-            </h1>
+      <div className="flex flex-col min-h-screen max-h-fit w-screen bg-slate-100 text-slate-800">         
+         <div className=" w-screen p-10 flex flex-col justify-center items-center">
+            <img className=" w-40 lg:w-48" src="./img/logo-3.png" alt="" />
          </div>
 
-         <div className=" flex justify-evenly text-2xl pb-5">
-            <p onClick={handleLogin} className=" hover:underline hover:cursor-pointer">Login</p>
-            <p onClick={handleCadaster} className=" hover:underline hover:cursor-pointer">Cadaster</p>
+         <div className=" w-screen flex justify-center">
+            <div className="flex justify-evenly text-2xl pb-5 w-screen lg:w-3/12">
+               <p onClick={handleLogin} className=" hover:underline hover:cursor-pointer">Login</p>
+               <p onClick={handleCadaster} className=" hover:underline hover:cursor-pointer">Cadaster</p>
+            </div>
          </div>
 
          {log ? <FormLogin /> : <FormCad />}

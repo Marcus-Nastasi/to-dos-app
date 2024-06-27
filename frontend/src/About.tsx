@@ -4,6 +4,7 @@ export default function About() {
          <div className="flex flex-col justify-center items-center">
 
             <div className=" w-screen flex justify-center py-10">
+               <img className="w-28 absolute top-2 left-3" src="./img/logo-3.png" alt="" />
                <h1 className="text-4xl lg:text-5xl">About us</h1>
             </div>
 

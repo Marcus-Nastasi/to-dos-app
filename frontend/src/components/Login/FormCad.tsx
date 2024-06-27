@@ -41,31 +41,31 @@ export default function FormCad() {
    };
 
    return(
-      <div className=" p-5">
+      <div className="p-5 flex justify-center">
 
          {error ? <ErrorBox message={errorMessage} /> : ''}
 
-         <form className="flex flex-col p-5 rounded-3xl border-2 border-slate-400 bg-slate-50">
+         <form className="flex flex-col p-5 rounded-3xl border-2 border-slate-400 bg-slate-50 w-11/12 md:w-8/12 lg:w-6/12 xl:w-5/12">
 
-            <label className=" text-2xl" htmlFor="input_name">Name</label>
+            <label className=" text-2xl mb-2" htmlFor="input_name">Name</label>
             <input 
-               className=" indent-2 mb-5 p-2 rounded-xl bg-slate-200" 
+               className="indent-2 mb-5 p-1.5 rounded-lg border-2 border-neutral-600 bg-slate-100" 
                type="text" 
                name="name" 
                id="input_name" 
             />
 
-            <label className=" text-2xl" htmlFor="input_email">E-mail</label>
+            <label className=" text-2xl mb-2" htmlFor="input_email">E-mail</label>
             <input 
-               className=" indent-2 mb-5 p-2 rounded-xl bg-slate-200" 
+               className="indent-2 mb-5 p-1.5 rounded-lg border-2 border-neutral-600 bg-slate-100" 
                type="text" 
                name="email" 
                id="input_email" 
             />
 
-            <label className=" text-2xl" htmlFor="input_password">Password</label>
+            <label className=" text-2xl mb-2" htmlFor="input_password">Password</label>
             <input 
-               className=" indent-2 p-2 rounded-xl bg-slate-200" 
+               className="indent-2 mb-5 p-1.5 rounded-lg border-2 border-neutral-600 bg-slate-100" 
                type="password" 
                name="password" 
                id="input_password" 
