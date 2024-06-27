@@ -26,7 +26,7 @@ function App() {
 
    useEffect(() => {
 
-      // to-do: implement 'about' page
+      // to-do: implement 'about' page texts
       
       if(!document.cookie) window.open('/login', '_self');
 

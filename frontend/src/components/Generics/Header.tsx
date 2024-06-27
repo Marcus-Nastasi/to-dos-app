@@ -46,7 +46,9 @@ export default function Header({ title }: any) {
                />
             </div>
 
-            <div className="">
+            <div className="flex flex-col justify-between items-center">
+               <img className='w-32 -mt-8' src="./img/logo-3.png" alt="" />
+
                <h1 className=" text-3xl">
                   {title}
                </h1>
