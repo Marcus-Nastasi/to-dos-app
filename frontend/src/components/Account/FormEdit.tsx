@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FaX } from 'react-icons/fa6';
 import ErrorBox from "../Handler/ErrorBox";
 
-export default function FormEdit({ func }: any) {
+export default function FormEdit({ func, user }: any) {
    const [ error, setError ] = useState<boolean>();
    const [ errorMessage, setErrorMessage ] = useState<string>();
    const [ closeButton, setCloseButton ] = useState<string>('#353535');
@@ -12,7 +12,6 @@ export default function FormEdit({ func }: any) {
 
       const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
       const uid: string = document.cookie.split('UID=')[1];
-      // const url: string = `http://192.168.0.76:8080/api/user/update/${parseInt(uid)}/`;
       const url: string = `http://3.219.123.52:8080/api/user/update/${parseInt(uid)}/`;
 
       const [ n, em, op, np ]: any = [ document.getElementById('name'), document.getElementById('email'), document.getElementById('currentPassword'), document.getElementById('newPassword') ];
@@ -38,8 +37,8 @@ export default function FormEdit({ func }: any) {
       }
    };
   
-  // Exemplo de uso
    const handleError = (e: string): void => {
+      user
       setErrorMessage(e);
       setError(true);
       setTimeout(() => setError(false), 4000);
@@ -51,6 +50,8 @@ export default function FormEdit({ func }: any) {
 
    return(
       <>
+         {/* implement input current values */}
+
          <form className="h-screen w-screen flex flex-col items-center pt-20">
 
             {error ? <ErrorBox message={errorMessage} />: ''}

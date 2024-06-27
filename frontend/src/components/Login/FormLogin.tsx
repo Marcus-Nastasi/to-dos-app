@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Login from "../Interface/Login/Login";
 import ErrorBox from "../Handler/ErrorBox";
+import { getCookieExpirationString } from "../../utils/cookies/cookies";
 
 export default function FormLogin() {
    const [ error, setError ] = useState<boolean>(false);
@@ -26,8 +27,8 @@ export default function FormLogin() {
 
          const res: Login = await req.json();
 
-         document.cookie = `Bearer=${res.token}`;
-         document.cookie = `UID=${res.uid}`;
+         document.cookie = `Bearer=${res.token}; ${getCookieExpirationString(0.5)}`;
+         document.cookie = `UID=${res.uid}; ${getCookieExpirationString(0.5)}`;
 
          window.open('/', '_self');
 
