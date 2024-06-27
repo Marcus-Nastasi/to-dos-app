@@ -65,13 +65,13 @@ export default function NewTodo({ show, func }: any) {
    const handleCloseBtnColorOut = (): void => setCloseButton('#353535');
 
    return(
-      <div className={`${show} w-screen min-h-screen max-h-fit overflow-y-scroll p-10 pb-56 z-50 bg-slate-50`}>
+      <div className={`${show} w-screen lg:w-8/12 xl:w-6/12 min-h-screen max-h-fit lg:min-h-96 overflow-y-scroll p-10 pb-56 z-50 shadow-lg shadow-neutral-600 bg-slate-50`}>
 
          {error ? <ErrorBox message={errorMessage} /> : ''}
 
          <div className=" h-screen flex flex-col items-center">
             <div className="w-full flex justify-center text-3xl pb-20">
-               <h2 className=' font-semibold text-4xl'>
+               <h2 className='self-center font-semibold text-4xl'>
                   TASK
                </h2>
 
@@ -81,7 +81,7 @@ export default function NewTodo({ show, func }: any) {
                   color={closeButton}
                   onClick={func}
                   size={22}
-                  className='fixed right-10 hover:cursor-pointer'
+                  className='fixed right-10 sm:relative sm:left-56 lg:left-64 xl:left-80 hover:cursor-pointer'
                />
             </div>
 

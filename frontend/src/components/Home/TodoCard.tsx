@@ -10,17 +10,17 @@ export default function TodoCard({ todo }: any) {
 
    useEffect(() => {
       
-      if(todo.priority == 'LOW') {
+      if(todo.priority === 'LOW') {
          setPrior('Low');
          setPriorColor('bg-green-300');
       }
 
-      if(todo.priority == 'MEDIUM') {
+      if(todo.priority === 'MEDIUM') {
          setPrior('Medium');
          setPriorColor('bg-orange-300');
       }
 
-      if(todo.priority == 'HIGH') {
+      if(todo.priority === 'HIGH') {
          setPrior('High');
          setPriorColor('bg-red-300');
       }
@@ -56,15 +56,20 @@ export default function TodoCard({ todo }: any) {
 
    const handleStatusOptions = (e: any) => {
       e.stopPropagation();
-      statusOptions == 'hidden' ? setStatusOptions('') : setStatusOptions('hidden')
+      statusOptions == 'hidden' ? setStatusOptions('') : setStatusOptions('hidden');
    };
 
-   document.addEventListener('keydown', (e: any) => (e.key == 'Escape' && bigCard === '') ? setBigCard('hidden') : '');
+   document.addEventListener('keydown', (e: any) => (e.key === 'Escape' && bigCard === '') ? setBigCard('hidden') : '');
 
    return(
       <>
-         <div className={`${bigCard} fixed top-0 z-40 min-h-screen max-h-fit`}>
-            <ViewTodo func={handleBigCardShow} todo={todo} />
+         <div className={`${bigCard} fixed top-0 z-40 min-h-screen max-h-fit lg:left-0`}>
+
+            <ViewTodo 
+               func={handleBigCardShow} 
+               todo={todo} 
+            />
+         
          </div>
 
          <div
@@ -73,14 +78,22 @@ export default function TodoCard({ todo }: any) {
             className="m-5 p-4 z-0 rounded-3xl bg-slate-50 transition-all ease-in-out hover:-translate-x-2 hover:cursor-pointer hover:bg-slate-100"
          >
 
-            <div className=" flex justify-between mb-4">
+            <div className=" flex justify-between mb-4 lg:w-80">
                <div>
-                  <p className=" text-2xl hover:underline">{todo.title}</p>
+                  <p className=" text-2xl hover:underline">
+
+                     {todo.title}
+                  
+                  </p>
                </div>
 
                <div onClick={handleStatusOptions}>
                   <p className="hover:cursor-pointer">
-                     <FaEllipsis size={30} />
+                  
+                     <FaEllipsis 
+                        size={30} 
+                     />
+                  
                   </p>
 
                   <div className={`${statusOptions} absolute right-4 rounded-md text-lg border border-slate-300 bg-slate-100`}>
@@ -109,7 +122,12 @@ export default function TodoCard({ todo }: any) {
 
             <div className=" flex items-center">
                <img className=" m-0.5 mr-2 mb-1 w-3 h-3" src="./img/calendar.png" alt="" />
-               <p>{`${todo.due[2]}/${todo.due[1]}/${todo.due[0]}`}</p>
+
+               <p>
+               
+                  {`${todo.due[2]}/${todo.due[1]}/${todo.due[0]}`}
+               
+               </p>
             </div>
          </div> 
       </>

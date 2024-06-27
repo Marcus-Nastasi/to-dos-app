@@ -73,12 +73,12 @@ export default function Update({ todo }: any) {
    };
 
    return(
-      <div className=" p-10">
+      <div className=" p-10 lg:flex lg:flex-col lg:items-center">
          {error ? <ErrorBox message={errorMessage} /> : ''}
 
          <h1 className=" text-center text-3xl font-medium mb-10">Update</h1>
 
-         <form className="flex flex-col w-full h-full">
+         <form className="flex flex-col w-full h-full lg:w-9/12 xl:w-7/12 2xl:w-5/12">
 
             <label className=" text-2xl mb-3" htmlFor="title">Title:</label>
             <input onChange={handleTitle} className={`mb-5 p-1.5 transition-all ease-in-out delay-0 border-b-2 border-orange-400 focus:outline-none focus: focus:border-b-4 focus:border-orange-700`} value={title} type="text" name="title" id="title" />
@@ -105,9 +105,9 @@ export default function Update({ todo }: any) {
             <button
                onClick={handleUpdateTodo}
                style={shadow}
-               className="px-5 py-1 text-lg font-medium bg-slate-300" 
+               className="w-fit self-center px-5 py-1 text-lg font-semibold rounded-md text-white border border-blue-500 bg-blue-300 hover:bg-blue-400" 
                type="submit">
-                  UPDATE
+                  Update
             </button>
 
          </form>

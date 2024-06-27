@@ -39,7 +39,7 @@ function App() {
 
          if(!token || !uid) {
             handleError('no token or user');
-            window.open('/login', '_self');
+            setTimeout(() => window.open('/login', '_self'), 4100);
             return
          }
 
@@ -50,8 +50,8 @@ function App() {
             });
 
             if(req.status != 200) {
-               handleError('status diferent than 200');
-               window.open('/login', '_self');
+               handleError('status diferent than 200, redirecting to login...');
+               setTimeout(() => window.open('/login', '_self'), 4100);
                return
             }
 
@@ -71,7 +71,7 @@ function App() {
 
          if(!token || !uid) {
             handleError('no token or user');
-            window.open('/login', '_self');
+            setTimeout(() => window.open('/login', '_self'), 4100);
             return
          }
 
@@ -109,6 +109,11 @@ function App() {
             headers: new Headers({ 'content-type': 'application/json', 'Authorization': `Bearer ${token}` })
          });
 
+         if(request.status !== 200) {
+            handleError('error: cannot get done to-dos');
+            return
+         }
+
          const doneTodos: Array<Todo> = await request.json();
 
          setDefTodos(false);
@@ -132,6 +137,11 @@ function App() {
             headers: new Headers({ 'content-type': 'application/json', 'Authorization': `Bearer ${token}` })
          });
 
+         if(request.status !== 200) {
+            handleError('error: cannot get in progress to-dos');
+            return
+         }
+
          const doneTodos: Array<Todo> = await request.json();
 
          setDefTodos(false);
@@ -154,6 +164,11 @@ function App() {
             method: 'GET',
             headers: new Headers({ 'content-type': 'application/json', 'Authorization': `Bearer ${token}` })
          });
+
+         if(request.status !== 200) {
+            handleError('error: cannot get pending to-dos');
+            return
+         }
 
          const doneTodos: Array<Todo> = await request.json();
 
@@ -207,11 +222,11 @@ function App() {
 
          <div className="pb-32">
 
-            <div className={`${newTodo} flex w-screen min-h-screen max-h-full fixed top-0 z-50`}>
+            <div className={`${newTodo} flex lg:justify-center w-screen min-h-screen max-h-full fixed top-0 z-50 lg:bg-neutral-800 lg:bg-opacity-60`}>
                <NewTodo show={newTodo} func={handleNewTodo} />
             </div>
 
-            <div className="flex flex-col-reverse h-fit z-10">
+            <div className="flex flex-col-reverse lg:flex-row-reverse lg:flex-wrap lg:justify-center lg:w-screen h-fit z-10">
                {defTodos ? todos?.map((t: Todo) => <TodoCard todo={t} />): ''}
                {isDoneTodos ? doneTodos?.map((t: Todo) => <TodoCard todo={t} />): ''}
                {isProgressTodos ? progressTodos?.map((t: Todo) => <TodoCard todo={t} />): ''}

@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import FormEdit from "./components/Account/FormEdit";
 import User from "./components/Interface/User/User";
+import ErrorBox from "./components/Handler/ErrorBox";
 
 export default function Account() {
    const [ edit, setEdit ] = useState<string>('hidden');
    const [ user, setUser ] = useState<User>();
+   const [ error, setError ] = useState<boolean>(false);
+   const [ errorMessage, setErrorMessage ] = useState<string>();
 
    useEffect(() => {
 
@@ -16,7 +19,7 @@ export default function Account() {
          const url: string = `http://3.219.123.52:8080/api/user/get/${parseInt(uid)}/`;
 
          if(!token || !uid) {
-            // handleError('no token or user');
+            handleError('no token or user');
             window.open('/login', '_self');
             return
          }
@@ -28,16 +31,15 @@ export default function Account() {
             });
 
             if(request.status != 200) {
-               // handleError('error: something went wrong, try again later');
+               handleError('error: something went wrong, try again later');
                return;
             }
 
             const user: User = await request.json();
 
             setUser(user);
-            // setLoading('hidden');
          } catch(e: any) {   
-            // handleError(e.message);
+            handleError(e.message);
          }
       };
       handleGetUser();
@@ -51,11 +53,20 @@ export default function Account() {
       (e.altKey && e.key === 't') ? setEdit('') : '';
    });
 
+   const handleError = (e: string): void => {
+      setErrorMessage(e);
+      setError(true);
+      setTimeout(() => setError(false), 4000);
+      return
+   };
+
    return(
       <>
          <div className={`${edit} w-screen h-screen absolute top-0 overflow-y-scroll overflow-x-hidden bg-white`}>
             <FormEdit func={handleEdit} user={user} />
          </div>
+
+         {error ? <ErrorBox message={errorMessage} /> : ''}
 
          <div className="flex justify-center min-h-screen max-h-fit w-screen p-10 text-lg overflow-x-hidden text-slate-700 selection:select-none">
 

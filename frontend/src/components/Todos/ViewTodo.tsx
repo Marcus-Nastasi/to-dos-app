@@ -33,7 +33,6 @@ export default function Viewtodo({ func, todo }: any) {
       try {
          const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
          const url: string = `http://3.219.123.52:8080/api/todos/delete/${parseInt(todo.id)}/`;
-         // const url: string = `http://192.168.0.76:8080/api/todos/delete/${parseInt(todo.id)}/`;
 
          if(!token || !todo.id) {
             handleError('no token or user');
@@ -74,11 +73,11 @@ export default function Viewtodo({ func, todo }: any) {
    const handleBtnEditOut = (): void => setEdit('#353535');
 
    return(
-      <div className={`w-screen min-h-screen max-h-full z-50 overflow-y-scroll bg-slate-100`}>
+      <div className={`w-screen lg:w-full h-full z-50 overflow-y-scroll shadow-lg shadow-neutral-600 bg-slate-100`}>
 
          {error ? <ErrorBox message={errorMessage} /> : ''}
          
-         <div className='w-screen p-8 flex justify-end fixed top-3'>
+         <div className='w-screen p-8 flex justify-end fixed top-3 lg:absolute lg:-right-1'>
             <FaX
                onMouseOver={handleCloseBtnColorIn}
                onMouseLeave={handleCloseBtnColorOut}
@@ -89,7 +88,7 @@ export default function Viewtodo({ func, todo }: any) {
             />
          </div>
 
-         <div className='w-screen h-screen flex flex-col justify-start p-7 py-16 text-xl text-wrap bg-slate-100'>
+         <div className='w-screen lg:max-w-screen-sm h-screen flex flex-col justify-start p-7 py-16 text-xl text-wrap bg-slate-100'>
 
             <div>
                <caption className=' text-slate-600'>title</caption>

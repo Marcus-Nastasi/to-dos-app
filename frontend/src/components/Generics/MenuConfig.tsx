@@ -8,7 +8,7 @@ export default function MenuConfig({ show, func }: any) {
    const handleCloseBtnColorOut = (): void => setCloseButton('#353535');
 
    return(
-      <div className={`${show} min-h-screen max-h-fit w-screen fixed top-0 right-0 p-10 bg-slate-100 lg:w-1/3`}>
+      <div className={`${show} min-h-screen max-h-fit w-screen fixed top-0 right-0 p-10 shadow-lg shadow-neutral-600 bg-slate-100 lg:w-1/3`}>
          <div className='flex flex-col'>
             <div className=''>
                <FaX
