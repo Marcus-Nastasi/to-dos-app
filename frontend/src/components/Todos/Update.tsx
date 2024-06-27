@@ -18,6 +18,11 @@ export default function Update({ todo }: any) {
       const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
       const [ t, c, d, l, due, p ]: any = [ document.getElementById('title'),  document.getElementById('client'),  document.getElementById('description'),  document.getElementById('link'),  document.getElementById('due'),  document.getElementById('priority') ];
 
+      if(!due.value) {
+         handleError('error: must be a due date');
+         return
+      }
+
       try {
          const request: Response = await fetch(url, {
             method: 'PUT',

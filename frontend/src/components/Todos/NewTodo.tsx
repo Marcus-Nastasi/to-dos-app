@@ -17,30 +17,35 @@ export default function NewTodo({ show, func }: any) {
    async function handleInsertTodo(e: any): Promise<void> {
       e.preventDefault();
 
+      const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
+      const url: string = 'http://3.219.123.52:8080/api/todos/new/';
+      // const url: string = 'http://192.168.0.76:8080/api/todos/new/';
+
+      const [ title, client, description, link, due, priority ]: any = [
+         document.getElementById('title'), 
+         document.getElementById('client'), 
+         document.getElementById('description'),
+         document.getElementById('link'), 
+         document.getElementById('due'), 
+         document.getElementById('priority')
+      ];
+
+      if(!due.value) {
+         handleError('error: all inputs must not be null');
+         return
+      }
+
+      const body: Todo = {
+         user_id: parseInt(document.cookie.split('UID=')[1]),
+         client: client.value,
+         title: title.value,
+         description: description.value,
+         link: link.value,
+         due: due.value,
+         priority: priority.value
+      };
+
       try {
-         const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
-         const url: string = 'http://3.219.123.52:8080/api/todos/new/';
-         // const url: string = 'http://192.168.0.76:8080/api/todos/new/';
-
-         const [ title, client, description, link, due, priority ]: any = [
-            document.getElementById('title'), 
-            document.getElementById('client'), 
-            document.getElementById('description'),
-            document.getElementById('link'), 
-            document.getElementById('due'), 
-            document.getElementById('priority')
-         ];
-
-         const body: Todo = {
-            user_id: parseInt(document.cookie.split('UID=')[1]),
-            client: client.value,
-            title: title.value,
-            description: description.value,
-            link: link.value,
-            due: due.value,
-            priority: priority.value
-         };
-
          const req: Response = await fetch(url, {
             method: 'POST',
             body: JSON.stringify(body),

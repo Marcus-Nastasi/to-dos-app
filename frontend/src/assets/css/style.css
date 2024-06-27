@@ -3,3 +3,34 @@
 * {
    font-family: "IBM Plex Serif", serif;
 }
+
+/* #menuHomeLink {
+   animation-name: underlineIn;
+   animation-duration: 2s;
+   animation-fill-mode: forwards;
+   animation-iteration-count: initial;
+   transition: all ease-in-out 300ms;
+}
+
+@keyframes underlineIn {
+   0% {
+      text-decoration: unset;
+   }
+
+   100% {
+      text-decoration: underline;
+   }
+} */
+
+.loading_spinner {
+   animation: load-spinner 1700ms;
+   animation-iteration-count: infinite;
+}
+
+@keyframes load-spinner {
+   to {
+      transform: rotate(360deg);
+   }
+}
+
+

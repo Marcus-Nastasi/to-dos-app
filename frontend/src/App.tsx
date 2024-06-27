@@ -34,18 +34,18 @@ function App() {
 
       async function handleGetTodos(): Promise<void> {
         
+         const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
+         const uid: string = document.cookie.split('UID=')[1];
+         const url: string = `http://3.219.123.52:8080/api/todos/all/${parseInt(uid)}/`;
+         // const url: string = `http://192.168.0.76:8080/api/todos/all/${parseInt(uid)}/`;
+
+         if(!token || !uid) {
+            handleError('no token or user');
+            window.open('/login', '_self');
+            return
+         }
+
          try {
-            const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
-            const uid: string = document.cookie.split('UID=')[1];
-            const url: string = `http://3.219.123.52:8080/api/todos/all/${parseInt(uid)}/`;
-            // const url: string = `http://192.168.0.76:8080/api/todos/all/${parseInt(uid)}/`;
-
-            if(!token || !uid) {
-               handleError('no token or user');
-               window.open('/login', '_self');
-               return
-            }
-
             const req: Response = await fetch(url, {
                method: 'GET',
                headers: new Headers({ 'content-type': 'application/json', 'Authorization': `Bearer ${token}` })
@@ -68,18 +68,18 @@ function App() {
 
       async function handleGetUser(): Promise<void> {
 
+         const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
+         const uid: string = document.cookie.split('UID=')[1];
+         const url: string = `http://3.219.123.52:8080/api/user/get/${parseInt(uid)}/`;
+         // const url: string = `http://192.168.0.76:8080/api/user/get/${parseInt(uid)}/`;
+
+         if(!token || !uid) {
+            handleError('no token or user');
+            window.open('/login', '_self');
+            return
+         }
+
          try {
-            const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
-            const uid: string = document.cookie.split('UID=')[1];
-            const url: string = `http://3.219.123.52:8080/api/user/get/${parseInt(uid)}/`;
-            // const url: string = `http://192.168.0.76:8080/api/user/get/${parseInt(uid)}/`;
-
-            if(!token || !uid) {
-               handleError('no token or user');
-               window.open('/login', '_self');
-               return
-            }
-
             const request: Response = await fetch(url, {
                method: 'GET',
                headers: new Headers({ 'content-type': 'application/json', 'Authorization': `Bearer ${token}` })
@@ -104,12 +104,13 @@ function App() {
 
    // to-do: conclude status filter
    async function getDone(): Promise<void> {
-      try {
-         const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
-         const uid: string = document.cookie.split('UID=')[1];
-         const url: string = `http://3.219.123.52:8080/api/todos/done/${parseInt(uid)}/`;
-         // const url: string = `http://192.168.0.76:8080/api/todos/done/${parseInt(uid)}/`;
 
+      const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
+      const uid: string = document.cookie.split('UID=')[1];
+      const url: string = `http://3.219.123.52:8080/api/todos/done/${parseInt(uid)}/`;
+      // const url: string = `http://192.168.0.76:8080/api/todos/done/${parseInt(uid)}/`;
+
+      try {
          const request: Response = await fetch(url, {
             method: 'GET',
             headers: new Headers({ 'content-type': 'application/json', 'Authorization': `Bearer ${token}` })
@@ -128,12 +129,13 @@ function App() {
    };
 
    async function getProgress(): Promise<void> {
+      
+      const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
+      const uid: string = document.cookie.split('UID=')[1];
+      const url: string = `http://3.219.123.52:8080/api/todos/progress/${parseInt(uid)}/`;
+      // const url: string = `http://192.168.0.76:8080/api/todos/progress/${parseInt(uid)}/`;
+      
       try {
-         const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
-         const uid: string = document.cookie.split('UID=')[1];
-         const url: string = `http://3.219.123.52:8080/api/todos/progress/${parseInt(uid)}/`;
-         // const url: string = `http://192.168.0.76:8080/api/todos/progress/${parseInt(uid)}/`;
-
          const request: Response = await fetch(url, {
             method: 'GET',
             headers: new Headers({ 'content-type': 'application/json', 'Authorization': `Bearer ${token}` })
@@ -152,12 +154,13 @@ function App() {
    };
    
    async function getPending(): Promise<void> {
+      
+      const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
+      const uid: string = document.cookie.split('UID=')[1];
+      const url: string = `http://3.219.123.52:8080/api/todos/pending/${parseInt(uid)}/`;
+      // const url: string = `http://192.168.0.76:8080/api/todos/pending/${parseInt(uid)}/`;
+      
       try {
-         const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
-         const uid: string = document.cookie.split('UID=')[1];
-         const url: string = `http://3.219.123.52:8080/api/todos/pending/${parseInt(uid)}/`;
-         // const url: string = `http://192.168.0.76:8080/api/todos/pending/${parseInt(uid)}/`;
-
          const request: Response = await fetch(url, {
             method: 'GET',
             headers: new Headers({ 'content-type': 'application/json', 'Authorization': `Bearer ${token}` })

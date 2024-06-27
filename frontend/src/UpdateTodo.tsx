@@ -2,17 +2,20 @@ import { useEffect, useState } from "react";
 import Todo from "./components/Interface/Todos/Todo";
 import Update from "./components/Todos/Update";
 import ErrorBox from "./components/Handler/ErrorBox";
+import { FaSpinner } from "react-icons/fa6";
 
 export default function UpdateTodo() {
    const [ todo, setTodo ] = useState<Todo>();
+   const [ loading, setLoading ] = useState<string>();
+   const [ error, setError ] = useState<boolean>(false);
 
    useEffect(() => {
 
       const getId = (): string => window.location.href.split('/')[5];
 
       async function getTodo(): Promise<void> {
-         // const url: string = `http://3.219.123.52:8080/api/todos/get/${parseInt(getId())}/`;
-         const url: string = `http://192.168.0.76:8080/api/todos/get/${parseInt(getId())}/`;
+         const url: string = `http://3.219.123.52:8080/api/todos/get/${parseInt(getId())}/`;
+         // const url: string = `http://192.168.0.76:8080/api/todos/get/${parseInt(getId())}/`;
          const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
 
          try {
@@ -21,11 +24,15 @@ export default function UpdateTodo() {
                headers: new Headers({ 'content-type': 'application/json', 'Authorization': `Bearer ${token}` })
             });
 
-            if(request.status != 200) console.log('error: status diferent than 200');
+            if(request.status != 200) {
+               setError(true);
+               return
+            }
 
             const response: Todo = await request.json();
 
             setTodo(response);
+            setLoading('hidden');
          } catch(e) {
             console.log(e);
          }  
@@ -36,7 +43,16 @@ export default function UpdateTodo() {
    }, []);
 
    return(
-      <>{todo ? <Update todo={todo} /> : <ErrorBox message={'error: to-do not found'}/>}</>
+      <>
+         <div className={`${loading} flex justify-center items-center fixed top-0 w-screen h-screen z-50 bg-white`}>
+            <FaSpinner
+               size={50}
+               className={`loading_spinner`}
+            />
+         </div>
+         {todo ? <Update todo={todo} /> : '' }
+         {error ? <ErrorBox message={'error'}/> : ''}
+      </>
    );
 }
 
