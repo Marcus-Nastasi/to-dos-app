@@ -4,6 +4,7 @@ import { renderLogin } from '../controllers/loginController';
 import { updateTodo } from '../controllers/updateTodoCntr';
 import { handleAccountPage } from '../controllers/accountController';
 import { handleConfigPage } from '../controllers/configController';
+import { aboutPage } from '../controllers/about';
 
 const router = express.Router();
 
@@ -23,6 +24,9 @@ router.get('/user/configurations', handleConfigPage);
 
 // account
 router.get('/user/account', handleAccountPage);
+
+// about
+router.get('/about', aboutPage);
 
 export default router;
 

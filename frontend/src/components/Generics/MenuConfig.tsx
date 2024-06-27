@@ -25,7 +25,8 @@ export default function MenuConfig({ show, func }: any) {
 
                <div className='flex flex-col text-2xl'>
                   <a id='menuDashLink' className='my-2 hover:text-slate-700' href="/user/configurations">Configurations</a>
-                  <a className='hover:text-slate-700' href="/user/account">Account</a>
+                  <a className='my-2 hover:text-slate-700' href="/user/account">Account</a>
+                  <a className='hover:text-slate-700' href="/about">About</a>
                </div>
 
             </div>
