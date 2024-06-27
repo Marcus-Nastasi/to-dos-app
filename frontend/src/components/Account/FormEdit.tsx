@@ -90,7 +90,7 @@ export default function FormEdit({ func, user }: any) {
                color={closeButton}
                onClick={func}
                size={22}
-               className='fixed top-8 right-5 hover:cursor-pointer'
+               className='fixed top-8 lg:right-10 right-5 hover:cursor-pointer'
             />
 
             <h2 className=" text-4xl mb-10">Update user</h2>
@@ -108,11 +108,11 @@ export default function FormEdit({ func, user }: any) {
                <label className=" text-lg" htmlFor="newPassword">New password:</label>
                <input className=" p-1 rounded-sm mb-5" type="password" name="newPassword" id="newPassword" />
 
-               <button onClick={handleUpdate} className=" self-center w-fit px-6 py-1 border rounded-md border-blue-500 bg-blue-300 hover:bg-blue-400 text-slate-50 hover:text-slate-100">
+               <button onClick={handleUpdate} className=" self-center w-fit px-6 py-1 font-semibold border rounded-md border-blue-500 bg-blue-300 hover:bg-blue-400 text-white hover:text-slate-100">
                   Update
                </button>
 
-               <button onClick={handleDeleteUser} className=" self-center w-fit px-6 py-1 mt-10 border rounded-md border-red-500 bg-red-300 hover:bg-red-400 text-slate-50 hover:text-slate-100">
+               <button onClick={handleDeleteUser} className=" self-center w-fit px-6 py-1 font-medium mt-10 border rounded-md border-red-500 bg-red-300 hover:bg-red-400 text-white hover:text-slate-100">
                   Delete
                </button>
             </div>

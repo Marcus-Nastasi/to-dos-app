@@ -113,9 +113,9 @@ export default function NewTodo({ show, func }: any) {
                   <button
                      onClick={handleInsertTodo}
                      style={shadow}
-                     className="px-5 py-1 text-lg font-medium bg-slate-300" 
+                     className="px-7 py-1 w-fit text-lg font-medium self-center rounded-md text-slate-50 hover:text-white border border-green-400 bg-green-500 hover:bg-green-300" 
                      type="submit">
-                        CREATE
+                        Create
                   </button>
 
                </form>

@@ -53,7 +53,7 @@ export default function FormLogin() {
                E-mail
             </label>
             <input 
-               className="indent-2 mb-5 p-1.5 rounded-lg border-2 border-neutral-600 bg-slate-100" 
+               className="indent-2 mb-5 p-1.5 rounded-lg border border-neutral-600 bg-slate-100" 
                type="text" 
                name="email" 
                id="input_email" 
@@ -63,7 +63,7 @@ export default function FormLogin() {
                Password
             </label>
             <input 
-               className="indent-2 mb-5 p-1.5 rounded-lg border-2 border-neutral-600 bg-slate-100" 
+               className="indent-2 mb-5 p-1.5 rounded-lg border border-neutral-600 bg-slate-100" 
                type="password" 
                name="password" 
                id="input_password" 
@@ -71,7 +71,7 @@ export default function FormLogin() {
 
             <button 
                onClick={getToken}
-               className="self-center px-5 py-1 w-11/12 text-lg font-medium mt-5 rounded-sm bg-slate-300 hover:bg-slate-400"
+               className="self-center px-7 py-1 text-lg font-medium mt-5 rounded-md border border-blue-500 text-slate-50 bg-blue-400 hover:bg-blue-500"
                type="submit"   
             >
                Enter
