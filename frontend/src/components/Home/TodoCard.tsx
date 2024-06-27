@@ -74,8 +74,9 @@ export default function TodoCard({ todo }: any) {
 
          <div
             onClick={handleBigCard}
+            onMouseLeave={() => setStatusOptions('hidden')}
             style={shadow}
-            className="m-5 p-4 z-0 rounded-3xl bg-slate-50 transition-all ease-in-out hover:-translate-x-2 hover:cursor-pointer hover:bg-slate-100"
+            className="m-5 p-4 z-0 rounded-3xl bg-slate-50 transition-all ease-in-out duration-700 hover:-translate-x-1 hover:cursor-pointer hover:bg-neutral-100"
          >
 
             <div className=" flex justify-between mb-4 lg:w-80">
@@ -87,7 +88,7 @@ export default function TodoCard({ todo }: any) {
                   </p>
                </div>
 
-               <div onClick={handleStatusOptions}>
+               <div onClick={handleStatusOptions} className=" w-fit">
                   <p className="hover:cursor-pointer">
                   
                      <FaEllipsis 
@@ -98,13 +99,13 @@ export default function TodoCard({ todo }: any) {
 
                   <div className={`${statusOptions} absolute right-4 rounded-md text-lg border border-slate-300 bg-slate-100`}>
                      <div>
-                        <p onClick={handleStatusChange} title="DONE" className=" font-medium m-1 border-b border-slate-300 hover:text-slate-700">
+                        <p onClick={handleStatusChange} title="DONE" className="px-1 font-medium m-1 border-b border-slate-300 hover:rounded-md hover:bg-neutral-200">
                            done
                         </p>
-                        <p onClick={handleStatusChange} title="PROGRESS" className="font-medium m-1 border-b border-slate-300 hover:text-slate-700">
+                        <p onClick={handleStatusChange} title="PROGRESS" className="px-1 font-medium m-1 border-b border-slate-300 hover:rounded-md hover:bg-neutral-200">
                            progress
                         </p>
-                        <p onClick={handleStatusChange} title="PENDING" className="font-medium m-1 hover:text-slate-700">
+                        <p onClick={handleStatusChange} title="PENDING" className="px-1 font-medium m-1 hover:rounded-md hover:bg-neutral-200">
                            pending
                         </p>
                      </div>

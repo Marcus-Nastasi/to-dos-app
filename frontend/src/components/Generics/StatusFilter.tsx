@@ -2,7 +2,7 @@ export default function StatusFilter({ doneFilter, progressFilter, pendingFilter
 
    return(
       <>
-         <div className=" flex justify-around">
+         <div className=" flex justify-around md:w-11/12 lg:w-7/12">
 
             <div style={shadow} className=" flex justify-center items-center py-1 px-5 rounded-3xl bg-green-200 hover:cursor-pointer hover:bg-green-300">
                <p onClick={doneFilter} className=" text-xl">Done</p>
@@ -18,7 +18,7 @@ export default function StatusFilter({ doneFilter, progressFilter, pendingFilter
 
          </div>
 
-         <div className=" w-screen flex pt-5 px-4">
+         <div className=" w-screen flex pt-5 px-4 md:px-24 lg:px-64 xl:px-80 2xl:px-96">
             <p onClick={clear} className="w-fit p-1 rounded-md bg-blue-200 border border-blue-300 hover:bg-blue-100 hover:cursor-pointer">
                Clear filters
             </p>

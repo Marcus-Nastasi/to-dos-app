@@ -9,7 +9,7 @@ export default function InferiorMenu({ func }: any) {
 
    return(
       <>
-         <div className=' z-50 w-screen h-24 flex justify-center items-center fixed bottom-0'>
+         <div className='z-40 w-screen h-24 flex justify-center items-center fixed bottom-0'>
 
             <FaSquarePlus
                onMouseOver={handleMenuColorIn}

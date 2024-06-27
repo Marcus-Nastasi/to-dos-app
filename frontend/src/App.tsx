@@ -214,9 +214,11 @@ function App() {
 
          {error ? <ErrorBox message={errorMessage} /> : ''}
 
-         <Header title={`Hello, ${user?.name.split(' ')[0]}`} />
+         <div className="flex justify-center">
+            <Header title={`Hello, ${user?.name.split(' ')[0]}`} />
+         </div>
 
-         <div className=" pt-7">
+         <div className="md:flex md:flex-col md:items-center pt-7 mb-5">
             <StatusFilter doneFilter={getDone} progressFilter={getProgress} pendingFilter={getPending} clear={clearFilters}  />
          </div>
 

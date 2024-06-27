@@ -21,7 +21,7 @@ export default function Header({ title }: any) {
    return(
       <>
          <div className=" flex justify-between w-screen pt-8">
-            <div className=" pl-5">
+            <div className=" pl-5 lg:pl-10">
 
                <FaAlignJustify
                   onMouseOver={handleMenuColorIn}
@@ -47,14 +47,14 @@ export default function Header({ title }: any) {
             </div>
 
             <div className="flex flex-col justify-between items-center">
-               <img className='w-32 -mt-8' src="./img/logo-3.png" alt="" />
+               <img className='w-32 -ml-3 md:-ml-6 -mt-8' src="./img/logo-3.png" alt="" />
 
                <h1 className=" text-3xl">
                   {title}
                </h1>
             </div>
 
-            <div className=" pr-3">
+            <div className=" pr-3 lg:pr-8">
 
                <FaEllipsisV 
                   onMouseOver={handlePointsColorIn}
