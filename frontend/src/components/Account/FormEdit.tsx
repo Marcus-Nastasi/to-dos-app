@@ -31,11 +31,39 @@ export default function FormEdit({ func, user }: any) {
          document.cookie = 'Bearer=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
          document.cookie = 'UID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
 
-         window.open('/login/', '_self');
+         window.open('/login', '_self');
       } catch(e: any) {
          handleError(e.message);
       }
    };
+
+   async function handleDeleteUser(e: any): Promise<void> {
+      e.preventDefault();
+
+      const response: string | null = prompt('type your e-mail');
+
+      if(response !== user.email) return;
+
+      const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
+      const uid: string = document.cookie.split('UID=')[1];
+      const url: string = `http://3.219.123.52:8080/api/user/delete/${parseInt(uid)}/`;
+
+      try {
+         const request: Response = await fetch(url, {
+            method: 'DELETE',
+            headers: new Headers({ 'content-type': 'application/json', 'Authorization': `Bearer ${token}` })
+         });
+
+         if(request.status !== 202) {
+            console.log('status error');
+            return
+         }
+
+         console.log('ok');
+      } catch(e: any) {
+         console.warn(e.message);
+      }
+   }
   
    const handleError = (e: string): void => {
       user
@@ -67,7 +95,7 @@ export default function FormEdit({ func, user }: any) {
 
             <h2 className=" text-4xl mb-10">Update user</h2>
 
-            <div className="flex flex-col w-11/12 rounded-md shadow-sm shadow-neutral-500 p-4 bg-neutral-200">
+            <div className="flex flex-col w-11/12 md:w-9/12 lg:w-6/12 xl:w-4/12 rounded-md shadow-sm shadow-neutral-500 p-4 bg-neutral-200">
                <label className=" text-lg" htmlFor="name">Name:</label>
                <input className="p-1 rounded-sm mb-5" type="text" name="name" id="name" />
 
@@ -80,8 +108,12 @@ export default function FormEdit({ func, user }: any) {
                <label className=" text-lg" htmlFor="newPassword">New password:</label>
                <input className=" p-1 rounded-sm mb-5" type="password" name="newPassword" id="newPassword" />
 
-               <button onClick={handleUpdate} className=" self-center w-fit px-6 py-1 border rounded-md border-neutral-500 bg-neutral-300 hover:bg-neutral-400">
+               <button onClick={handleUpdate} className=" self-center w-fit px-6 py-1 border rounded-md border-blue-500 bg-blue-300 hover:bg-blue-400 text-slate-50 hover:text-slate-100">
                   Update
+               </button>
+
+               <button onClick={handleDeleteUser} className=" self-center w-fit px-6 py-1 mt-10 border rounded-md border-red-500 bg-red-300 hover:bg-red-400 text-slate-50 hover:text-slate-100">
+                  Delete
                </button>
             </div>
 
