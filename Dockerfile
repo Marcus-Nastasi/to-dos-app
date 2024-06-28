@@ -8,18 +8,14 @@ WORKDIR /app
 COPY . /app
 
 # Instalar dependências da aplicação
-RUN cd backend
-RUN npm install
+RUN cd backend && npm install
 
-RUN cd ..
-
-RUN cd frontend
-RUN npm install
+RUN cd frontend && npm install
 
 # Expor a porta 3030
 EXPOSE 3030
 
 # Comando para rodar a aplicação
-CMD ["cd app/backend/ &&", "npm run dev"]
+CMD ["node", "backend/dist/app.js"]
 
 
