@@ -26,7 +26,6 @@ function App() {
 
    useEffect(() => {
 
-      // to-do: implement 'about' page texts
       // to-do: add handling errors on all pages
       // to-do: implement handle themes (create dark theme)
       
@@ -231,7 +230,7 @@ function App() {
             </div>
 
             <div className="flex flex-col-reverse lg:flex-row-reverse lg:flex-wrap lg:justify-center lg:w-screen h-fit z-10">
-               {defTodos ? todos?.map((t: Todo) => <TodoCard todo={t} />): ''}
+               {defTodos ? todos?.map((t: Todo) => <TodoCard todo={t} />) : ''}
                {isDoneTodos ? doneTodos?.map((t: Todo) => <TodoCard todo={t} />): ''}
                {isProgressTodos ? progressTodos?.map((t: Todo) => <TodoCard todo={t} />): ''}
                {isPendingTodos ? pendingTodos?.map((t: Todo) => <TodoCard todo={t} />): ''}

@@ -27,8 +27,8 @@ export default function FormLogin() {
 
          const res: Login = await req.json();
 
-         document.cookie = `Bearer=${res.token}; ${getCookieExpirationString(1)}`;
-         document.cookie = `UID=${res.uid}; ${getCookieExpirationString(1)}`;
+         document.cookie = `Bearer=${res.token}; ${getCookieExpirationString(7)}`;
+         document.cookie = `UID=${res.uid}; ${getCookieExpirationString(7)}`;
 
          window.open('/', '_self');
       } catch(e: any) {

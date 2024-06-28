@@ -1,7 +1,13 @@
-# Dockerfile.nginx
-FROM nginx:latest
+# Usar imagem base do Nginx
+FROM nginx:alpine
 
-# Copiar arquivo de configuração do NGINX
-COPY nginx.config /etc/nginx/conf.d/default.conf
+# Copiar o arquivo de configuração do Nginx para o contêiner
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Criar diretório para Certbot
+RUN mkdir -p /var/www/certbot
+
+# Volume para os certificados
+VOLUME ["/etc/letsencrypt", "/var/www/certbot"]
 
 
