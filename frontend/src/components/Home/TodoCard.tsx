@@ -76,7 +76,7 @@ export default function TodoCard({ todo }: any) {
             onClick={handleBigCard}
             onMouseLeave={() => setStatusOptions('hidden')}
             style={shadow}
-            className="m-5 p-4 z-0 rounded-3xl bg-slate-50 transition-all ease-in-out duration-700 hover:-translate-x-1 hover:cursor-pointer hover:bg-neutral-100"
+            className="todoCard m-5 p-4 z-0 rounded-3xl bg-slate-50 hover:cursor-pointer hover:bg-neutral-100"
          >
 
             <div className=" flex justify-between mb-4 lg:w-80">

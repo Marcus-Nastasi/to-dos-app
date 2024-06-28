@@ -78,8 +78,6 @@ export default function FormEdit({ func, user }: any) {
 
    return(
       <>
-         {/* implement input current values */}
-
          <form className="h-screen w-screen flex flex-col items-center pt-20">
 
             {error ? <ErrorBox message={errorMessage} />: ''}

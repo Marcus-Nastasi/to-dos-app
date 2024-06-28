@@ -105,7 +105,7 @@ export default function Update({ todo }: any) {
             <button
                onClick={handleUpdateTodo}
                style={shadow}
-               className="w-fit self-center px-5 py-1 text-lg font-semibold rounded-md text-white border border-blue-500 bg-blue-300 hover:bg-blue-400" 
+               className="w-fit self-center px-5 py-1 text-lg font-semibold rounded-md text-slate-100 border border-blue-600 bg-blue-500 hover:bg-blue-400" 
                type="submit">
                   Update
             </button>

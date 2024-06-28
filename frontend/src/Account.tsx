@@ -46,6 +46,17 @@ export default function Account() {
 
    }, []);
 
+   function logOff(): void {
+      const confirmation: boolean = confirm('Are you sure you want to log off?');
+
+      if(!confirmation) return
+
+      document.cookie = 'Bearer=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      document.cookie = 'UID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      window.open('/login', '_self');
+      return
+   }
+
    const handleEdit = (): void => edit === 'hidden' ? setEdit('') : setEdit('hidden');
 
    document.addEventListener('keydown', (e: any) => {
@@ -68,7 +79,7 @@ export default function Account() {
 
          {error ? <ErrorBox message={errorMessage} /> : ''}
 
-         <div className="flex justify-center min-h-screen max-h-fit w-screen p-10 text-lg overflow-x-hidden text-slate-700 selection:select-none">
+         <div className="flex flex-col items-center min-h-screen max-h-fit w-screen p-10 text-lg overflow-x-hidden text-slate-700 selection:select-none">
 
             <div className=" w-full md:w-10/12 lg:w-8/12 xl:w-6/12 h-fit border p-4 flex flex-col justify-between items-center rounded-md border-neutral-300 bg-neutral-200">
                <div className=" text-lg w-full flex justify-between items-center mb-3">
@@ -86,8 +97,16 @@ export default function Account() {
                   <p>************</p>
                </div>
 
-               <button onClick={handleEdit} className="font-medium px-6 py-0.5 mt-5 rounded-md border border-neutral-500 text-slate-50 bg-neutral-400 hover:bg-neutral-300">
+               <button onClick={handleEdit} className="font-medium px-6 py-0.5 mt-5 rounded-md border border-neutral-300 text-slate-50 bg-neutral-500 hover:bg-neutral-400">
                   Edit
+               </button>
+            </div>
+
+            <div className=" mt-10 w-full md:w-10/12 lg:w-8/12 xl:w-6/12 h-fit border p-4 flex justify-between items-center rounded-md border-neutral-300 bg-neutral-200">
+               <p className=" font-medium md:text-lg">Log off</p>
+               
+               <button onClick={logOff} className="font-medium px-5 py-0.5 rounded-md border border-red-300 text-slate-50 bg-red-500 hover:bg-red-400">
+                  Log off
                </button>
             </div>
          </div>

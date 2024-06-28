@@ -27,6 +27,8 @@ function App() {
    useEffect(() => {
 
       // to-do: implement 'about' page texts
+      // to-do: add handling errors on all pages
+      // to-do: implement handle themes (create dark theme)
       
       if(!document.cookie) window.open('/login', '_self');
 

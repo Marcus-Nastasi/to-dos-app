@@ -47,9 +47,9 @@ export default function Header({ title }: any) {
             </div>
 
             <div className="flex flex-col justify-between items-center">
-               <img className='w-32 -ml-3 md:-ml-6 -mt-8' src="./img/logo-3.png" alt="" />
+               <img className='w-32 mb-5 -ml-3 md:-ml-6 -mt-5 selection:select-none' src="./img/logo-3.png" alt="" />
 
-               <h1 className=" text-3xl">
+               <h1 className="text-3xl hover:cursor-default selection:select-none">
                   {title}
                </h1>
             </div>
