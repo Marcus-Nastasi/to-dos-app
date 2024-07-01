@@ -16,7 +16,8 @@ export default function Account() {
       const handleGetUser = async(): Promise<void> => {
          const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
          const uid: string = document.cookie.split('UID=')[1];
-         const url: string = `http://3.219.123.52:8080/api/user/get/${parseInt(uid)}/`;
+         // const url: string = `http://3.219.123.52:8080/api/user/get/${parseInt(uid)}/`;
+         const url: string = `https://server.todos.rolemberg.net.br/api/user/get/${parseInt(uid)}/`;
 
          if(!token || !uid) {
             handleError('no token or user');

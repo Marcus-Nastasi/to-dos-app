@@ -29,7 +29,8 @@ export default function TodoCard({ todo }: any) {
 
    const handleStatusChange = async (e: any): Promise<void> => {
       const status = e.target.title;
-      const url: string = `http://3.219.123.52:8080/api/todos/update/status/${todo.id}/`;
+      // const url: string = `http://3.219.123.52:8080/api/todos/update/status/${todo.id}/`;
+      const url: string = `https://server.todos.rolemberg.net.br/api/todos/update/status/${todo.id}/`;
       const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
 
       try {

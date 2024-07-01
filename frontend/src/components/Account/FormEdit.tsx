@@ -12,7 +12,8 @@ export default function FormEdit({ func, user }: any) {
 
       const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
       const uid: string = document.cookie.split('UID=')[1];
-      const url: string = `http://3.219.123.52:8080/api/user/update/${parseInt(uid)}/`;
+      // const url: string = `http://3.219.123.52:8080/api/user/update/${parseInt(uid)}/`;
+      const url: string = `https://server.todos.rolemberg.net.br/api/user/update/${parseInt(uid)}/`;
 
       const [ n, em, op, np ]: any = [ document.getElementById('name'), document.getElementById('email'), document.getElementById('currentPassword'), document.getElementById('newPassword') ];
 
@@ -46,7 +47,8 @@ export default function FormEdit({ func, user }: any) {
 
       const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
       const uid: string = document.cookie.split('UID=')[1];
-      const url: string = `http://3.219.123.52:8080/api/user/delete/${parseInt(uid)}/`;
+      // const url: string = `http://3.219.123.52:8080/api/user/delete/${parseInt(uid)}/`;
+      const url: string = `https://server.todos.rolemberg.net.br/api/user/delete/${parseInt(uid)}/`;
 
       try {
          const request: Response = await fetch(url, {

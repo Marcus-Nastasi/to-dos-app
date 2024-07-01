@@ -36,7 +36,8 @@ function App() {
       async function handleGetTodos(): Promise<void> {
          const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
          const uid: string = document.cookie.split('UID=')[1];
-         const url: string = `http://3.219.123.52:8080/api/todos/all/${parseInt(uid)}/`;
+         // const url: string = `http://3.219.123.52:8080/api/todos/all/${parseInt(uid)}/`;
+         const url: string = `https://server.todos.rolemberg.net.br/api/todos/all/${parseInt(uid)}/`;
 
          if(!token || !uid) {
             handleError('no token or user');
@@ -68,7 +69,8 @@ function App() {
       async function handleGetUser(): Promise<void> {
          const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
          const uid: string = document.cookie.split('UID=')[1];
-         const url: string = `http://3.219.123.52:8080/api/user/get/${parseInt(uid)}/`;
+         // const url: string = `http://3.219.123.52:8080/api/user/get/${parseInt(uid)}/`;
+         const url: string = `https://server.todos.rolemberg.net.br/api/user/get/${parseInt(uid)}/`;
 
          if(!token || !uid) {
             handleError('no token or user');
@@ -102,7 +104,8 @@ function App() {
    async function getDone(): Promise<void> {
       const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
       const uid: string = document.cookie.split('UID=')[1];
-      const url: string = `http://3.219.123.52:8080/api/todos/done/${parseInt(uid)}/`;
+      // const url: string = `http://3.219.123.52:8080/api/todos/done/${parseInt(uid)}/`;
+      const url: string = `https://server.todos.rolemberg.net.br/api/todos/done/${parseInt(uid)}/`;
 
       try {
          const request: Response = await fetch(url, {
@@ -130,7 +133,8 @@ function App() {
    async function getProgress(): Promise<void> {
       const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
       const uid: string = document.cookie.split('UID=')[1];
-      const url: string = `http://3.219.123.52:8080/api/todos/progress/${parseInt(uid)}/`;
+      // const url: string = `http://3.219.123.52:8080/api/todos/progress/${parseInt(uid)}/`;
+      const url: string = `https://server.todos.rolemberg.net.br/api/todos/progress/${parseInt(uid)}/`;
       
       try {
          const request: Response = await fetch(url, {
@@ -158,7 +162,8 @@ function App() {
    async function getPending(): Promise<void> {
       const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
       const uid: string = document.cookie.split('UID=')[1];
-      const url: string = `http://3.219.123.52:8080/api/todos/pending/${parseInt(uid)}/`;
+      // const url: string = `http://3.219.123.52:8080/api/todos/pending/${parseInt(uid)}/`;
+      const url: string = `https://server.todos.rolemberg.net.br/api/todos/pending/${parseInt(uid)}/`;
       
       try {
          const request: Response = await fetch(url, {

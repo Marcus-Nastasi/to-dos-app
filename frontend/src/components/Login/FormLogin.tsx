@@ -12,11 +12,12 @@ export default function FormLogin() {
       
       try {
          const [ email, pass ]: any = [ document.getElementById('input_email'), document.getElementById('input_password') ];
-         const url: string = 'http://3.219.123.52:8080/api/auth/login/';
+         // const url: string = 'http://3.219.123.52:8080/api/auth/login/';
+         const url: string = 'https://server.todos.rolemberg.net.br/api/auth/login/';
 
          const req: Response = await fetch(url, {
             method: 'POST',
-            body: JSON.stringify({ email: email.value, password: pass.value }),
+            body: JSON.stringify({ email: email.value.toLowerCase(), password: pass.value }),
             headers: new Headers({ 'content-type': 'application/json' })
          });
 

@@ -15,11 +15,12 @@ export default function FormCad() {
             document.getElementById('input_password') 
          ];
 
-         const url: string = 'http://3.219.123.52:8080/api/user/new/';
+         // const url: string = 'http://3.219.123.52:8080/api/user/new/';
+         const url: string = 'https://server.todos.rolemberg.net.br/api/user/new/';
 
          const req: Response = await fetch(url, {
             method: 'POST',
-            body: JSON.stringify({ name: name.value, email: email.value, password: pass.value }),
+            body: JSON.stringify({ name: name.value, email: email.value.toLowerCase(), password: pass.value }),
             headers: new Headers({ 'content-type': 'application/json' })
          });
 

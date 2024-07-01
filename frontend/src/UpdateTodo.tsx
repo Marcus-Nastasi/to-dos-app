@@ -14,7 +14,8 @@ export default function UpdateTodo() {
       const getId = (): string => window.location.href.split('/')[5];
 
       async function getTodo(): Promise<void> {
-         const url: string = `http://3.219.123.52:8080/api/todos/get/${parseInt(getId())}/`;
+         // const url: string = `http://3.219.123.52:8080/api/todos/get/${parseInt(getId())}/`;
+         const url: string = `https://server.todos.rolemberg.net.br/api/todos/get/${parseInt(getId())}/`;
          const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
 
          try {
