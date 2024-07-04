@@ -12,31 +12,48 @@ import ErrorBox from "./components/Handler/ErrorBox";
 function App() {
    const [ user, setUser ] = useState<User>();
    const [ todos, setTodos ] = useState<Array<Todo>>();
+
    const [ defTodos, setDefTodos ] = useState<boolean>(true);
    const [ doneTodos, setDoneTodos ] = useState<Array<Todo>>();
+   
    const [ isDoneTodos, setIsDoneTodos ] = useState<boolean>(false);
    const [ progressTodos, setProgressTodos ] = useState<Array<Todo>>();
+   
    const [ isProgressTodos, setIsProgressTodos ] = useState<boolean>(false);
    const [ pendingTodos, setPendingTodos ] = useState<Array<Todo>>();
+   
    const [ isPendingTodos, setIsPendingTodos ] = useState<boolean>(false);
    const [ newTodo, setNewTodo ] = useState<string>('hidden');
+   
    const [ loading, setLoading ] = useState<string>();
    const [ error, setError ] = useState<boolean>(false);
    const [ errorMessage, setErrorMessage ] = useState<string>();
+
+   // theme styles
+   const [ bgHome, setBgHome ] = useState<string>();
+   const [ loadingColor, setLoadingColor ] = useState<string>();
 
    useEffect(() => {
 
       // to-do: add handling errors on all pages
       // to-do: implement handle themes (create dark theme)
+      // to-do: create priority filters
       
       if(!document.cookie) window.open('/login', '_self');
 
       if(!localStorage.getItem('theme')) localStorage.setItem('theme', 'light');
 
+      if(localStorage.getItem('theme') === 'light') {
+         setBgHome('bg-slate-100');
+         setLoadingColor('#1E293B');
+      } else {
+         setBgHome('bg-slate-800');
+         setLoadingColor('#FFFFFF');
+      }
+
       async function handleGetTodos(): Promise<void> {
          const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
          const uid: string = document.cookie.split('UID=')[1];
-         // const url: string = `http://3.219.123.52:8080/api/todos/all/${parseInt(uid)}/`;
          const url: string = `https://server.todos.rolemberg.net.br/api/todos/all/${parseInt(uid)}/`;
 
          if(!token || !uid) {
@@ -69,7 +86,6 @@ function App() {
       async function handleGetUser(): Promise<void> {
          const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
          const uid: string = document.cookie.split('UID=')[1];
-         // const url: string = `http://3.219.123.52:8080/api/user/get/${parseInt(uid)}/`;
          const url: string = `https://server.todos.rolemberg.net.br/api/user/get/${parseInt(uid)}/`;
 
          if(!token || !uid) {
@@ -104,7 +120,6 @@ function App() {
    async function getDone(): Promise<void> {
       const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
       const uid: string = document.cookie.split('UID=')[1];
-      // const url: string = `http://3.219.123.52:8080/api/todos/done/${parseInt(uid)}/`;
       const url: string = `https://server.todos.rolemberg.net.br/api/todos/done/${parseInt(uid)}/`;
 
       try {
@@ -133,7 +148,6 @@ function App() {
    async function getProgress(): Promise<void> {
       const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
       const uid: string = document.cookie.split('UID=')[1];
-      // const url: string = `http://3.219.123.52:8080/api/todos/progress/${parseInt(uid)}/`;
       const url: string = `https://server.todos.rolemberg.net.br/api/todos/progress/${parseInt(uid)}/`;
       
       try {
@@ -162,7 +176,6 @@ function App() {
    async function getPending(): Promise<void> {
       const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
       const uid: string = document.cookie.split('UID=')[1];
-      // const url: string = `http://3.219.123.52:8080/api/todos/pending/${parseInt(uid)}/`;
       const url: string = `https://server.todos.rolemberg.net.br/api/todos/pending/${parseInt(uid)}/`;
       
       try {
@@ -198,8 +211,8 @@ function App() {
 
    const handleNewTodo = (): void => newTodo === 'hidden' ? setNewTodo('') : setNewTodo('hidden');
    document.addEventListener('keydown', (e: any) => {
-      (e.key == 'Escape' && newTodo === '') ? setNewTodo('hidden') : '';
-      (e.altKey && e.key === 't') ? setNewTodo('') : '';
+      (e.key == 'Escape' && newTodo === '') ? setNewTodo('hidden') : null;
+      (e.altKey && e.key === 't') ? setNewTodo('') : null;
    });
 
    const handleError = (e: string): void => {
@@ -210,11 +223,12 @@ function App() {
    };
 
    return(
-      <section className={`min-h-screen max-h-fit overflow-x-hidden bg-slate-100`}>
-         <div className={`${loading} flex justify-center items-center fixed top-0 w-screen h-screen bg-slate-50`}>
+      <section className={`min-h-screen max-h-fit overflow-x-hidden ${bgHome}`}>
+         <div className={`${loading} flex justify-center items-center fixed top-0 w-screen h-screen ${bgHome}`}>
             <FaSpinner
                size={70}
                className={`loading_spinner`}
+               color={loadingColor}
             />
          </div>
 

@@ -1,4 +1,6 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express from 'express';
 import path from 'path';
 import router from './routes/routes';
@@ -18,7 +20,7 @@ app.use(router);
 
 app.use(helmet());
 
-app.listen(3030, () => console.log('http://192.168.0.76:3030/'));
+app.listen(3030);
 
 
 

@@ -15,7 +15,7 @@ router.get('/', renderHome);
 router.get('/login', renderLogin);
 
 // dash
-router.get('/dashboard', (req: any, res: any) => res.json({ status: 'soon' })); 
+router.get('/dashboard', (req: any, res: any) => res.status(200).json({ status: 'soon' }).end()); 
 
 // update todo
 router.get('/update/todo/:id', updateTodo);
