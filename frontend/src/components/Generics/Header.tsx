@@ -10,7 +10,6 @@ export default function Header({ title }: any) {
    const [ showConfig, setShowConfig ] = useState<string>('hidden');
    const [ titleColor, setTitleColor ] = useState<string>('text-slate-900');
 
-   // theme styles
    useEffect(() => {
 
       if(localStorage.getItem('theme') === 'dark') {
