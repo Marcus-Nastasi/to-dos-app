@@ -5,8 +5,7 @@ export default function StatusFilter({ doneFilter, progressFilter, pendingFilter
 
    useEffect(() => {
 
-      if(localStorage.getItem('theme') === 'light') setShadowBoxes(shadowL);
-      else setShadowBoxes(shadowD);
+      (localStorage.getItem('theme') === 'light') ? setShadowBoxes(shadowL) : setShadowBoxes(shadowD);
 
    }, []);
 

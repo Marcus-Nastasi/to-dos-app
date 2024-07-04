@@ -4,12 +4,19 @@ import ViewTodo from "../Todos/ViewTodo";
 
 export default function TodoCard({ todo }: any) {
    const [ priorColor, setPriorColor ] = useState<string>();
+   const [ cardColor, setCardColor ] = useState<string>();
+   const [ titleCardColor, setTitleCardColor ] = useState<string>();
    const [ prior, setPrior ] = useState<string>();
    const [ bigCard, setBigCard ] = useState<string>('hidden');
    const [ statusOptions, setStatusOptions ] = useState<string>('hidden');
+   const [ shadowBoxes, setShadowBoxes ] = useState<object>();
 
    useEffect(() => {
-      
+
+      (localStorage.getItem('theme') === 'light') ? setShadowBoxes(shadowL) : setShadowBoxes(shadowD);
+      (localStorage.getItem('theme') === 'light') ? setCardColor('bg-slate-50 hover:bg-gray-200') : setCardColor('bg-slate-900 hover:bg-gray-800');
+      (localStorage.getItem('theme') === 'light') ? setTitleCardColor('text-slate-950') : setTitleCardColor('text-slate-300');
+
       if(todo.priority === 'LOW') {
          setPrior('Low');
          setPriorColor('bg-green-300');
@@ -29,7 +36,6 @@ export default function TodoCard({ todo }: any) {
 
    const handleStatusChange = async (e: any): Promise<void> => {
       const status = e.target.title;
-      // const url: string = `http://3.219.123.52:8080/api/todos/update/status/${todo.id}/`;
       const url: string = `https://server.todos.rolemberg.net.br/api/todos/update/status/${todo.id}/`;
       const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
 
@@ -76,13 +82,13 @@ export default function TodoCard({ todo }: any) {
          <div
             onClick={handleBigCard}
             onMouseLeave={() => setStatusOptions('hidden')}
-            style={shadow}
-            className="todoCard m-5 p-4 z-0 rounded-3xl bg-slate-50 hover:cursor-pointer hover:bg-neutral-100"
+            style={shadowBoxes}
+            className={`todoCard ${cardColor} ${titleCardColor} m-5 p-4 z-0 rounded-3xl hover:cursor-pointer`}
          >
 
-            <div className=" flex justify-between mb-4 lg:w-80">
+            <div className={`flex justify-between mb-4 lg:w-80`}>
                <div>
-                  <p className=" text-2xl hover:underline">
+                  <p className={`text-2xl `}>  {/* hover:underline */}
 
                      {todo.title}
                   
@@ -92,7 +98,7 @@ export default function TodoCard({ todo }: any) {
                <div onClick={handleStatusOptions} className=" w-fit">
                   <p className="hover:cursor-pointer">
                   
-                     <FaEllipsis 
+                     <FaEllipsis
                         size={30} 
                      />
                   
@@ -116,7 +122,7 @@ export default function TodoCard({ todo }: any) {
 
             <div className=" mb-4">
                <div className="">
-                  <p className={`${priorColor} py-2 px-3 w-fit h-fit rounded-3xl`}>
+                  <p className={`${priorColor} text-slate-950 py-2 px-3 w-fit h-fit rounded-3xl`}>
                      {prior}
                   </p>
                </div>
@@ -125,7 +131,7 @@ export default function TodoCard({ todo }: any) {
             <div className=" flex items-center">
                <img className=" m-0.5 mr-2 mb-1 w-3 h-3" src="./img/calendar.png" alt="" />
 
-               <p>
+               <p className={``}>
                
                   {`${todo.due[2]}/${todo.due[1]}/${todo.due[0]}`}
                
@@ -136,8 +142,12 @@ export default function TodoCard({ todo }: any) {
    );
 };
 
-const shadow: object = {
-   boxShadow: '0 0 10px 0.3px lightgray'
+const shadowL: object = {
+   boxShadow: '0 0 5px 0.2px lightgray'
+}
+
+const shadowD: object = {
+   boxShadow: '0 0 6px 0.2px black'
 }
 
 
