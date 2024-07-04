@@ -1,11 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaSquarePlus } from 'react-icons/fa6';
 
 export default function InferiorMenu({ func }: any) {
-   const [ btnBg, setBtnBg ] = useState<string>('#353535');
+   const [ btnBg, setBtnBg ] = useState<string>();
+
+   useEffect(() => {
+
+      if(localStorage.getItem('theme') === 'dark') {
+         setBtnBg('#FFFFFF');
+      } else {
+         setBtnBg('#353535');
+      }
+
+   }, []);
 
    const handleMenuColorIn = () => setBtnBg('#838383');
-   const handleMenuColorOut = () => setBtnBg('#353535');
+   const handleMenuColorOut = () => localStorage.getItem('theme') === 'light' ? setBtnBg('#353535') : setBtnBg('#FFFFFF');
 
    return(
       <>
