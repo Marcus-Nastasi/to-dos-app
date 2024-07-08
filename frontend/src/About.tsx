@@ -1,6 +1,20 @@
+import { useEffect, useState } from "react";
+
 export default function About() {
+   const [ bgTheme, setBgTheme ] = useState<string>();
+   const [ bgCard, setBgCard ] = useState<string>();
+   const [ textTheme, setTextTheme ] = useState<string>();
+
+   useEffect(() => {
+
+      (localStorage.getItem('theme') === 'light') ? setBgTheme('bg-white') : setBgTheme('bg-slate-900');
+      (localStorage.getItem('theme') === 'light') ? setBgCard('bg-neutral-300') : setBgCard('bg-neutral-700');
+      (localStorage.getItem('theme') === 'light') ? setTextTheme('') : setTextTheme('text-slate-50');
+
+   }, []);
+
    return(
-      <div className="flex flex-col justify-center items-center overflow-x-hidden mb-10">
+      <div className={`flex flex-col justify-center items-center overflow-x-hidden pb-10 ${textTheme} ${bgTheme}`}>
 
          <div className=" w-screen flex justify-center py-10">
             <img className="w-28 absolute top-2 left-3" src="./img/logo-3.png" alt="" />
@@ -8,7 +22,7 @@ export default function About() {
             <h1 className="text-4xl mt-2 lg:text-5xl">About us</h1>
          </div>
 
-         <div className="w-11/12 md:w-9/12 lg:w-7/12 xl:w-6/12 text-lg lg:text-xl h-fit p-8 rounded-md border border-neutral-600 bg-neutral-300">
+         <div className={`w-11/12 md:w-9/12 lg:w-7/12 xl:w-6/12 text-lg lg:text-xl h-fit p-8 rounded-md border border-neutral-600 ${bgCard}`}>
             <h2 className="text-center font-semibold text-xl lg:text-2xl mb-3">Goals</h2>
             <p>Welcome to our open-source software for to-dos/task management. Our goal is to simplify the management of tasks and allow users to focus on what truly matters. This application offers a robust and modern layout designed to maximize your user experience.</p>
             <ul className=" py-5 list-disc">
