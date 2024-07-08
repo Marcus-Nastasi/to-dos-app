@@ -5,17 +5,21 @@ import ViewTodo from "../Todos/ViewTodo";
 export default function TodoCard({ todo }: any) {
    const [ priorColor, setPriorColor ] = useState<string>();
    const [ cardColor, setCardColor ] = useState<string>();
-   const [ titleCardColor, setTitleCardColor ] = useState<string>();
    const [ prior, setPrior ] = useState<string>();
+   const [ titleCardColor, setTitleCardColor ] = useState<string>();
    const [ bigCard, setBigCard ] = useState<string>('hidden');
    const [ statusOptions, setStatusOptions ] = useState<string>('hidden');
    const [ shadowBoxes, setShadowBoxes ] = useState<object>();
+   const [ statusBoxColor, setStatusBoxColor ] = useState<string>();
+   const [ statusBoxHover, setStatusBoxHover ] = useState<string>();
 
    useEffect(() => {
 
       (localStorage.getItem('theme') === 'light') ? setShadowBoxes(shadowL) : setShadowBoxes(shadowD);
       (localStorage.getItem('theme') === 'light') ? setCardColor('bg-slate-50 hover:bg-gray-200') : setCardColor('bg-slate-900 hover:bg-gray-800');
       (localStorage.getItem('theme') === 'light') ? setTitleCardColor('text-slate-950') : setTitleCardColor('text-slate-300');
+      (localStorage.getItem('theme') === 'light') ? setStatusBoxColor('bg-slate-100') : setStatusBoxColor('bg-slate-800');
+      (localStorage.getItem('theme') === 'light') ? setStatusBoxHover('bg-neutral-200') : setStatusBoxHover('bg-neutral-500');
 
       if(todo.priority === 'LOW') {
          setPrior('Low');
@@ -88,7 +92,7 @@ export default function TodoCard({ todo }: any) {
 
             <div className={`flex justify-between mb-4 lg:w-80`}>
                <div>
-                  <p className={`text-2xl `}>  {/* hover:underline */}
+                  <p className={`text-2xl`}>
 
                      {todo.title}
                   
@@ -104,15 +108,29 @@ export default function TodoCard({ todo }: any) {
                   
                   </p>
 
-                  <div className={`${statusOptions} absolute right-4 rounded-md text-lg border border-slate-300 bg-slate-100`}>
+                  <div className={`${statusOptions} absolute right-4 rounded-md text-lg border border-slate-300 ${statusBoxColor}`}>
                      <div>
-                        <p onClick={handleStatusChange} title="DONE" className="px-1 font-medium m-1 border-b border-slate-300 hover:rounded-md hover:bg-neutral-200">
+                        <p 
+                           onClick={handleStatusChange} 
+                           title="DONE" 
+                           className={`px-1 font-medium m-1 border-b border-slate-300 hover:rounded-md hover:${statusBoxHover}`}
+                        >
                            done
                         </p>
-                        <p onClick={handleStatusChange} title="PROGRESS" className="px-1 font-medium m-1 border-b border-slate-300 hover:rounded-md hover:bg-neutral-200">
+
+                        <p 
+                           onClick={handleStatusChange} 
+                           title="PROGRESS" 
+                           className={`px-1 font-medium m-1 border-b border-slate-300 hover:rounded-md hover:${statusBoxHover}`}
+                        >
                            progress
                         </p>
-                        <p onClick={handleStatusChange} title="PENDING" className="px-1 font-medium m-1 hover:rounded-md hover:bg-neutral-200">
+
+                        <p 
+                           onClick={handleStatusChange} 
+                           title="PENDING" 
+                           className={`px-1 font-medium m-1 hover:rounded-md hover:${statusBoxHover}`}
+                        >
                            pending
                         </p>
                      </div>
@@ -131,7 +149,7 @@ export default function TodoCard({ todo }: any) {
             <div className=" flex items-center">
                <img className=" m-0.5 mr-2 mb-1 w-3 h-3" src="./img/calendar.png" alt="" />
 
-               <p className={``}>
+               <p>
                
                   {`${todo.due[2]}/${todo.due[1]}/${todo.due[0]}`}
                
