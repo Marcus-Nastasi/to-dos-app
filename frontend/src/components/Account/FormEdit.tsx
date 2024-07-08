@@ -6,13 +6,11 @@ export default function FormEdit({ func, user }: any) {
    const [ error, setError ] = useState<boolean>();
    const [ errorMessage, setErrorMessage ] = useState<string>();
    const [ closeButton, setCloseButton ] = useState<string>('#353535');
-   const [ bgTheme, setBgTheme ] = useState<string>();
    const [ bgCard, setBgCard ] = useState<string>();
    const [ textThemeColor, setTextThemeColor ] = useState<string>();
 
    useEffect(() => {
 
-      (localStorage.getItem('theme') === 'light') ? setBgTheme('') : setBgTheme('bg-slate-900');
       (localStorage.getItem('theme') === 'light') ? setBgCard('bg-neutral-200') : setBgCard('bg-neutral-700');
       (localStorage.getItem('theme') === 'light') ? setTextThemeColor('text-slate-700') : setTextThemeColor('text-slate-50');
 

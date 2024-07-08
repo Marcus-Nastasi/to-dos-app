@@ -4,26 +4,31 @@ import ErrorBox from '../Handler/ErrorBox';
 
 export default function Viewtodo({ func, todo }: any) {
    const [ closeButton, setCloseButton ] = useState<string>('#353535');
-   const [ btnTrash, setBtnTrash ] = useState<string>('#353535');
-   const [ btnEdit, setEdit ] = useState<string>('#353535');
+   const [ btnTrash, setBtnTrash ] = useState<string>();
+   const [ btnEdit, setEdit ] = useState<string>();
    const [ priorColor, setPriorColor ] = useState<string>();
    const [ statusColor, setStatusColor ] = useState<string>();
    const [ error, setError ] = useState<boolean>(false);
    const [ errorMessage, setErrorMessage ] = useState<string>();
+   // theme handling
+   const [ bgTheme, setBgTheme ] = useState<string>();
+   const [ textThemeColor, setTextThemeColor ] = useState<string>();
 
    useEffect(() => {
       
       if(todo.priority === 'LOW') setPriorColor('bg-green-300');
-
       if(todo.priority === 'MEDIUM') setPriorColor('bg-orange-300');
-
       if(todo.priority === 'HIGH') setPriorColor('bg-red-300');
 
       if(todo.status === 'PENDING') setStatusColor('text-red-800');
-
       if(todo.status === 'PROGRESS') setStatusColor('text-orange-600');
-
       if(todo.status === 'DONE') setStatusColor('text-green-800');
+
+      // theme handling
+      (localStorage.getItem('theme') === 'light') ? setBgTheme('bg-slate-100') : setBgTheme('bg-slate-900');
+      (localStorage.getItem('theme') === 'light') ? setTextThemeColor('') : setTextThemeColor('text-slate-50');
+      (localStorage.getItem('theme') === 'light') ? setBtnTrash('#353535') : setBtnTrash('#FFFFFF');
+      (localStorage.getItem('theme') === 'light') ? setEdit('#353535') : setEdit('#FFFFFF');
 
    }, []);
 
@@ -32,7 +37,6 @@ export default function Viewtodo({ func, todo }: any) {
 
       try {
          const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
-         // const url: string = `http://3.219.123.52:8080/api/todos/delete/${parseInt(todo.id)}/`;
          const url: string = `https://server.todos.rolemberg.net.br/api/todos/delete/${parseInt(todo.id)}/`;
 
          if(!token || !todo.id) {
@@ -68,10 +72,16 @@ export default function Viewtodo({ func, todo }: any) {
    const handleCloseBtnColorOut = (): void => setCloseButton('#353535');
 
    const handleBtnTrashIn = (): void => setBtnTrash('#838383');
-   const handleBtnTrashOut = (): void => setBtnTrash('#353535');
+   const handleBtnTrashOut = (): void => {
+      setBtnTrash('#353535');
+      (localStorage.getItem('theme') === 'light') ? setBtnTrash('#353535') : setBtnTrash('#FFFFFF');
+   };
 
    const handleBtnEditIn = (): void => setEdit('#838383');
-   const handleBtnEditOut = (): void => setEdit('#353535');
+   const handleBtnEditOut = (): void => {
+      setEdit('#353535');
+      (localStorage.getItem('theme') === 'light') ? setEdit('#353535') : setEdit('#FFFFFF');
+   };
 
    return(
       <div className={`w-screen lg:w-full h-full z-50 overflow-y-scroll shadow-lg shadow-neutral-600 bg-slate-100`}>
@@ -89,28 +99,28 @@ export default function Viewtodo({ func, todo }: any) {
             />
          </div>
 
-         <div className='w-screen lg:max-w-screen-sm h-screen flex flex-col justify-start p-7 py-16 text-xl text-wrap bg-slate-100'>
+         <div className={`w-screen lg:max-w-screen-sm h-screen flex flex-col justify-start p-7 py-16 text-xl text-wrap ${bgTheme}`}>
 
             <div>
                <caption className=' text-slate-600'>title</caption>
-               <h1 className=' mb-5 text-4xl rounded-l-lg w-fit'>{todo.title}</h1>
+               <h1 className={`mb-5 text-4xl rounded-l-lg w-fit ${textThemeColor}`}>{todo.title}</h1>
 
                <caption className=' text-slate-600'>client</caption>
-               <h3 className=' mb-5 text-3xl rounded-l-lg w-fit'>{todo.client}</h3>
+               <h3 className={`mb-5 text-3xl rounded-l-lg w-fit ${textThemeColor}`}>{todo.client}</h3>
                
                <caption className=' text-slate-600'>description</caption>
-               <p className=' mb-5 text-2xl rounded-l-lg w-fit '>{todo.description}</p>
+               <p className={`mb-5 text-2xl rounded-l-lg w-fit ${textThemeColor}`}>{todo.description}</p>
             </div>
             
             <div className=' mt-10'>
                <caption className=' text-slate-600'>link</caption>
-               <p className='mb-2'>{todo.link}</p>
+               <p className={`mb-2 ${textThemeColor}`}>{todo.link}</p>
 
                <caption className=' text-slate-600'>due</caption>
-               <p className='mb-2'>{`${todo.due[2]}/${todo.due[1]}/${todo.due[0]}`}</p>
+               <p className={`mb-2 ${textThemeColor}`}>{`${todo.due[2]}/${todo.due[1]}/${todo.due[0]}`}</p>
 
                <caption className=' text-slate-600'>creation</caption>
-               <p className='mb-2'>{`${todo.creation[2]}/${todo.creation[1]}/${todo.creation[0]}`}</p>
+               <p className={`mb-2 ${textThemeColor}`}>{`${todo.creation[2]}/${todo.creation[1]}/${todo.creation[0]}`}</p>
 
                <caption className=' text-slate-600'>status</caption>
                <p className={`${statusColor} mb-2  font-semibold`}>{todo.status}</p>
