@@ -8,6 +8,9 @@ export default function Account() {
    const [ user, setUser ] = useState<User>();
    const [ error, setError ] = useState<boolean>(false);
    const [ errorMessage, setErrorMessage ] = useState<string>();
+   const [ bgTheme, setBgTheme ] = useState<string>();
+   const [ bgCard, setBgCard ] = useState<string>();
+   const [ textThemeColor, setTextThemeColor ] = useState<string>();
 
    useEffect(() => {
 
@@ -16,7 +19,6 @@ export default function Account() {
       const handleGetUser = async(): Promise<void> => {
          const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
          const uid: string = document.cookie.split('UID=')[1];
-         // const url: string = `http://3.219.123.52:8080/api/user/get/${parseInt(uid)}/`;
          const url: string = `https://server.todos.rolemberg.net.br/api/user/get/${parseInt(uid)}/`;
 
          if(!token || !uid) {
@@ -44,6 +46,10 @@ export default function Account() {
          }
       };
       handleGetUser();
+
+      (localStorage.getItem('theme') === 'light') ? setBgTheme('') : setBgTheme('bg-slate-900');
+      (localStorage.getItem('theme') === 'light') ? setBgCard('bg-neutral-200') : setBgCard('bg-neutral-700');
+      (localStorage.getItem('theme') === 'light') ? setTextThemeColor('text-slate-700') : setTextThemeColor('text-slate-50');
 
    }, []);
 
@@ -73,16 +79,16 @@ export default function Account() {
    };
 
    return(
-      <>
+      <div className={`${bgTheme}`}>
          <div className={`${edit} w-screen h-screen absolute top-0 overflow-y-scroll overflow-x-hidden bg-white`}>
             <FormEdit func={handleEdit} user={user} />
          </div>
 
          {error ? <ErrorBox message={errorMessage} /> : ''}
 
-         <div className="flex flex-col items-center min-h-screen max-h-fit w-screen p-10 text-lg overflow-x-hidden text-slate-700 selection:select-none">
+         <div className={`flex flex-col items-center min-h-screen max-h-fit w-screen p-10 text-lg overflow-x-hidden ${textThemeColor} selection:select-none`}>
 
-            <div className=" w-full md:w-10/12 lg:w-8/12 xl:w-6/12 h-fit border p-4 flex flex-col justify-between items-center rounded-md border-neutral-300 bg-neutral-200">
+            <div className={` w-full md:w-10/12 lg:w-8/12 xl:w-6/12 h-fit border p-4 flex flex-col justify-between items-center rounded-md border-neutral-300 ${bgCard}`}>
                <div className=" text-lg w-full flex justify-between items-center mb-3">
                   <p>User</p>
                   <p className="text-wrap w-40 ml-5">{user?.name}</p>
@@ -103,7 +109,7 @@ export default function Account() {
                </button>
             </div>
 
-            <div className=" mt-10 w-full md:w-10/12 lg:w-8/12 xl:w-6/12 h-fit border p-4 flex justify-between items-center rounded-md border-neutral-300 bg-neutral-200">
+            <div className={`mt-10 w-full md:w-10/12 lg:w-8/12 xl:w-6/12 h-fit border p-4 flex justify-between items-center rounded-md border-neutral-300 ${bgCard}`}>
                <p className=" font-medium md:text-lg">Log off</p>
                
                <button onClick={logOff} className="font-medium px-5 py-0.5 rounded-md border border-red-300 text-slate-50 bg-red-500 hover:bg-red-400">
@@ -111,7 +117,7 @@ export default function Account() {
                </button>
             </div>
          </div>
-      </>
+      </div>
    );
 };
 
