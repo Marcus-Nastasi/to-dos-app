@@ -99,7 +99,7 @@ export default function Viewtodo({ func, todo }: any) {
             />
          </div>
 
-         <div className={`w-screen lg:max-w-screen-sm h-screen flex flex-col justify-start p-7 py-16 text-xl text-wrap ${bgTheme}`}>
+         <div className={`w-screen lg:max-w-screen-sm h-full flex flex-col justify-start p-7 py-16 text-xl text-wrap ${bgTheme}`}>
 
             <div>
                <caption className=' text-slate-600'>title</caption>
