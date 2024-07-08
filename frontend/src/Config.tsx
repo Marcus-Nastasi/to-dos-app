@@ -23,11 +23,13 @@ export default function Config() {
       if(themeText === 'Dark') {
          setThemeText('Light');
          localStorage.setItem('theme', 'dark');
+         window.open('/', '_self')
       }
 
       if(themeText === 'Light') {
          setThemeText('Dark');
          localStorage.setItem('theme', 'light');
+         window.open('/', '_self')
       }
    };
 

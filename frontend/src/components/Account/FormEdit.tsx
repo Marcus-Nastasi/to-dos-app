@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaX } from 'react-icons/fa6';
 import ErrorBox from "../Handler/ErrorBox";
 
@@ -6,13 +6,23 @@ export default function FormEdit({ func, user }: any) {
    const [ error, setError ] = useState<boolean>();
    const [ errorMessage, setErrorMessage ] = useState<string>();
    const [ closeButton, setCloseButton ] = useState<string>('#353535');
+   const [ bgTheme, setBgTheme ] = useState<string>();
+   const [ bgCard, setBgCard ] = useState<string>();
+   const [ textThemeColor, setTextThemeColor ] = useState<string>();
+
+   useEffect(() => {
+
+      (localStorage.getItem('theme') === 'light') ? setBgTheme('') : setBgTheme('bg-slate-900');
+      (localStorage.getItem('theme') === 'light') ? setBgCard('bg-neutral-200') : setBgCard('bg-neutral-700');
+      (localStorage.getItem('theme') === 'light') ? setTextThemeColor('text-slate-700') : setTextThemeColor('text-slate-50');
+
+   }, []);
 
    async function handleUpdate(e: any): Promise<void> {
       e.preventDefault();
 
       const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
       const uid: string = document.cookie.split('UID=')[1];
-      // const url: string = `http://3.219.123.52:8080/api/user/update/${parseInt(uid)}/`;
       const url: string = `https://server.todos.rolemberg.net.br/api/user/update/${parseInt(uid)}/`;
 
       const [ n, em, op, np ]: any = [ document.getElementById('name'), document.getElementById('email'), document.getElementById('currentPassword'), document.getElementById('newPassword') ];
@@ -47,7 +57,6 @@ export default function FormEdit({ func, user }: any) {
 
       const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
       const uid: string = document.cookie.split('UID=')[1];
-      // const url: string = `http://3.219.123.52:8080/api/user/delete/${parseInt(uid)}/`;
       const url: string = `https://server.todos.rolemberg.net.br/api/user/delete/${parseInt(uid)}/`;
 
       try {
@@ -80,7 +89,7 @@ export default function FormEdit({ func, user }: any) {
 
    return(
       <>
-         <form className="h-screen w-screen flex flex-col items-center pt-20">
+         <form className={`h-screen w-screen flex flex-col items-center pt-20 ${textThemeColor}`}>
 
             {error ? <ErrorBox message={errorMessage} />: ''}
 
@@ -95,18 +104,18 @@ export default function FormEdit({ func, user }: any) {
 
             <h2 className=" text-4xl mb-10">Update user</h2>
 
-            <div className="flex flex-col w-11/12 md:w-9/12 lg:w-6/12 xl:w-4/12 rounded-md shadow-sm shadow-neutral-500 p-4 bg-neutral-200">
+            <div className={`flex flex-col w-11/12 md:w-9/12 lg:w-6/12 xl:w-4/12 rounded-md shadow-sm shadow-neutral-500 p-4 ${bgCard}`}>
                <label className=" text-lg" htmlFor="name">Name:</label>
-               <input className="p-1 rounded-sm mb-5" type="text" name="name" id="name" />
+               <input className="p-1 rounded-sm mb-5 text-slate-950" type="text" name="name" id="name" />
 
                <label className=" text-lg" htmlFor="email">E-mail:</label>
-               <input className="p-1 rounded-sm mb-5" type="text" name="email" id="email" />
+               <input className="p-1 rounded-sm mb-5 text-slate-950" type="text" name="email" id="email" />
 
                <label className=" text-lg" htmlFor="currentPassword">Current password:</label>
-               <input className=" p-1 rounded-sm mb-5" type="password" name="currentPassword" id="currentPassword" />
+               <input className=" p-1 rounded-sm mb-5 text-slate-950" type="password" name="currentPassword" id="currentPassword" />
 
                <label className=" text-lg" htmlFor="newPassword">New password:</label>
-               <input className=" p-1 rounded-sm mb-5" type="password" name="newPassword" id="newPassword" />
+               <input className=" p-1 rounded-sm mb-5 text-slate-950" type="password" name="newPassword" id="newPassword" />
 
                <button onClick={handleUpdate} className=" self-center w-fit px-6 py-1 font-semibold border rounded-md border-blue-300 bg-blue-400 hover:bg-blue-300 text-white hover:text-slate-100">
                   Update

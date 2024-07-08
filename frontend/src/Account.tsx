@@ -9,6 +9,7 @@ export default function Account() {
    const [ error, setError ] = useState<boolean>(false);
    const [ errorMessage, setErrorMessage ] = useState<string>();
    const [ bgTheme, setBgTheme ] = useState<string>();
+   const [ bgFormTheme, setBgFormTheme ] = useState<string>();
    const [ bgCard, setBgCard ] = useState<string>();
    const [ textThemeColor, setTextThemeColor ] = useState<string>();
 
@@ -48,6 +49,7 @@ export default function Account() {
       handleGetUser();
 
       (localStorage.getItem('theme') === 'light') ? setBgTheme('') : setBgTheme('bg-slate-900');
+      (localStorage.getItem('theme') === 'light') ? setBgFormTheme('bg-white') : setBgFormTheme('bg-slate-900');
       (localStorage.getItem('theme') === 'light') ? setBgCard('bg-neutral-200') : setBgCard('bg-neutral-700');
       (localStorage.getItem('theme') === 'light') ? setTextThemeColor('text-slate-700') : setTextThemeColor('text-slate-50');
 
@@ -80,7 +82,7 @@ export default function Account() {
 
    return(
       <div className={`${bgTheme}`}>
-         <div className={`${edit} w-screen h-screen absolute top-0 overflow-y-scroll overflow-x-hidden bg-white`}>
+         <div className={`${edit} w-screen h-screen absolute top-0 overflow-y-scroll overflow-x-hidden ${bgFormTheme}`}>
             <FormEdit func={handleEdit} user={user} />
          </div>
 
