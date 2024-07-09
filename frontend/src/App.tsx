@@ -36,7 +36,6 @@ function App() {
    useEffect(() => {
 
       // to-do: add handling errors on all pages
-      // to-do: implement handle themes (create dark theme on expanded card and new todo)
       // to-do: create priority filters
       
       if(!document.cookie) window.open('/login', '_self');
