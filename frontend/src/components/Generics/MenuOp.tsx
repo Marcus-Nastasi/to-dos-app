@@ -9,7 +9,7 @@ export default function MenuOp({ show, func }: any) {
    useEffect(() => {
 
       (localStorage.getItem('theme') === 'light') ? setBgColor('bg-slate-100') : setBgColor('bg-slate-950');
-      (localStorage.getItem('theme') === 'light') ? setTextColor('text-slate-700') : setTextColor('text-slate-100');
+      (localStorage.getItem('theme') === 'light') ? setTextColor('text-slate-950') : setTextColor('text-slate-100');
 
    }, []);
 

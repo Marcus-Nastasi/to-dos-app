@@ -8,13 +8,14 @@ export default function UpdateTodo() {
    const [ todo, setTodo ] = useState<Todo>();
    const [ loading, setLoading ] = useState<string>();
    const [ error, setError ] = useState<boolean>(false);
+   const [ bgCard, setBgCard ] = useState<string>();
+   const [ textThemeColor, setTextThemeColor ] = useState<string>();
 
    useEffect(() => {
 
       const getId = (): string => window.location.href.split('/')[5];
 
       async function getTodo(): Promise<void> {
-         // const url: string = `http://3.219.123.52:8080/api/todos/get/${parseInt(getId())}/`;
          const url: string = `https://server.todos.rolemberg.net.br/api/todos/get/${parseInt(getId())}/`;
          const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
 
@@ -37,19 +38,22 @@ export default function UpdateTodo() {
             console.log(e);
          }  
       };
-
       getTodo();
+
+      (localStorage.getItem('theme') === 'light') ? setBgCard('bg-white') : setBgCard('bg-slate-800');
+      (localStorage.getItem('theme') === 'light') ? setTextThemeColor('') : setTextThemeColor('text-slate-50');
 
    }, []);
 
    return(
       <>
-         <div className={`${loading} flex justify-center items-center fixed top-0 w-screen h-screen z-50 bg-white`}>
+         <div className={`${loading} flex justify-center items-center fixed top-0 w-screen h-screen z-50 ${bgCard}`}>
             <FaSpinner
                size={50}
                className={`loading_spinner`}
             />
          </div>
+
          {todo ? <Update todo={todo} /> : '' }
          {error ? <ErrorBox message={'error'}/> : ''}
       </>

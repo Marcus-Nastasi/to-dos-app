@@ -19,7 +19,7 @@ export default function TodoCard({ todo }: any) {
       (localStorage.getItem('theme') === 'light') ? setCardColor('bg-slate-50 hover:bg-gray-200') : setCardColor('bg-slate-900 hover:bg-gray-800');
       (localStorage.getItem('theme') === 'light') ? setTitleCardColor('text-slate-950') : setTitleCardColor('text-slate-300');
       (localStorage.getItem('theme') === 'light') ? setStatusBoxColor('bg-slate-100') : setStatusBoxColor('bg-slate-800');
-      (localStorage.getItem('theme') === 'light') ? setStatusBoxHover('bg-neutral-200') : setStatusBoxHover('bg-neutral-500');
+      (localStorage.getItem('theme') === 'light') ? setStatusBoxHover('hover:bg-neutral-200') : setStatusBoxHover('hover:bg-neutral-500');
 
       if(todo.priority === 'LOW') {
          setPrior('Low');
@@ -113,7 +113,7 @@ export default function TodoCard({ todo }: any) {
                         <p 
                            onClick={handleStatusChange} 
                            title="DONE" 
-                           className={`px-1 font-medium m-1 border-b border-slate-300 hover:rounded-md hover:${statusBoxHover}`}
+                           className={`px-1 font-medium m-1 border-b border-slate-300 hover:rounded-md ${statusBoxHover}`}
                         >
                            done
                         </p>
@@ -121,7 +121,7 @@ export default function TodoCard({ todo }: any) {
                         <p 
                            onClick={handleStatusChange} 
                            title="PROGRESS" 
-                           className={`px-1 font-medium m-1 border-b border-slate-300 hover:rounded-md hover:${statusBoxHover}`}
+                           className={`px-1 font-medium m-1 border-b border-slate-300 hover:rounded-md ${statusBoxHover}`}
                         >
                            progress
                         </p>
@@ -129,7 +129,7 @@ export default function TodoCard({ todo }: any) {
                         <p 
                            onClick={handleStatusChange} 
                            title="PENDING" 
-                           className={`px-1 font-medium m-1 hover:rounded-md hover:${statusBoxHover}`}
+                           className={`px-1 font-medium m-1 hover:rounded-md ${statusBoxHover}`}
                         >
                            pending
                         </p>
