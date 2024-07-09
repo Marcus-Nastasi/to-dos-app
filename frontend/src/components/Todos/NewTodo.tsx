@@ -121,7 +121,7 @@ export default function NewTodo({ show, func }: any) {
 
                   <button
                      onClick={handleInsertTodo}
-                     style={ localStorage.getItem('theme') === 'light' ? shadow : shadowOnDark}
+                     style={ localStorage.getItem('theme') === 'light' ? shadow : shadowOnDark }
                      className={`px-7 py-1 w-fit text-lg font-medium self-center rounded-md text-slate-100 hover:text-white border border-green-600 bg-green-500 hover:bg-green-400`}
                      type="submit">
                         Create
