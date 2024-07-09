@@ -84,7 +84,7 @@ export default function Viewtodo({ func, todo }: any) {
    };
 
    return(
-      <div className={`w-screen lg:w-full h-full z-50 overflow-y-scroll shadow-lg shadow-neutral-600 bg-slate-100`}>
+      <div className={`w-screen lg:w-full h-screen z-50 overflow-y-scroll shadow-lg shadow-neutral-600 bg-slate-100`}>
 
          {error ? <ErrorBox message={errorMessage} /> : ''}
          
@@ -99,7 +99,7 @@ export default function Viewtodo({ func, todo }: any) {
             />
          </div>
 
-         <div className={`w-screen lg:max-w-screen-sm h-full flex flex-col justify-start p-7 py-16 text-xl text-wrap ${bgTheme}`}>
+         <div className={`w-screen lg:max-w-screen-sm min-h-screen max-h-fit flex flex-col justify-start p-7 py-16 text-xl text-wrap ${bgTheme}`}>
 
             <div>
                <caption className=' text-slate-600'>title</caption>
