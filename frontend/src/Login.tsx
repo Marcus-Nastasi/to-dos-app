@@ -17,7 +17,7 @@ export default function Login() {
          <div className=" w-screen flex justify-center">
             <div className="flex justify-evenly text-2xl pb-5 w-screen lg:w-3/12">
                <p onClick={handleLogin} className=" hover:underline hover:cursor-pointer">Login</p>
-               <p onClick={handleCadaster} className=" hover:underline hover:cursor-pointer">Cadaster</p>
+               <p onClick={handleCadaster} className=" hover:underline hover:cursor-pointer">Register</p>
             </div>
          </div>
 
