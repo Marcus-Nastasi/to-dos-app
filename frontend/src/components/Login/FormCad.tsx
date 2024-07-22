@@ -15,7 +15,6 @@ export default function FormCad() {
             document.getElementById('input_password') 
          ];
 
-         // const url: string = 'http://3.219.123.52:8080/api/user/new/';
          const url: string = 'https://server.todos.rolemberg.net.br/api/user/new/';
 
          const req: Response = await fetch(url, {
@@ -46,7 +45,7 @@ export default function FormCad() {
 
          {error ? <ErrorBox message={errorMessage} /> : ''}
 
-         <form className="flex flex-col p-5 rounded-3xl border-2 border-slate-400 bg-slate-50 w-11/12 md:w-8/12 lg:w-6/12 xl:w-5/12">
+         <form className="flex flex-col p-5 rounded-3xl border-2 border-slate-400 bg-slate-50 shadow-2xl shadow-slate-500 w-11/12 md:w-8/12 lg:w-6/12 xl:w-5/12">
 
             <label className=" text-2xl mb-2" htmlFor="input_name">Name</label>
             <input 
@@ -74,7 +73,7 @@ export default function FormCad() {
 
             <button 
                onClick={cadaster}
-               className="self-center px-7 py-1 text-lg font-medium mt-5 rounded-md border border-blue-500 text-slate-50 bg-blue-400 hover:bg-blue-500"
+               className="self-center px-7 py-1 text-lg font-medium mt-5 rounded-md border border-blue-500 text-slate-50 bg-blue-600 hover:bg-blue-500"
                type="submit"
             >
                Enter
