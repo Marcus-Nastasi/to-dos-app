@@ -84,7 +84,7 @@ export default function Viewtodo({ func, todo }: any) {
    };
 
    return(
-      <div className={`w-screen lg:w-full h-screen z-50 overflow-y-scroll shadow-lg shadow-neutral-600 bg-slate-100`}>
+      <div className={`w-screen lg:w-full min-h-fit max-h-screen z-50 overflow-y-scroll shadow-lg shadow-neutral-600 bg-slate-100`}>
 
          {error ? <ErrorBox message={errorMessage} /> : ''}
          
@@ -99,9 +99,9 @@ export default function Viewtodo({ func, todo }: any) {
             />
          </div>
 
-         <div className={`w-screen lg:max-w-screen-sm min-h-screen max-h-fit flex flex-col justify-start p-7 py-16 text-xl text-wrap ${bgTheme}`}>
+         <div className={`w-screen lg:max-w-screen-sm min-h-screen max-h-fit flex flex-col flex-wrap justify-start p-7 py-16 text-xl text-wrap ${bgTheme}`}>
 
-            <div>
+            <div className='w-full flex flex-col justify-start items-baseline'>
                <caption className=' text-slate-600'>title</caption>
                <h1 className={`mb-5 text-4xl rounded-l-lg w-fit ${textThemeColor}`}>{todo.title}</h1>
 
@@ -109,7 +109,12 @@ export default function Viewtodo({ func, todo }: any) {
                <h3 className={`mb-5 text-3xl rounded-l-lg w-fit ${textThemeColor}`}>{todo.client}</h3>
                
                <caption className=' text-slate-600'>description</caption>
-               <p className={`mb-5 text-2xl rounded-l-lg w-fit ${textThemeColor}`}>{todo.description}</p>
+               <p 
+                  style={{ wordWrap: 'break-word', overflowWrap: 'break-word', whiteSpace: 'normal', wordBreak: 'break-word' }}
+                  className={`mb-5 text-2xl rounded-l-lg w-full ${textThemeColor}`}
+               >
+                  {todo.description}
+               </p>
             </div>
             
             <div className=' mt-10'>

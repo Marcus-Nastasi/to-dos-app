@@ -76,7 +76,7 @@ export default function TodoCard({ todo }: any) {
       <>
          <div className={`${bigCard} fixed top-0 z-40 min-h-screen max-h-fit lg:left-0`}>
 
-            <ViewTodo 
+            <ViewTodo
                func={handleBigCardShow} 
                todo={todo} 
             />
