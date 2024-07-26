@@ -6,23 +6,36 @@ import path from 'path';
 import router from './routes/routes';
 import helmet from 'helmet';
 
-const app = express();
+class App {
 
-app.use(express.static(path.join(__dirname, '../../frontend/dist')));
-app.engine('html', require('ejs').renderFile);
+    app: express.Application;
 
-app.set('views', path.join(__dirname, '../../frontend/dist'))
-app.set('view engine', 'html');
+    constructor() {
+        this.app = express();
+        this.middlewares();
+        this.routes();
+    }
 
-app.use(express.json());
+    private middlewares() {
+        this.app.use(express.static(path.join(__dirname, '../../frontend/dist')));
+        this.app.engine('html', require('ejs').renderFile);
 
-app.use(router);
+        this.app.set('views', path.join(__dirname, '../../frontend/dist'))
+        this.app.set('view engine', 'html');
 
-app.use(helmet());
+        this.app.use(express.json());
+        this.app.use(helmet());
+    }
 
-app.listen(3030);
+    private routes() {
+        this.app.use(router);
+    }
 
+    public listen() {
+        this.app.listen(3030);
+    }
+}
 
-
+new App().listen();
 
 

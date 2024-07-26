@@ -40,7 +40,7 @@ function App() {
       
       if(!document.cookie) window.open('/login', '_self');
 
-      if(!localStorage.getItem('theme')) localStorage.setItem('theme', 'light');
+      if(!localStorage.getItem('theme')) localStorage.setItem('theme', 'dark');
 
       if(localStorage.getItem('theme') === 'light') {
          setBgHome('bg-slate-100');
@@ -238,7 +238,12 @@ function App() {
          </div>
 
          <div className="md:flex md:flex-col md:items-center pt-7 mb-5">
-            <StatusFilter doneFilter={getDone} progressFilter={getProgress} pendingFilter={getPending} clear={clearFilters}  />
+            <StatusFilter
+                doneFilter={getDone}
+                progressFilter={getProgress}
+                pendingFilter={getPending}
+                clear={clearFilters}
+            />
          </div>
 
          <div className="pb-32">

@@ -48,13 +48,16 @@ export default function UpdateTodo() {
    return(
       <>
          <div className={`${loading} flex justify-center items-center fixed top-0 w-screen h-screen z-50 ${bgCard}`}>
+
             <FaSpinner
                size={50}
                className={`loading_spinner`}
             />
+
          </div>
 
          {todo ? <Update todo={todo} /> : '' }
+
          {error ? <ErrorBox message={'error'}/> : ''}
       </>
    );
