@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { FaSpinner } from 'react-icons/fa6';
+
 import Header from "./components/Generics/Header";
 import InferiorMenu from "./components/Generics/InferiorMenu";
 import StatusFilter from "./components/Generics/StatusFilter";
@@ -37,6 +38,7 @@ function App() {
 
       // to-do: add handling errors on all pages
       // to-do: create priority filters
+      // to-do: correct mobile bug on ViewTodo
       
       if(!document.cookie) window.open('/login', '_self');
 
@@ -68,7 +70,7 @@ function App() {
             });
 
             if(req.status != 200) {
-               handleError('status diferent than 200, redirecting to login...');
+               handleError('status different than 200, redirecting to login...');
                setTimeout(() => window.open('/login', '_self'), 4100);
                return
             }
@@ -249,7 +251,10 @@ function App() {
          <div className="pb-32">
 
             <div className={`${newTodo} flex lg:justify-center w-screen min-h-screen max-h-full fixed top-0 z-50 lg:bg-neutral-800 lg:bg-opacity-60`}>
-               <NewTodo show={newTodo} func={handleNewTodo} />
+               <NewTodo
+                   show={newTodo}
+                   func={handleNewTodo}
+               />
             </div>
 
             <div className="flex flex-col-reverse lg:flex-row-reverse lg:flex-wrap lg:justify-center lg:w-screen h-fit z-10">

@@ -75,7 +75,6 @@ export default function FormEdit({ func, user }: any) {
    }
   
    const handleError = (e: string): void => {
-      user
       setErrorMessage(e);
       setError(true);
       setTimeout(() => setError(false), 4000);

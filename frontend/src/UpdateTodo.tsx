@@ -18,20 +18,16 @@ export default function UpdateTodo() {
       async function getTodo(): Promise<void> {
          const url: string = `https://server.todos.rolemberg.net.br/api/todos/get/${parseInt(getId())}/`;
          const token: string = document.cookie.split('Bearer=')[1].split(';')[0];
-
          try {
             const request: Response = await fetch(url, {
                method: 'GET',
                headers: new Headers({ 'content-type': 'application/json', 'Authorization': `Bearer ${token}` })
             });
-
             if(request.status != 200) {
                setError(true);
                return
             }
-
             const response: Todo = await request.json();
-
             setTodo(response);
             setLoading('hidden');
          } catch(e) {
